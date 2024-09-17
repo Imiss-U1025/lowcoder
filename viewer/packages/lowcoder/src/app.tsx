@@ -1,8 +1,6 @@
 import { default as App } from "antd/es/app";
 import { default as ConfigProvider } from "antd/es/config-provider";
 import {
-  USER_PROFILE_URL,
-  NEWS_URL,
   ORG_HOME_URL,
   ALL_APPLICATIONS_URL,
   APP_EDITOR_URL,
@@ -122,7 +120,7 @@ class AppIndex extends React.Component<AppIndexProps, any> {
     // we check if we are on the public cloud
     const isLowCoderDomain = window.location.hostname === 'app.lowcoder.cloud';
     const isLocalhost = window.location.hostname === 'localhost';
-    
+
     /* if (isLocalhost || isLowCoderDomain) {
       posthog.init('phc_lD36OXeppUehLgI33YFhioTpXqThZ5QqR8IWeKvXP7f', { api_host: 'https://eu.i.posthog.com', person_profiles: 'always' });
     } */
@@ -299,99 +297,97 @@ class AppIndex extends React.Component<AppIndexProps, any> {
           ]}
         </Helmet>
         <SystemWarning />
-          <Router history={history}>
-            <Switch>
-              <LazyRoute
-                exact
-                path={IMPORT_APP_FROM_TEMPLATE_URL}
-                component={LazyAppFromTemplate}
-              />
-              <LazyRoute
-                fallback="layout"
-                path={APP_EDITOR_URL}
-                component={LazyAppEditor}
-              />
-              <LazyRoute
-                fallback="layout"
-                path={[
-                  USER_PROFILE_URL,
-                  NEWS_URL,
-                  ORG_HOME_URL,
-                  ALL_APPLICATIONS_URL,
-                  DATASOURCE_CREATE_URL,
-                  DATASOURCE_EDIT_URL,
-                  DATASOURCE_URL,
-                  SUPPORT_URL,
-                  QUERY_LIBRARY_URL,
-                  FOLDERS_URL,
-                  FOLDER_URL,
-                  TRASH_URL,
-                  SETTING_URL,
-                  MARKETPLACE_URL,
-                  ADMIN_APP_URL
-                ]}
-                // component={ApplicationListPage}
-                component={LazyApplicationHome}
-              />
-              <LazyRoute path={USER_AUTH_URL} component={LazyUserAuthComp} />
-              <LazyRoute
-                path={ORG_AUTH_LOGIN_URL}
-                component={LazyUserAuthComp}
-              />
-              <LazyRoute
-                path={ORG_AUTH_REGISTER_URL}
-                component={LazyUserAuthComp}
-              />
-              <LazyRoute
-                path={ORG_AUTH_FORGOT_PASSWORD_URL}
-                component={LazyUserAuthComp}
-              />
-              <LazyRoute
-                path={ORG_AUTH_RESET_PASSWORD_URL}
-                component={LazyUserAuthComp}
-              />
-              <LazyRoute
-                path={INVITE_LANDING_URL}
-                component={LazyInviteLanding}
-              />
-              <LazyRoute
-                path={`${COMPONENT_DOC_URL}/:name`}
-                component={LazyComponentDoc}
-              />
-              <LazyRoute
-                path={`/playground/:name/:dsl`}
-                component={LazyComponentPlayground}
-              />
+        <Router history={history}>
+          <Switch>
+            <LazyRoute
+              exact
+              path={IMPORT_APP_FROM_TEMPLATE_URL}
+              component={LazyAppFromTemplate}
+            />
+            <LazyRoute
+              fallback="layout"
+              path={APP_EDITOR_URL}
+              component={LazyAppEditor}
+            />
+            <LazyRoute
+              fallback="layout"
+              path={[
+                ORG_HOME_URL,
+                ALL_APPLICATIONS_URL,
+                DATASOURCE_CREATE_URL,
+                DATASOURCE_EDIT_URL,
+                DATASOURCE_URL,
+                SUPPORT_URL,
+                QUERY_LIBRARY_URL,
+                FOLDERS_URL,
+                FOLDER_URL,
+                TRASH_URL,
+                SETTING_URL,
+                MARKETPLACE_URL,
+                ADMIN_APP_URL
+              ]}
+              // component={ApplicationListPage}
+              component={LazyApplicationHome}
+            />
+            <LazyRoute path={USER_AUTH_URL} component={LazyUserAuthComp} />
+            <LazyRoute
+              path={ORG_AUTH_LOGIN_URL}
+              component={LazyUserAuthComp}
+            />
+            <LazyRoute
+              path={ORG_AUTH_REGISTER_URL}
+              component={LazyUserAuthComp}
+            />
+            <LazyRoute
+              path={ORG_AUTH_FORGOT_PASSWORD_URL}
+              component={LazyUserAuthComp}
+            />
+            <LazyRoute
+              path={ORG_AUTH_RESET_PASSWORD_URL}
+              component={LazyUserAuthComp}
+            />
+            <LazyRoute
+              path={INVITE_LANDING_URL}
+              component={LazyInviteLanding}
+            />
+            <LazyRoute
+              path={`${COMPONENT_DOC_URL}/:name`}
+              component={LazyComponentDoc}
+            />
+            <LazyRoute
+              path={`/playground/:name/:dsl`}
+              component={LazyComponentPlayground}
+            />
 
-              {this.props.isFetchUserFinished && this.props.defaultHomePage? (
-                !this.props.orgDev ? ( 
-                  <Redirect exact from={BASE_URL} to={APPLICATION_VIEW_URL(this.props.defaultHomePage || "", "view")}/>
-                ) : (
-                  <Redirect exact from={BASE_URL} to={ORG_HOME_URL} />
-                )
+            {this.props.isFetchUserFinished && this.props.defaultHomePage ? (
+              !this.props.orgDev ? (
+                <Redirect exact from={BASE_URL} to={APPLICATION_VIEW_URL(this.props.defaultHomePage || "", "view")} />
               ) : (
-                <Redirect exact from={BASE_URL} to={ALL_APPLICATIONS_URL} />
-              )}
+                <Redirect exact from={BASE_URL} to={ORG_HOME_URL} />
+              )
+            ) : (
+              <Redirect exact from={BASE_URL} to={ALL_APPLICATIONS_URL} />
+            )}
 
-              <Redirect to={`${COMPONENT_DOC_URL}/input`} path="/components" />
+            <Redirect to={`${COMPONENT_DOC_URL}/input`} path="/components" />
 
-              {developEnv() && (
-                <>
-                  <LazyRoute
-                    path="/debug_comp/:name"
-                    component={LazyDebugComp}
-                  />
-                  <LazyRoute
-                    exact
-                    path="/debug_comp"
-                    component={LazyDebugComp}
-                  />
-                  <LazyRoute path="/debug_editor" component={LazyAppEditor} />
-                  <LazyRoute path="/debug_new" component={LazyDebugNewComp} />
-                </>
-              )}
-            </Switch>
-          </Router>
+            {developEnv() && (
+              <>
+                <LazyRoute
+                  path="/debug_comp/:name"
+                  component={LazyDebugComp}
+                />
+                <LazyRoute
+                  exact
+                  path="/debug_comp"
+                  component={LazyDebugComp}
+                />
+                <LazyRoute path="/debug_editor" component={LazyAppEditor} />
+                <LazyRoute path="/debug_new" component={LazyDebugNewComp} />
+              </>
+            )}
+          </Switch>
+        </Router>
       </Wrapper>
     );
   }
@@ -434,7 +430,7 @@ export function bootstrap() {
   const root = createRoot(container!);
   root.render(
     <Provider store={reduxStore}>
-        <AppIndexWithProps />
+      <AppIndexWithProps />
     </Provider>
   );
 }
