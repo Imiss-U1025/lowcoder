@@ -19,8 +19,6 @@ export const THEME_DETAIL_URL = `${THEME_DETAIL}/:themeId`;
 export const OAUTH_PROVIDER_SETTING = "/setting/oauth-provider";
 export const OAUTH_PROVIDER_DETAIL = "/setting/oauth-provider/detail";
 
-export const PERMISSION_SETTING_DETAIL = `${PERMISSION_SETTING}/:groupId`;
-export const ORGANIZATION_SETTING_DETAIL = `${ORGANIZATION_SETTING}/:orgId`;
 export const SUBSCRIPTION_SUCCESS = `${SUBSCRIPTION_SETTING}/success`;
 export const SUBSCRIPTION_ERROR = `${SUBSCRIPTION_SETTING}/error`;
 export const SUBSCRIPTION_DETAIL = `${SUBSCRIPTION_SETTING}/details/:subscriptionId/:productId`;
