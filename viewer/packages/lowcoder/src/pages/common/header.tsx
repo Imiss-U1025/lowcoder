@@ -46,7 +46,6 @@ import { ExternalEditorContext } from "util/context/ExternalEditorContext";
 import history from "util/history";
 import { useApplicationId } from "util/hooks";
 import { canManageApp } from "util/permissionUtils";
-import ProfileDropdown from "./profileDropdown";
 import { Logo, LogoHome, LogoWithName } from "@lowcoder-ee/assets/images";
 import { HeaderStartDropdown } from "./headerStartDropdown";
 import { AppPermissionDialog } from "../../components/PermissionDialog/AppPermissionDialog";
@@ -270,15 +269,13 @@ function HeaderProfile(props: { user: User }) {
   }
   return (
     <div>
-      {user.isAnonymous ? (
+      {(
         <LoginBtn
           buttonType="primary"
           onClick={() => history.push(AUTH_LOGIN_URL)}
         >
           {trans("userAuth.login")}
         </LoginBtn>
-      ) : (
-        <ProfileDropdown user={user} profileSide={28} fontSize={12} />
       )}
     </div>
   );

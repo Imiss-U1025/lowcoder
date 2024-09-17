@@ -11,7 +11,6 @@ import styled from "styled-components";
 import history from "util/history";
 import { useApplicationId } from "util/hooks";
 import { canEditApp, canManageApp } from "util/permissionUtils";
-import ProfileDropdown from "./profileDropdown";
 import { trans } from "i18n";
 import { Logo } from "@lowcoder-ee/assets/images";
 import { AppPermissionDialog } from "../../components/PermissionDialog/AppPermissionDialog";
@@ -115,14 +114,12 @@ export function HeaderProfile(props: { user: User }) {
   }
   return (
     <div>
-      {user.isAnonymous ? (
+      {(
         !templateId ? (
           <LoginBtn buttonType="primary" onClick={() => history.push(AUTH_LOGIN_URL)}>
             {trans("userAuth.login")}
           </LoginBtn>
         ) : null
-      ) : (
-        <ProfileDropdown user={user} profileSide={28} fontSize={12} />
       )}
     </div>
   );
