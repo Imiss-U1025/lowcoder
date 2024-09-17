@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { HomeRes } from "./HomeLayout";
 import { HomeResCard } from "./HomeResCard";
-import { MarketplaceResCard } from "./MarketplaceResCard";
 import React, { useState } from "react";
 import { MoveToFolderModal } from "./MoveToFolderModal";
 
@@ -24,9 +23,7 @@ export function HomeCardView(props: { resources: HomeRes[] }) {
 
   return (
     <ApplicationCardsWrapper>
-      {props.resources.map((res) => (
-        res.isMarketplace ? 
-        <MarketplaceResCard key={res.id} res={res} /> :
+      {props.resources.map((res) => ( 
         <HomeResCard key={res.id} res={res} onMove={setNeedMoveRes} />
       ))}
       <MoveToFolderModal source={needMoveRes} onClose={() => setNeedMoveRes(undefined)} />

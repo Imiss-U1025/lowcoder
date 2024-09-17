@@ -1,4 +1,4 @@
-import { AppViewMode, MarketplaceType } from "constants/applicationConstants";
+import { AppViewMode } from "constants/applicationConstants";
 import { LocationDescriptor } from "history";
 import { UserGuideLocationState } from "pages/tutorials/tutorialsConstant";
 import { DatasourceType } from "@lowcoder-ee/constants/queryConstants";
@@ -20,9 +20,7 @@ export const OAUTH_PROVIDER_DETAIL = "/setting/oauth-provider/detail";
 
 export const ALL_APPLICATIONS_URL = "/apps";
 export const ADMIN_APP_URL = "/ee/:applicationId/:viewMode";
-export const APPLICATION_MARKETPLACE_URL = `https://app.lowcoder.cloud/apps`;
 export const MODULE_APPLICATIONS_URL = "/apps/module";
-export const MARKETPLACE_URL = `/marketplace`;
 export const DATASOURCE_URL = `/datasource`;
 export const DATASOURCE_CREATE_URL = `${DATASOURCE_URL}/new/:datasourceType`;
 export const DATASOURCE_EDIT_URL = `${DATASOURCE_URL}/:datasourceId`;
@@ -48,16 +46,9 @@ export const ORG_AUTH_LOGIN_URL = `/org/:orgId/auth/login`;
 export const ORG_AUTH_REGISTER_URL = `/org/:orgId/auth/register`;
 export const ORG_AUTH_FORGOT_PASSWORD_URL = `/org/:orgId/auth/forgot-password`;
 export const ORG_AUTH_RESET_PASSWORD_URL = `/org/:orgId/auth/lost-password`;
-export const MARKETPLACE_TYPE_URL = `${MARKETPLACE_URL}/:marketplaceType`;
 
 export const APPLICATION_VIEW_URL = (appId: string, viewMode: AppViewMode) =>
   `${ALL_APPLICATIONS_URL}/${appId}/${viewMode}`;
-
-export const APPLICATION_MARKETPLACE_VIEW_URL = (appId: string, viewMode: AppViewMode) =>
-`${APPLICATION_MARKETPLACE_URL}/${appId}/${viewMode}`;
-
-export const MARKETPLACE_URL_BY_TYPE = (type: MarketplaceType) =>
-  `${MARKETPLACE_URL}/${type}`;
 
 export const isAuthUnRequired = (pathname: string): boolean => {
   return (

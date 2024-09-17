@@ -11,7 +11,6 @@ import {
   handleAppEditClick,
   handleAppViewClick,
   handleFolderViewClick,
-  handleMarketplaceAppViewClick,
   HomeResInfo,
 } from "../../util/homeResUtils";
 import { HomeResOptions } from "./HomeResOptions";
@@ -196,10 +195,6 @@ export function HomeResCard(props: { res: HomeRes; onMove: (res: HomeRes) => voi
                 history.push(APPLICATION_VIEW_URL(res.id, "view"));
                 return;
               }
-              if(res.isMarketplace) {
-                handleMarketplaceAppViewClick(res.id);
-                return;
-              }
               res.isEditable ? handleAppEditClick(e, res.id) : handleAppViewClick(res.id);
             }
           }}
@@ -234,8 +229,6 @@ export function HomeResCard(props: { res: HomeRes; onMove: (res: HomeRes) => voi
             onClick={() =>
               res.type === HomeResTypeEnum.Folder
                 ? handleFolderViewClick(res.id)
-                : res.isMarketplace
-                ? handleMarketplaceAppViewClick(res.id)
                 : handleAppViewClick(res.id)
             }
           >

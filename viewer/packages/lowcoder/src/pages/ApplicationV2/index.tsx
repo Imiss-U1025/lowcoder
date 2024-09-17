@@ -4,7 +4,6 @@ import {
   // FOLDER_URL,
   // FOLDER_URL_PREFIX,
   FOLDERS_URL,
-  MARKETPLACE_URL,
   // MODULE_APPLICATIONS_URL,
   QUERY_LIBRARY_URL,
   SETTING_URL,
@@ -48,7 +47,6 @@ import styled, { css } from "styled-components";
 // import history from "../../util/history";
 // import { FolderView } from "./FolderView";
 import { TrashView } from "./TrashView";
-import { MarketplaceView } from "./MarketplaceView";
 // import { SideBarItemType } from "../../components/layout/SideBarSection";
 import { RootFolderListView } from "./RootFolderListView";
 // import InviteDialog from "../common/inviteDialog";
@@ -215,14 +213,7 @@ export default function ApplicationHome() {
                 routeComp: OrgView,
                 icon: ({ selected, ...otherProps }) => selected ? <WorkspacesIcon {...otherProps} width={"24px"} /> : <WorkspacesIcon {...otherProps} width={"24px"} />,
                 visible: ({ user }) => !user.orgDev,
-              },
-              {
-                text: <TabLabel>{trans("home.marketplace")}</TabLabel>,
-                routePath: MARKETPLACE_URL,
-                routePathExact: false,
-                routeComp: MarketplaceView,
-                icon: ({ selected, ...otherProps }) => selected ? <MarketplaceIcon {...otherProps} width={"24px"} /> : <MarketplaceIcon {...otherProps} width={"24px"} />,
-              },
+              }
             ]
           },
 
