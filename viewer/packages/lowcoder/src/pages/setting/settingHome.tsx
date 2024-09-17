@@ -8,7 +8,7 @@ import AuditSetting from "@lowcoder-ee/pages/setting/audit";
 import { isEE, isEnterpriseMode, isSelfDomain, showAuditLog } from "util/envUtils";
 import { TwoColumnSettingPageContent } from "./styled";
 import SubSideBar from "components/layout/SubSideBar";
-import { 
+import {
   Menu,
   UserGroupIcon,
   UserShieldIcon,
@@ -16,7 +16,7 @@ import {
   ThemeIcon,
   WorkspacesIcon,
   SubscriptionIcon,
- } from "lowcoder-design";
+} from "lowcoder-design";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUser } from "redux/selectors/usersSelectors";
@@ -29,7 +29,6 @@ import { enableCustomBrand } from "util/featureFlagUtils";
 import FreeLimitTag from "pages/common/freeLimitTag";
 import { Helmet } from "react-helmet";
 import { Card } from "antd";
-import { Subscription } from "./subscriptions";
 
 enum SettingPageEnum {
   UserGroups = "permission",
@@ -53,28 +52,28 @@ export function SettingHome() {
     {
       key: SettingPageEnum.Organization,
       label: trans("settings.organization"),
-      icon: <WorkspacesIcon width={"20px"}/>,
+      icon: <WorkspacesIcon width={"20px"} />,
     },
     {
       key: SettingPageEnum.OAuthProvider,
       label: (trans("settings.oauthProviders")),
       disabled: !currentOrgAdmin(user),
-      icon: <UserShieldIcon width={"20px"}/>,
+      icon: <UserShieldIcon width={"20px"} />,
     },
     {
       key: SettingPageEnum.UserGroups,
       label: trans("settings.userGroups"),
-      icon: <UserGroupIcon width={"20px"}/>,
+      icon: <UserGroupIcon width={"20px"} />,
     },
     {
       key: SettingPageEnum.Theme,
       label: trans("settings.theme"),
-      icon: <ThemeIcon width={"20px"}/>,
+      icon: <ThemeIcon width={"20px"} />,
     },
     {
       key: SettingPageEnum.Advanced,
       label: trans("settings.advanced"),
-      icon: <LeftSettingIcon width={"20px"}/>,
+      icon: <LeftSettingIcon width={"20px"} />,
     },
 
     // Premium features
@@ -120,8 +119,8 @@ export function SettingHome() {
             !currentOrgAdmin(user) ||
             !enableCustomBrand(config) ||
             (!isSelfDomain(config) && !isEnterpriseMode(config))) && (
-            <FreeLimitTag text={trans("settings.premium")} />
-          )}
+              <FreeLimitTag text={trans("settings.premium")} />
+            )}
         </span>
       ),
       disabled:
@@ -143,10 +142,10 @@ export function SettingHome() {
             selectedKeys={[selectKey]}
             onClick={(value) => {
               history.push("/setting/" + value.key);
-            } }
+            }}
             items={items} />
 
-          <Card style={{marginTop: "40px", color:"#aaa"}}>
+          <Card style={{ marginTop: "40px", color: "#aaa" }}>
             <div>If you are interested in early access to the upcoming Enterprise Edition, please contact us: <a href="mailto:service@lowcoder.cloud">service@lowcoder.cloud</a></div>
           </Card>
         </SubSideBar>
@@ -157,7 +156,6 @@ export function SettingHome() {
         {selectKey === SettingPageEnum.Audit && <AuditSetting />}
         {selectKey === SettingPageEnum.Branding && <BrandingSetting />}
         {selectKey === SettingPageEnum.Advanced && <AdvancedSetting />}
-        {selectKey === SettingPageEnum.Subscription && <Subscription />}
       </TwoColumnSettingPageContent>
     </>
   );

@@ -10,7 +10,6 @@ export const COMPONENT_DOC_URL = "/components";
 export const SETTING_URL = "/setting";
 export const PERMISSION_SETTING = "/setting/permission";
 export const ORGANIZATION_SETTING = "/setting/organization";
-export const SUBSCRIPTION_SETTING = "/setting/subscription";
 export const THEME_SETTING = "/setting/theme";
 export const PLUGINS_SETTING = "/setting/plugins";
 export const THEME_DETAIL = "/setting/theme/detail";
@@ -18,11 +17,6 @@ export const THEME_DETAIL_URL = `${THEME_DETAIL}/:themeId`;
 
 export const OAUTH_PROVIDER_SETTING = "/setting/oauth-provider";
 export const OAUTH_PROVIDER_DETAIL = "/setting/oauth-provider/detail";
-
-export const SUBSCRIPTION_SUCCESS = `${SUBSCRIPTION_SETTING}/success`;
-export const SUBSCRIPTION_ERROR = `${SUBSCRIPTION_SETTING}/error`;
-export const SUBSCRIPTION_DETAIL = `${SUBSCRIPTION_SETTING}/details/:subscriptionId/:productId`;
-export const SUBSCRIPTION_INFO = `${SUBSCRIPTION_SETTING}/info/:productId`;
 
 export const ALL_APPLICATIONS_URL = "/apps";
 export const ADMIN_APP_URL = "/ee/:applicationId/:viewMode";
@@ -100,7 +94,4 @@ export function preview(applicationId: string) {
 export const buildGroupId = (groupId: string) => `${PERMISSION_SETTING}/${groupId}`;
 
 export const buildOrgId = (orgId: string) => `${ORGANIZATION_SETTING}/${orgId}`;
-
-export const buildSubscriptionSettingsLink = (subscriptionId: string, productId : string) => `${SUBSCRIPTION_SETTING}/details/${subscriptionId}/${productId}`;
-export const buildSubscriptionInfoLink = (productId: string) => `${SUBSCRIPTION_SETTING}/info/${productId}`;
 
