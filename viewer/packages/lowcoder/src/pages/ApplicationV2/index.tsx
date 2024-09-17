@@ -8,7 +8,6 @@ import {
   // MODULE_APPLICATIONS_URL,
   QUERY_LIBRARY_URL,
   SETTING_URL,
-  SUPPORT_URL,
   TRASH_URL,
   ORG_HOME_URL,
 } from "constants/routesURL";
@@ -59,7 +58,6 @@ import { fetchFolderElements, updateFolder } from "../../redux/reduxActions/fold
 import { trans } from "../../i18n";
 import { foldersSelector } from "../../redux/selectors/folderSelector";
 import Setting from "pages/setting";
-import { Support } from "pages/support";
 // import { TypographyText } from "../../components/TypographyText";
 // import { messageInstance } from "lowcoder-design/src/components/GlobalInstances";
 import { isEE } from "util/envUtils";
