@@ -23,7 +23,6 @@ import { getUser } from "redux/selectors/usersSelectors";
 import history from "util/history";
 import { useParams } from "react-router-dom";
 import { BrandingSetting } from "@lowcoder-ee/pages/setting/branding/BrandingSetting";
-import { IdSourceHome } from "@lowcoder-ee/pages/setting/idSource";
 import { selectSystemConfig } from "redux/selectors/configSelectors";
 import { enableCustomBrand } from "util/featureFlagUtils";
 import FreeLimitTag from "pages/common/freeLimitTag";
@@ -152,7 +151,6 @@ export function SettingHome() {
         {selectKey === SettingPageEnum.UserGroups && <PermissionSetting />}
         {selectKey === SettingPageEnum.Organization && <Organization />}
         {selectKey === SettingPageEnum.Theme && <ThemeHome />}
-        {selectKey === SettingPageEnum.OAuthProvider && <IdSourceHome />}
         {selectKey === SettingPageEnum.Audit && <AuditSetting />}
         {selectKey === SettingPageEnum.Branding && <BrandingSetting />}
         {selectKey === SettingPageEnum.Advanced && <AdvancedSetting />}

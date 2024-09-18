@@ -22,7 +22,6 @@ import {
 } from "pages/setting/idSource/styledComponents";
 import FreeLimitTag from "pages/common/freeLimitTag";
 import history from "util/history";
-import { OAUTH_PROVIDER_DETAIL } from "constants/routesURL";
 import { selectSystemConfig } from "redux/selectors/configSelectors";
 import { isEnterpriseMode, isSelfDomain } from "util/envUtils";
 import { default as Badge } from "antd/es/badge";
@@ -120,15 +119,6 @@ export const IdSourceList = (props: any) => {
               : "";
           }}
           onRow={(record) => ({
-            onClick: () => {
-              if (authTypeDisabled((record as ConfigItem).authType, enableEnterpriseLogin)) {
-                return;
-              }
-              history.push({
-                pathname: OAUTH_PROVIDER_DETAIL,
-                state: record,
-              });
-            },
           })}
         >
           <Column

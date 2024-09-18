@@ -14,9 +14,6 @@ export const PLUGINS_SETTING = "/setting/plugins";
 export const THEME_DETAIL = "/setting/theme/detail";
 export const THEME_DETAIL_URL = `${THEME_DETAIL}/:themeId`;
 
-export const OAUTH_PROVIDER_SETTING = "/setting/oauth-provider";
-export const OAUTH_PROVIDER_DETAIL = "/setting/oauth-provider/detail";
-
 export const ALL_APPLICATIONS_URL = "/apps";
 export const ADMIN_APP_URL = "/ee/:applicationId/:viewMode";
 export const MODULE_APPLICATIONS_URL = "/apps/module";

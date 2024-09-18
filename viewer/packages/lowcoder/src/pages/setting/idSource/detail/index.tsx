@@ -12,7 +12,6 @@ import {
   CloseEyeIcon,
 } from "lowcoder-design";
 import history from "util/history";
-import { OAUTH_PROVIDER_SETTING } from "constants/routesURL";
 import {
   authConfig,
   AuthType,
@@ -74,12 +73,6 @@ export const IdSourceDetail = (props: IdSourceDetailProps) => {
       })
     }
   }, [configDetail]);
-  const goList = () => {
-    history.push(OAUTH_PROVIDER_SETTING);
-  };
-  if (!configDetail) {
-    goList();
-  }
   const handleSuccess = (values: any) => {
     setSaveLoading(true);
     let params = {
@@ -106,14 +99,6 @@ export const IdSourceDetail = (props: IdSourceDetailProps) => {
         ...params,
       }
     }
-    IdSourceApi.saveConfig(params)
-      .then((resp) => {
-        if (validateResponse(resp)) {
-          messageInstance.success(trans("idSource.saveSuccess"), 0.8, goList);
-        }
-      })
-      .catch((e) => messageInstance.error(e.message))
-      .finally(() => setSaveLoading(false));
   };
 
   const handleChange = (allValues: { [key: string]: string }) => {
@@ -168,7 +153,6 @@ export const IdSourceDetail = (props: IdSourceDetailProps) => {
     <DetailContainer>
       <Header>
         <HeaderBack>
-          <span onClick={() => goList()}>{trans("idSource.title")}</span>
           <ArrowIcon />
           <span>{authConfig[configDetail.authType].sourceName}</span>
         </HeaderBack>
