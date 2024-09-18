@@ -7,7 +7,7 @@ import {
   NavDocIcon,
 } from "lowcoder-design";
 import { HomeResTypeEnum } from "../types/homeRes";
-import { APPLICATION_VIEW_URL, buildFolderUrl } from "../constants/routesURL";
+import { APPLICATION_VIEW_URL } from "../constants/routesURL";
 import history from "./history";
 import { trans } from "../i18n";
 import { FunctionComponent } from "react";
@@ -59,4 +59,3 @@ export const handleAppEditClick = (e: any, id: string): void => {
 
 export const handleAppViewClick = (id: string) => window.open(APPLICATION_VIEW_URL(id, "view"), '_blank');
 
-export const handleFolderViewClick = (id: string) => history.push(buildFolderUrl(id));

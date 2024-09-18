@@ -25,9 +25,6 @@ export const DATASOURCE_URL = `/datasource`;
 export const DATASOURCE_CREATE_URL = `${DATASOURCE_URL}/new/:datasourceType`;
 export const DATASOURCE_EDIT_URL = `${DATASOURCE_URL}/:datasourceId`;
 export const QUERY_LIBRARY_URL = `/query-library`;
-export const FOLDER_URL_PREFIX = `/folder`;
-export const FOLDER_URL = `${FOLDER_URL_PREFIX}/:folderId`;
-export const FOLDERS_URL = `/folders`;
 export const IMPORT_APP_FROM_TEMPLATE_URL = `${ALL_APPLICATIONS_URL}/template-import/:templateId`;
 export const APP_EDITOR_URL = `${ALL_APPLICATIONS_URL}/:applicationId/:viewMode/:appPageId?`;
 
@@ -63,7 +60,6 @@ export const buildDatasourceCreateUrl = (datasourceType: DatasourceType) =>
   `${DATASOURCE_URL}/new/${datasourceType}`;
 export const buildDatasourceEditUrl = (datasourceId: string) => `${DATASOURCE_URL}/${datasourceId}`;
 
-export const buildFolderUrl = (folderId: string) => `${FOLDER_URL_PREFIX}/${folderId}`;
 
 export const buildAppRouteWithState = (
   appId: string,
