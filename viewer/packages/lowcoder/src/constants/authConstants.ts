@@ -1,9 +1,7 @@
 import {
   AUTH_BIND_URL,
-  AUTH_FORGOT_PASSWORD_URL,
   AUTH_LOGIN_URL,
   AUTH_REGISTER_URL,
-  AUTH_RESET_PASSWORD_URL,
   OAUTH_REDIRECT,
   ORG_AUTH_LOGIN_URL,
   ORG_AUTH_REGISTER_URL,
@@ -90,8 +88,6 @@ export const AuthRoutes: Array<{ path: string; component: React.ComponentType<an
   { path: AUTH_LOGIN_URL, component: Login },
   { path: AUTH_BIND_URL, component: ThirdPartyBindCard },
   { path: AUTH_REGISTER_URL, component: UserRegister },
-  { path: AUTH_FORGOT_PASSWORD_URL, component: ForgotPassword },
-  { path: AUTH_RESET_PASSWORD_URL, component: ResetPassword },
   { path: OAUTH_REDIRECT, component: AuthRedirect },
   { path: ORG_AUTH_LOGIN_URL, component: Login },
   { path: ORG_AUTH_REGISTER_URL, component: UserRegister },

@@ -15,10 +15,9 @@ import { UserConnectionSource } from "@lowcoder-ee/constants/userConstants";
 import { trans } from "i18n";
 import { AuthContext, useAuthSubmit } from "pages/userAuth/authUtils";
 import { ThirdPartyAuth } from "pages/userAuth/thirdParty/thirdPartyAuth";
-import { AUTH_FORGOT_PASSWORD_URL, AUTH_REGISTER_URL, ORG_AUTH_REGISTER_URL } from "constants/routesURL";
+import { AUTH_REGISTER_URL, ORG_AUTH_REGISTER_URL } from "constants/routesURL";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Divider } from "antd";
-import Flex from "antd/es/flex";
 
 const AccountLoginWrapper = styled(FormWrapperMobile)`
   display: flex;
