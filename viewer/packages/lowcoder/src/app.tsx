@@ -10,11 +10,7 @@ import {
   DATASOURCE_URL,
   IMPORT_APP_FROM_TEMPLATE_URL,
   INVITE_LANDING_URL,
-  isAuthUnRequired,
-  ORG_AUTH_LOGIN_URL,
-  ORG_AUTH_REGISTER_URL,
   QUERY_LIBRARY_URL,
-  USER_AUTH_URL,
   ADMIN_APP_URL,
 } from "constants/routesURL";
 import React from "react";
@@ -30,7 +26,6 @@ import { developEnv } from "util/envUtils";
 import history from "util/history";
 import LazyRoute from "components/LazyRoute";
 import { getAntdLocale } from "i18n/antdLocale";
-import { ProductLoading } from "components/ProductLoading";
 import { trans } from "i18n"; // language
 import { loadComps } from "comps";
 import { initApp } from "util/commonUtils";
@@ -38,14 +33,10 @@ import { favicon } from "assets/images";
 import { hasQueryParam } from "util/urlUtils";
 import { isFetchUserFinished } from "redux/selectors/usersSelectors"; // getCurrentUser, 
 import { getIsCommonSettingFetched } from "redux/selectors/commonSettingSelectors";
-import { SystemWarning } from "./components/SystemWarning";
-import { getBrandingConfig } from "./redux/selectors/configSelectors";
-import { buildMaterialPreviewURL } from "./util/materialUtils";
 import GlobalInstances from 'components/GlobalInstances';
 // import posthog from 'posthog-js'
 import { fetchHomeData } from "./redux/reduxActions/applicationActions";
 
-const LazyUserAuthComp = React.lazy(() => import("pages/userAuth"));
 const LazyInviteLanding = React.lazy(() => import("pages/common/inviteLanding"));
 const LazyComponentDoc = React.lazy(() => import("pages/ComponentDoc"));
 const LazyComponentPlayground = React.lazy(() => import("pages/ComponentPlayground"));
@@ -66,20 +57,12 @@ const Wrapper = (props: { children: React.ReactNode, language: string }) => (
 );
 
 type AppIndexProps = {
-  isFetchUserFinished: boolean;
-  getIsCommonSettingFetched: boolean;
   currentOrgId?: string;
   currentUserId: string;
   currentUserAnonymous: boolean;
   orgDev: boolean;
   defaultHomePage: string | null | undefined;
-  fetchHomeDataFinished: boolean;
-  fetchConfig: (orgId?: string) => void;
-  fetchHomeData: (currentUserAnonymous?: boolean | undefined) => void;
   getCurrentUser: () => void;
-  favicon: string;
-  brandName: string;
-  uiLanguage: string;
 };
 
 class AppIndex extends React.Component<AppIndexProps, any> {
@@ -91,15 +74,6 @@ class AppIndex extends React.Component<AppIndexProps, any> {
   }
 
   componentDidUpdate(prevProps: AppIndexProps) {
-    if (
-      prevProps.currentOrgId !== this.props.currentOrgId &&
-      this.props.currentOrgId !== ''
-    ) {
-      this.props.fetchConfig(this.props.currentOrgId);
-      if (!this.props.currentUserAnonymous) {
-        this.props.fetchHomeData(this.props.currentUserAnonymous);
-      }
-    }
   }
   render() {
     const isTemplate = hasQueryParam('template');
@@ -113,29 +87,14 @@ class AppIndex extends React.Component<AppIndexProps, any> {
       posthog.init('phc_lD36OXeppUehLgI33YFhioTpXqThZ5QqR8IWeKvXP7f', { api_host: 'https://eu.i.posthog.com', person_profiles: 'always' });
     } */
 
-    // make sure all users in this app have checked login info
-    if (!this.props.isFetchUserFinished || (this.props.currentUserId && !this.props.fetchHomeDataFinished)) {
-      const hideLoadingHeader = isTemplate || isAuthUnRequired(pathname);
-      return <ProductLoading hideHeader={hideLoadingHeader} />;
-    }
-    else {
-      // if the user just logged in, we send the event to posthog
-      if (isLocalhost || isLowCoderDomain) {
-        if (sessionStorage.getItem('_just_logged_in_')) {
-          // posthog.identify(this.props.currentUserId);
-          sessionStorage.removeItem('_just_logged_in_');
-        }
-      }
-    }
-
     // persisting the language in local storage
-    localStorage.setItem('lowcoder_uiLanguage', this.props.uiLanguage);
+    localStorage.setItem('lowcoder_uiLanguage', "en_US");
 
     return (
-      <Wrapper language={this.props.uiLanguage}>
+      <Wrapper language="en_US">
         <Helmet>
-          {<title>{this.props.brandName}</title>}
-          {<link rel="icon" href={this.props.favicon} />}
+          {<title>Lowcoder</title>}
+          {<link rel="icon" href="" />}
           <meta name="description" content={trans('productDesc')} />
           <meta
             name="keywords"
@@ -147,7 +106,7 @@ class AppIndex extends React.Component<AppIndexProps, any> {
           <meta
             key="og:title"
             property="og:title"
-            content={this.props.brandName}
+            content="Lowcoder"
           />
           <meta
             key="og:description"
@@ -170,7 +129,7 @@ class AppIndex extends React.Component<AppIndexProps, any> {
           <meta
             key="twitter:title"
             name="twitter:title"
-            content={this.props.brandName}
+            content="Lowcoder"
           />
           <meta
             key="twitter:description"
@@ -208,7 +167,7 @@ class AppIndex extends React.Component<AppIndexProps, any> {
           <meta
             key="apple-mobile-web-app-title"
             name="apple-mobile-web-app-title"
-            content={this.props.brandName}
+            content="Lowcoder"
           />
           <link
             key="apple-touch-icon"
@@ -224,7 +183,7 @@ class AppIndex extends React.Component<AppIndexProps, any> {
           <meta
             key="application-name"
             name="application-name"
-            content={this.props.brandName}
+            content="Lowcoder"
           />
           <meta
             key="msapplication-TileColor"
@@ -244,7 +203,7 @@ class AppIndex extends React.Component<AppIndexProps, any> {
             <meta
               key="iframely:title"
               property="iframely:title"
-              content={this.props.brandName}
+              content="Lowcoder"
             />,
             <meta
               key="iframely:description"
@@ -284,22 +243,12 @@ class AppIndex extends React.Component<AppIndexProps, any> {
             ></script>,
           ]}
         </Helmet>
-        <SystemWarning />
         <Router history={history}>
           <Switch>
             <LazyRoute
               fallback="layout"
               path={APP_EDITOR_URL}
               component={LazyAppEditor}
-            />
-            <LazyRoute path={USER_AUTH_URL} component={LazyUserAuthComp} />
-            <LazyRoute
-              path={ORG_AUTH_LOGIN_URL}
-              component={LazyUserAuthComp}
-            />
-            <LazyRoute
-              path={ORG_AUTH_REGISTER_URL}
-              component={LazyUserAuthComp}
             />
             <LazyRoute
               path={INVITE_LANDING_URL}
@@ -332,18 +281,12 @@ class AppIndex extends React.Component<AppIndexProps, any> {
 }
 
 const mapStateToProps = (state: AppState) => ({
-  isFetchUserFinished: isFetchUserFinished(state),
-  getIsCommonSettingFetched: getIsCommonSettingFetched(state),
   orgDev: state.ui.users.user.orgDev,
   currentUserId: state.ui.users.currentUser.id,
   currentUserAnonymous: state.ui.users.currentUser.name === "ANONYMOUS",
   currentOrgId: state.ui.users.user.currentOrgId,
   defaultHomePage: state.ui.application.homeOrg?.commonSettings.defaultHomePage,
   fetchHomeDataFinished: Boolean(state.ui.application.homeOrg?.commonSettings),
-  favicon: getBrandingConfig(state)?.favicon
-    ? buildMaterialPreviewURL(getBrandingConfig(state)?.favicon!)
-    : favicon,
-  brandName: getBrandingConfig(state)?.brandName ?? trans("productName"),
   uiLanguage: state.ui.users.user.uiLanguage,
 });
 
@@ -351,11 +294,6 @@ const mapDispatchToProps = (dispatch: any) => ({
   getCurrentUser: () => {
     dispatch(fetchUserAction());
   },
-  fetchConfig: (orgId?: string) => dispatch(fetchConfigAction(orgId)),
-
-  fetchHomeData: (currentUserAnonymous: boolean | undefined) => {
-    dispatch(fetchHomeData({}));
-  }
 });
 
 const AppIndexWithProps = connect(mapStateToProps, mapDispatchToProps)(AppIndex);

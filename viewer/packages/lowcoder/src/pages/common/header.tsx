@@ -6,7 +6,6 @@ import { SHARE_TITLE } from "constants/apiConstants";
 import { AppTypeEnum } from "constants/applicationConstants";
 import {
   ALL_APPLICATIONS_URL,
-  AUTH_LOGIN_URL,
   preview,
 } from "constants/routesURL";
 import { User } from "constants/userConstants";
@@ -49,7 +48,6 @@ import { canManageApp } from "util/permissionUtils";
 import { Logo, LogoHome, LogoWithName } from "@lowcoder-ee/assets/images";
 import { HeaderStartDropdown } from "./headerStartDropdown";
 import { AppPermissionDialog } from "../../components/PermissionDialog/AppPermissionDialog";
-import { getBrandingConfig } from "../../redux/selectors/configSelectors";
 import { messageInstance } from "lowcoder-design/src/components/GlobalInstances";
 import { EditorContext } from "../../comps/editorState";
 import Tooltip from "antd/es/tooltip";
@@ -272,7 +270,7 @@ function HeaderProfile(props: { user: User }) {
       {(
         <LoginBtn
           buttonType="primary"
-          onClick={() => history.push(AUTH_LOGIN_URL)}
+          onClick={() => {}}
         >
           {trans("userAuth.login")}
         </LoginBtn>
@@ -531,7 +529,6 @@ export default function Header(props: HeaderProps) {
 // header in manager page
 export function AppHeader() {
   const user = useSelector(getUser);
-  const brandingConfig = useSelector(getBrandingConfig);
   const headerStart = (
     <StyledLink onClick={() => history.push(ALL_APPLICATIONS_URL)}>
       {/* {REACT_APP_LOWCODER_SHOW_BRAND === 'true' ?  REACT_APP_LOWCODER_CUSTOM_LOGO !== "" ? <img src={REACT_APP_LOWCODER_CUSTOM_LOGO}  height={28} alt="logo" /> :<LogoWithName branding={!user.orgDev} /> : <LogoHome />} */}
@@ -543,9 +540,6 @@ export function AppHeader() {
     <LayoutHeader
       headerStart={headerStart}
       headerEnd={headerEnd}
-      style={
-        user.orgDev ? {} : { backgroundColor: brandingConfig?.headerColor }
-      }
     />
   );
 }

@@ -29,7 +29,6 @@ import {
 import { getUser } from "redux/selectors/usersSelectors";
 import { validateResponse } from "api/apiUtils";
 import { User } from "constants/userConstants";
-import { getUserSaga } from "redux/sagas/userSagas";
 
 export function* updateGroupSaga(action: ReduxAction<UpdateGroupActionPayload>) {
   try {
@@ -237,7 +236,6 @@ export function* createOrgSaga(action: ReduxAction<{ orgName: string }>) {
     const isValidResponse: boolean = validateResponse(response);
     if (isValidResponse) {
       // update org list
-      yield call(getUserSaga);
       yield put({
         type: ReduxActionTypes.CREATE_ORG_SUCCESS,
       });

@@ -7,7 +7,6 @@ import {
   ERROR_500,
   SERVER_API_TIMEOUT_ERROR,
 } from "constants/messages";
-import { AUTH_BIND_URL, OAUTH_REDIRECT } from "constants/routesURL";
 import log from "loglevel";
 import history from "util/history";
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
@@ -61,11 +60,6 @@ const notAuthRequiredPath = (requestUrl: string | undefined) => {
     /^\/invite\/\w+/.test(pathName) ||
     (requestUrl && /^\/auth\/logout\w*/.test(requestUrl))
   );
-};
-
-const notNeedBindPath = () => {
-  const pathName = window.location.pathname;
-  return pathName === AUTH_BIND_URL || pathName === OAUTH_REDIRECT;
 };
 
 export const apiRequestInterceptor = (config: InternalAxiosRequestConfig): AxiosRequestConfigWithTimer => ({
@@ -136,14 +130,6 @@ export const apiFailureResponseInterceptor = (error: any) => {
             show: false,
           });
         }
-      }
-      if (error.response?.data?.code === SERVER_ERROR_CODES.NEED_BIND && !notNeedBindPath()) {
-        history.push(AUTH_BIND_URL);
-        return Promise.reject({
-          code: ERROR_CODES.SERVER_ERROR,
-          message: trans("apiMessage.verifyAccount"),
-          show: false,
-        });
       }
       if (
         error.response?.data?.code === SERVER_ERROR_CODES.CURRENT_EDITION_NOT_SUPPORT_THIS_FEATURE

@@ -5,7 +5,6 @@ import uiReducer from "./uiReducers";
 import { ApplicationReduxState } from "./uiReducers/applicationReducer";
 import { OrgReduxState } from "./uiReducers/orgReducer";
 import { UsersReduxState } from "./uiReducers/usersReducer";
-import { ConfigState } from "./uiReducers/configReducer";
 import { AppSnapshotState } from "./uiReducers/appSnapshotReducer";
 import { CommonSettingsState } from "./uiReducers/commonSettingsReducer";
 import { QueryLibraryState } from "./entitiyReducers/queryLibraryReducer";
@@ -22,7 +21,6 @@ export interface AppState {
     application: ApplicationReduxState;
     folder: FolderReduxState;
     appSnapshot: AppSnapshotState;
-    config: ConfigState;
     commonSettings: CommonSettingsState;
     subscriptions: SubscriptionsReduxState;
   };

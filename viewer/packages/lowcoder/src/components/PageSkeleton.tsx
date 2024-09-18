@@ -6,7 +6,6 @@ import Header from "./layout/Header";
 import { Logo, LogoWithName, LogoHome } from "@lowcoder-ee/assets/images";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { getBrandingConfig, getSystemConfigFetching } from "../redux/selectors/configSelectors";
 import { isFetchUserFinished } from "../redux/selectors/usersSelectors";
 import { CSSProperties } from "react";
 
@@ -58,11 +57,8 @@ const SkeletonWrapper = styled.div`
 `;
 
 export default function PageSkeleton(props: IProps) {
-  const isConfigFetching = useSelector(getSystemConfigFetching);
   const fetchUserFinished = useSelector(isFetchUserFinished);
-  const brandingConfig = useSelector(getBrandingConfig);
 
-  const isHeaderReady = !isConfigFetching && fetchUserFinished;
 
   const {
     logoWithName = false,

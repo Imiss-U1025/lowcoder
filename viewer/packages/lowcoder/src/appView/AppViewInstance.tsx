@@ -8,9 +8,6 @@ import type { Root } from "react-dom/client";
 import { StyleSheetManager } from "styled-components";
 import type { ModuleDSL, ModuleDSLIoInput } from "types/dsl";
 import { API_STATUS_CODES } from "constants/apiConstants";
-import { AUTH_LOGIN_URL } from "constants/routesURL";
-import { AuthSearchParams } from "constants/authConstants";
-import { saveAuthSearchParams } from "pages/userAuth/authUtils";
 import { Suspense, lazy } from "react";
 import Flex from "antd/es/flex";
 import { TacoButton } from "components/button";
@@ -88,10 +85,6 @@ export class AppViewInstance<I = any, O = any> {
         .then((i) => i.data)
         .catch((e) => {
           if (e.response?.status === API_STATUS_CODES.REQUEST_NOT_AUTHORISED) {
-            saveAuthSearchParams({
-              [AuthSearchParams.redirectUrl]: encodeURIComponent(window.location.href),
-              [AuthSearchParams.loginType]: null,
-            })
 
             this.authorizedUser = false;
             return {
@@ -167,9 +160,6 @@ export class AppViewInstance<I = any, O = any> {
 
   private async render() {
     const data = await this.dataPromise;
-    const loginUrl = this.options.orgId
-      ? `${this.options.webUrl}/org/${this.options.orgId}/auth/login`
-      : `${this.options.webUrl}${AUTH_LOGIN_URL}`;
 
     this.root.render(
       this.authorizedUser ? (
@@ -191,11 +181,6 @@ export class AppViewInstance<I = any, O = any> {
           {!isAuthButtonClicked ? (
             <TacoButton
               buttonType="primary"
-              onClick={() => {
-                isAuthButtonClicked = true;
-                window.open(loginUrl, '_blank');
-                this.render();
-              }}
             >
               Login
             </TacoButton>

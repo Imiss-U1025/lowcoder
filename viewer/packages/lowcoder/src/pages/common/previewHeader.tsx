@@ -1,7 +1,7 @@
 import { default as Skeleton } from "antd/es/skeleton";
 import Header from "components/layout/Header";
 import { SHARE_TITLE } from "constants/apiConstants";
-import { ALL_APPLICATIONS_URL, APPLICATION_VIEW_URL, AUTH_LOGIN_URL } from "constants/routesURL";
+import { ALL_APPLICATIONS_URL, APPLICATION_VIEW_URL } from "constants/routesURL";
 import { User } from "constants/userConstants";
 import { EllipsisTextCss, isDarkColor, TacoButton, TextEditIcon } from "lowcoder-design";
 import { useSelector } from "react-redux";
@@ -15,7 +15,6 @@ import { trans } from "i18n";
 import { Logo } from "@lowcoder-ee/assets/images";
 import { AppPermissionDialog } from "../../components/PermissionDialog/AppPermissionDialog";
 import { useState } from "react";
-import { getBrandingConfig } from "../../redux/selectors/configSelectors";
 import { HeaderStartDropdown } from "./headerStartDropdown";
 import { useParams } from "react-router";
 import { AppPathParams } from "constants/applicationConstants";
@@ -116,7 +115,7 @@ export function HeaderProfile(props: { user: User }) {
     <div>
       {(
         !templateId ? (
-          <LoginBtn buttonType="primary" onClick={() => history.push(AUTH_LOGIN_URL)}>
+          <LoginBtn buttonType="primary" onClick={() => {}}>
             {trans("userAuth.login")}
           </LoginBtn>
         ) : null
@@ -131,7 +130,6 @@ const PreviewHeaderComp = () => {
   const application = useSelector(currentApplication);
   const applicationId = useApplicationId();
   const templateId = useSelector(getTemplateId);
-  const brandingConfig = useSelector(getBrandingConfig);
   const [permissionDialogVisible, setPermissionDialogVisible] = useState(false);
   const isViewMarketplaceMode = params.viewMode === 'view_marketplace';
 
@@ -145,11 +143,6 @@ const PreviewHeaderComp = () => {
           setEdit={() => { }}
           isViewMarketplaceMode={isViewMarketplaceMode}
         />
-      )}
-      {!isViewMarketplaceMode && (
-        <HeaderFont $bgColor={brandingConfig?.headerColor ?? "#2c2c2c"}>
-          {application && application.name}
-        </HeaderFont>
       )}
     </>
   );
@@ -197,7 +190,6 @@ const PreviewHeaderComp = () => {
     <Header
       headerStart={headerStart}
       headerEnd={headerEnd}
-      style={{ backgroundColor: brandingConfig?.headerColor }}
     />
   );
 };

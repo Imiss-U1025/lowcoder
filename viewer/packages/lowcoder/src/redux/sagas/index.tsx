@@ -1,10 +1,8 @@
 import orgSagas from "redux/sagas/orgSagas";
 import { pluginSagas } from "redux/sagas/pluginSagas";
 import { datasourceSagas } from "redux/sagas/datasourceSagas";
-import userSagas from "redux/sagas/userSagas";
 import subscriptionSagas from "redux/sagas/subscriptionSagas";
 import applicationSagas from "redux/sagas/applicationSagas";
-import configSagas from "redux/sagas/configSagas";
 import appSnapshotSagas from "redux/sagas/appSnapshotSagas";
 import commonSettingsSagas from "./commonSettingsSagas";
 import { queryLibrarySagas } from "./queryLibrarySagas";
@@ -17,13 +15,11 @@ import { jsLibrarySagas } from "redux/sagas/jsLibrarySagas";
 export const sagas = [
   applicationSagas,
   folderSagas,
-  userSagas,
   orgSagas,
   queryLibrarySagas,
   datasourceSagas,
   datasourcePermissionSagas,
   pluginSagas,
-  configSagas,
   appSnapshotSagas,
   commonSettingsSagas,
   jsLibrarySagas,

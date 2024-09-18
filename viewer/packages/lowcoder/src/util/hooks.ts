@@ -11,12 +11,10 @@ import React, {
 import { shallowEqual, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
 import { DATASOURCE_URL, QUERY_LIBRARY_URL } from "../constants/routesURL";
-import { AuthSearchParams } from "constants/authConstants";
 import { checkIsMobile } from "util/commonUtils";
 import { EditorContext } from "comps/editorState";
 import { getDataSourceStructures } from "redux/selectors/datasourceSelectors";
 import { DatasourceStructure } from "api/datasourceApi";
-import { loadAuthSearchParams } from "pages/userAuth/authUtils";
 import { ThemeContext } from "@lowcoder-ee/comps/utils/themeContext";
 import { CompTypeContext } from "@lowcoder-ee/comps/utils/compTypeContext";
 import { setInitialCompStyles } from "@lowcoder-ee/comps/utils/themeUtil";
@@ -63,11 +61,6 @@ export function useApplicationId() {
   return useParams<AppPathParams>().applicationId;
 }
 
-export function useRedirectUrl() {
-  const authSearchParams = loadAuthSearchParams()
-  const redirectUrl = authSearchParams && authSearchParams.redirectUrl
-  return redirectUrl && decodeURIComponent(redirectUrl);
-}
 
 export function useFixedDelay(callback: () => Promise<unknown>, delay: number | null) {
   const savedCallback = useRef(callback);

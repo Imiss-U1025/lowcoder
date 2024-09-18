@@ -1,6 +1,6 @@
 import InviteApi from "api/inviteApi";
 import { API_STATUS_CODES, SERVER_ERROR_CODES } from "constants/apiConstants";
-import { AUTH_LOGIN_URL, BASE_URL } from "constants/routesURL";
+import { BASE_URL } from "constants/routesURL";
 import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import { StaticContext } from "react-router";
@@ -44,12 +44,6 @@ function InviteLanding(props: InviteLandingProp) {
           const inviteInfo = resp.data.data;
           orgId = inviteInfo.invitedOrganizationId;
           const inviteState = inviteInfo ? { ...inviteInfo, invitationId } : { invitationId };
-          history.push({
-            pathname: AUTH_LOGIN_URL,
-            state: {
-              inviteInfo: inviteState,
-            },
-          });
           return;
         }
         throw Error(resp.data?.message || trans("orgSettings.inviteFailMessage"));
