@@ -1,7 +1,6 @@
 import { default as App } from "antd/es/app";
 import { default as ConfigProvider } from "antd/es/config-provider";
 import {
-  ORG_HOME_URL,
   ALL_APPLICATIONS_URL,
   APP_EDITOR_URL,
   APPLICATION_VIEW_URL,
@@ -317,16 +316,6 @@ class AppIndex extends React.Component<AppIndexProps, any> {
               component={LazyComponentPlayground}
             />
 
-            {this.props.isFetchUserFinished && this.props.defaultHomePage ? (
-              !this.props.orgDev ? (
-                <Redirect exact from={BASE_URL} to={APPLICATION_VIEW_URL(this.props.defaultHomePage || "", "view")} />
-              ) : (
-                <Redirect exact from={BASE_URL} to={ORG_HOME_URL} />
-              )
-            ) : (
-              <Redirect exact from={BASE_URL} to={ALL_APPLICATIONS_URL} />
-            )}
-
             <Redirect to={`${COMPONENT_DOC_URL}/input`} path="/components" />
 
             {developEnv() && (
@@ -392,3 +381,4 @@ export function bootstrap() {
     </Provider>
   );
 }
+
