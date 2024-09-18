@@ -5,7 +5,6 @@ import {
   APP_EDITOR_URL,
   APPLICATION_VIEW_URL,
   BASE_URL,
-  COMPONENT_DOC_URL,
   DATASOURCE_CREATE_URL,
   DATASOURCE_EDIT_URL,
   DATASOURCE_URL,
@@ -307,16 +306,9 @@ class AppIndex extends React.Component<AppIndexProps, any> {
               component={LazyInviteLanding}
             />
             <LazyRoute
-              path={`${COMPONENT_DOC_URL}/:name`}
-              component={LazyComponentDoc}
-            />
-            <LazyRoute
               path={`/playground/:name/:dsl`}
               component={LazyComponentPlayground}
             />
-
-            <Redirect to={`${COMPONENT_DOC_URL}/input`} path="/components" />
-
             {developEnv() && (
               <>
                 <LazyRoute

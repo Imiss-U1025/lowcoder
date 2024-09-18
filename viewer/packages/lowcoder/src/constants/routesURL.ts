@@ -5,7 +5,6 @@ import { DatasourceType } from "@lowcoder-ee/constants/queryConstants";
 
 export const BASE_URL = "/";
 export const USER_AUTH_URL = "/user/auth";
-export const COMPONENT_DOC_URL = "/components";
 
 
 export const ALL_APPLICATIONS_URL = "/apps";
@@ -37,9 +36,8 @@ export const isAuthUnRequired = (pathname: string): boolean => {
     pathname.startsWith("/invite/") ||
     pathname.startsWith(USER_AUTH_URL) ||
     pathname.endsWith('/auth/login') ||
-    pathname.endsWith('/auth/register') ||
-    pathname.startsWith(COMPONENT_DOC_URL)
-  );
+    pathname.endsWith('/auth/register')
+  )
 };
 
 export const buildDatasourceCreateUrl = (datasourceType: DatasourceType) =>
@@ -62,5 +60,3 @@ export const buildAppRouteWithState = (
 export function preview(applicationId: string) {
   window.open(APPLICATION_VIEW_URL(applicationId, "preview"));
 }
-
-
