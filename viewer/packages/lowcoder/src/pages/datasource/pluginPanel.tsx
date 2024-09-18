@@ -12,7 +12,6 @@ import {
   databasePlugins,
 } from "@lowcoder-ee/constants/datasourceConstants";
 import { Search } from "components/Search";
-import { CreateDropdown } from "@lowcoder-ee/pages/ApplicationV2/CreateDropdown";
 import React, { useState } from "react";
 
 export const DataSourceButton = styled(AntdButton)`

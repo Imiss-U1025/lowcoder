@@ -1,4 +1,3 @@
-import CreateAppButton from "components/CreateAppButton";
 import { EmptyContent } from "components/EmptyContent";
 import { ApplicationMeta, AppTypeEnum } from "constants/applicationConstants";
 import { APPLICATION_VIEW_URL } from "constants/routesURL";
@@ -135,14 +134,6 @@ export default function ModulePanel() {
       text={
         <>
           <p>{trans("rightPanel.emptyModules")}</p>
-          <CreateAppButton
-            type={AppTypeEnum.Module}
-            onSuccess={(app) => {
-              const appId = app.applicationInfoView.applicationId;
-              const url = APPLICATION_VIEW_URL(appId, "edit");
-              window.open(url);
-            }}
-          />
         </>
       }
     />

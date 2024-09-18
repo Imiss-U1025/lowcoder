@@ -28,7 +28,6 @@ export const QUERY_LIBRARY_URL = `/query-library`;
 export const FOLDER_URL_PREFIX = `/folder`;
 export const FOLDER_URL = `${FOLDER_URL_PREFIX}/:folderId`;
 export const FOLDERS_URL = `/folders`;
-export const TRASH_URL = `/trash`;
 export const IMPORT_APP_FROM_TEMPLATE_URL = `${ALL_APPLICATIONS_URL}/template-import/:templateId`;
 export const APP_EDITOR_URL = `${ALL_APPLICATIONS_URL}/:applicationId/:viewMode/:appPageId?`;
 
