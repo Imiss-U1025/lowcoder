@@ -3,7 +3,6 @@ import { RecordConstructorToComp } from "lowcoder-core";
 import { dropdownInputSimpleControl } from "comps/controls/dropdownInputSimpleControl";
 import { MultiCompBuilder, valueComp, withDefault } from "comps/generators";
 import { AddIcon, Dropdown } from "lowcoder-design";
-import { EllipsisSpan } from "pages/setting/theme/styledComponents";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getDefaultTheme, getThemeList } from "redux/selectors/commonSettingSelectors";
@@ -11,7 +10,6 @@ import styled, { css } from "styled-components";
 import { trans } from "i18n";
 import { GreyTextColor } from "constants/style";
 import { default as Divider } from "antd/es/divider";
-import { THEME_SETTING } from "constants/routesURL";
 import { CustomShortcutsComp } from "./customShortcutsComp";
 import { DEFAULT_THEMEID } from "comps/utils/themeUtil";
 import { StringControl } from "comps/controls/codeControl";
@@ -248,7 +246,6 @@ function AppSettingsModal(props: ChildrenInstance) {
           <div className="left" />
           <div className="right" />
         </TagDesc>
-        <EllipsisSpan style={{ maxWidth: "238px" }}>{themeItem?.name}</EllipsisSpan>
         {themeItem?.id === defaultTheme && <DefaultSpan>{trans("appSetting.default")}</DefaultSpan>}
       </ItemSpan>
     );
@@ -302,7 +299,7 @@ function AppSettingsModal(props: ChildrenInstance) {
           itemNode={(value) => <DropdownItem value={value} />}
           preNode={() => (
             <>
-              <CreateDiv onClick={() => window.open(THEME_SETTING)}>
+              <CreateDiv onClick={() => {}}>
                 <StyledAddIcon />
                 {trans("appSetting.themeCreate")}
               </CreateDiv>

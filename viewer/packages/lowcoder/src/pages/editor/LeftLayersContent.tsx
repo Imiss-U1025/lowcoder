@@ -39,7 +39,6 @@ import {
   saveCollisionStatus,
 } from "util/localStorageUtil";
 import { default as DownOutlined } from "@ant-design/icons/DownOutlined";
-import ThemeSettingsSelector from "components/ThemeSettingsSelector";
 
 export type DisabledCollisionStatus = "true" | "false"; // "true" means collision is not enabled - Layering works, "false" means collision is enabled - Layering does not work
 export type ToggleCollisionStatus = (collisionStatus?: DisabledCollisionStatus) => void;
@@ -565,24 +564,6 @@ export const LeftLayersContent = (props: LeftLayersContentProps) => {
               Apply Action
             </Button>
             <br/>
-            <ThemeSettingsSelector
-                themeSettingKey={"background"}
-                name={trans("componentDoc.styleBackgroundColor")}
-                color={"#ffffff"}
-                configChange={(params) => handleColorChange(params.color, "style.background")}
-            />
-            <ThemeSettingsSelector
-                themeSettingKey={"border"}
-                name={trans("componentDoc.styleBorderColor")}
-                color={"#ffffff"}
-                configChange={(params) => handleColorChange(params.color, "style.border")}
-            />
-            <ThemeSettingsSelector
-                themeSettingKey={"text"}
-                name={trans("style.textColor")}
-                color={"#ffffff"}
-                configChange={(params) => handleColorChange(params.color, "style.text")}
-            />
           </Flex>
         </div>
       </div>

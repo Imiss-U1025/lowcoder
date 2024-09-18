@@ -15,7 +15,6 @@ import {
   ORG_AUTH_LOGIN_URL,
   ORG_AUTH_REGISTER_URL,
   QUERY_LIBRARY_URL,
-  SETTING_URL,
   USER_AUTH_URL,
   ADMIN_APP_URL,
 } from "constants/routesURL";

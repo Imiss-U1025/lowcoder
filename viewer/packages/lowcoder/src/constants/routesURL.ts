@@ -6,13 +6,7 @@ import { DatasourceType } from "@lowcoder-ee/constants/queryConstants";
 export const BASE_URL = "/";
 export const USER_AUTH_URL = "/user/auth";
 export const COMPONENT_DOC_URL = "/components";
-export const SETTING_URL = "/setting";
-export const PERMISSION_SETTING = "/setting/permission";
-export const ORGANIZATION_SETTING = "/setting/organization";
-export const THEME_SETTING = "/setting/theme";
-export const PLUGINS_SETTING = "/setting/plugins";
-export const THEME_DETAIL = "/setting/theme/detail";
-export const THEME_DETAIL_URL = `${THEME_DETAIL}/:themeId`;
+
 
 export const ALL_APPLICATIONS_URL = "/apps";
 export const ADMIN_APP_URL = "/ee/:applicationId/:viewMode";
@@ -69,7 +63,4 @@ export function preview(applicationId: string) {
   window.open(APPLICATION_VIEW_URL(applicationId, "preview"));
 }
 
-export const buildGroupId = (groupId: string) => `${PERMISSION_SETTING}/${groupId}`;
-
-export const buildOrgId = (orgId: string) => `${ORGANIZATION_SETTING}/${orgId}`;
 

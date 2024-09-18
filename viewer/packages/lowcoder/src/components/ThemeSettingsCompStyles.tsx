@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import { ConfigItem, Radius, Margin, Padding, GridColumns, BorderWidth, BorderStyle } from "../pages/setting/theme/styledComponents";
 import { isValidColor, toHex } from "components/colorSelect/colorUtils";
 import { ColorSelect } from "components/colorSelect";
 import { TacoInput } from "components/tacoInput";
@@ -390,66 +389,6 @@ export default function ThemeSettingsCompStyles(props: CompStyleProps) {
       borderRadius: "4px",
       marginBottom: "16px",
     }}>
-      {styleOptions.map((styleKey: string) => (
-        <ConfigItem
-          key={styleKey}
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            margin: "0",
-            padding: "6px",
-            borderBottom: "1px solid lightgray",
-          }}
-        >
-          <div className="text-desc" style={{
-            width: "100px",
-            minWidth: "100px",
-            maxWidth: "100px",
-            marginRight: "5px",
-          }}>
-            <div className="name" >
-              { getLabelByStyle(styleKey) }
-            </div>
-          </div>
-          { isColorStyle(styleKey) ? (
-            <div className="config-input" style={{minWidth: "auto", margin: "0"}}>
-              <ColorSelect
-                // changeColor={_.debounce(setColor, 500, {
-                //   leading: true,
-                //   trailing: true,
-                // })}
-                changeColor={(value) => handleChange(styleKey, value)}
-                color={compStyle[styleKey]!}
-                trigger="hover"
-              />
-              <TacoInput
-                style={{width: "80%", marginLeft: "5px"}}
-                value={compStyle[styleKey]}
-                onChange={(e) => handleChange(styleKey, e.target.value)}
-                // onChange={(e) => setColor(e.target.value)}
-                // onBlur={colorInputBlur}
-                // onKeyUp={(e) => e.nativeEvent.key === "Enter" && colorInputBlur()}
-              />
-            </div>
-          ): (
-            <div className="config-input" style={{minWidth: "auto"}}>
-              {/* <Radius $radius={compStyle[styleKey] || "0"}> */}
-                <div>
-                  {getIconByStyle(styleKey)}
-                </div>
-              {/* </Radius> */}
-              <TacoInput
-                style={{width: "80%", marginLeft: "5px"}}
-                placeholder={getPlaceholderByStyle(styleKey)}
-                defaultValue={compStyle[styleKey]}
-                onChange={(e) => handleChange(styleKey, e.target.value)}
-                // onBlur={(e) => radiusInputBlur(e.target.value)}
-                // onKeyUp={(e) => e.nativeEvent.key === "Enter" && radiusInputBlur(e.currentTarget.value)}
-              />
-            </div>
-          )}
-        </ConfigItem>
-      ))}
     </div>
   )
 }
