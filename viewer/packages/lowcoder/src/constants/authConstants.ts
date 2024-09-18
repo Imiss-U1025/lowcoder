@@ -5,10 +5,8 @@ import {
   AUTH_REGISTER_URL,
   AUTH_RESET_PASSWORD_URL,
   OAUTH_REDIRECT,
-  ORG_AUTH_FORGOT_PASSWORD_URL,
   ORG_AUTH_LOGIN_URL,
   ORG_AUTH_REGISTER_URL,
-  ORG_AUTH_RESET_PASSWORD_URL,
 } from "constants/routesURL";
 import { InviteInfo } from "api/inviteApi";
 import Login, { ThirdPartyBindCard } from "pages/userAuth/login";
@@ -97,8 +95,6 @@ export const AuthRoutes: Array<{ path: string; component: React.ComponentType<an
   { path: OAUTH_REDIRECT, component: AuthRedirect },
   { path: ORG_AUTH_LOGIN_URL, component: Login },
   { path: ORG_AUTH_REGISTER_URL, component: UserRegister },
-  { path: ORG_AUTH_FORGOT_PASSWORD_URL, component: ForgotPassword },
-  { path: ORG_AUTH_RESET_PASSWORD_URL, component: ResetPassword },
 ];
 
 export type ServerAuthType = "GOOGLE" | "GITHUB" | "FORM" | "KEYCLOAK" | "ORY" | "GENERIC";

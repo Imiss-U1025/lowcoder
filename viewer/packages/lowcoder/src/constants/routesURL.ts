@@ -40,8 +40,6 @@ export const LDAP_AUTH_LOGIN_URL = `${USER_AUTH_URL}/ldap/login`;
 export const INVITE_LANDING_URL = "/invite/:invitationId";
 export const ORG_AUTH_LOGIN_URL = `/org/:orgId/auth/login`;
 export const ORG_AUTH_REGISTER_URL = `/org/:orgId/auth/register`;
-export const ORG_AUTH_FORGOT_PASSWORD_URL = `/org/:orgId/auth/forgot-password`;
-export const ORG_AUTH_RESET_PASSWORD_URL = `/org/:orgId/auth/lost-password`;
 
 export const APPLICATION_VIEW_URL = (appId: string, viewMode: AppViewMode) =>
   `${ALL_APPLICATIONS_URL}/${appId}/${viewMode}`;
