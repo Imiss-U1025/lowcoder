@@ -13,10 +13,8 @@ export const DATASOURCE_URL = `/datasource`;
 export const DATASOURCE_CREATE_URL = `${DATASOURCE_URL}/new/:datasourceType`;
 export const DATASOURCE_EDIT_URL = `${DATASOURCE_URL}/:datasourceId`;
 export const QUERY_LIBRARY_URL = `/query-library`;
-export const IMPORT_APP_FROM_TEMPLATE_URL = `${ALL_APPLICATIONS_URL}/template-import/:templateId`;
 export const APP_EDITOR_URL = `${ALL_APPLICATIONS_URL}/:applicationId/:viewMode/:appPageId?`;
 
-export const INVITE_LANDING_URL = "/invite/:invitationId";
 
 export const APPLICATION_VIEW_URL = (appId: string, viewMode: AppViewMode) =>
   `${ALL_APPLICATIONS_URL}/${appId}/${viewMode}`;

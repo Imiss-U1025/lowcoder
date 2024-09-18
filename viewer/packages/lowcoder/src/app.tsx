@@ -8,8 +8,6 @@ import {
   DATASOURCE_CREATE_URL,
   DATASOURCE_EDIT_URL,
   DATASOURCE_URL,
-  IMPORT_APP_FROM_TEMPLATE_URL,
-  INVITE_LANDING_URL,
   QUERY_LIBRARY_URL,
   ADMIN_APP_URL,
 } from "constants/routesURL";
@@ -249,10 +247,6 @@ class AppIndex extends React.Component<AppIndexProps, any> {
               fallback="layout"
               path={APP_EDITOR_URL}
               component={LazyAppEditor}
-            />
-            <LazyRoute
-              path={INVITE_LANDING_URL}
-              component={LazyInviteLanding}
             />
             <LazyRoute
               path={`/playground/:name/:dsl`}
