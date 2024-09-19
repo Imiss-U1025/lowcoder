@@ -15,6 +15,7 @@ interface AppEditorInternalViewProps {
 
 export const AppEditorInternalView = React.memo((props: AppEditorInternalViewProps) => {
   const { compInstance } = props;
+  console.log("+++++++++++++++++++++++++++++++++++++++", props)
 
   useEffect(() => {
     message.config({ top: 0 });

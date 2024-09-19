@@ -19,7 +19,6 @@ import { ThemeContext } from "comps/utils/themeContext";
 import { ModuleLayoutCompName } from "constants/compConstants";
 import { defaultTheme as localDefaultTheme } from "constants/themeConstants";
 import { ModuleLoading } from "components/ModuleLoading";
-import EditorSkeletonView from "pages/editor/editorSkeletonView";
 import { getGlobalSettings } from "comps/utils/globalSettings";
 import { getCurrentTheme } from "comps/utils/themeUtil";
 import { DataChangeResponderListComp } from "./dataChangeResponderComp";
@@ -34,6 +33,7 @@ import { ExternalEditorContext } from "util/context/ExternalEditorContext";
 import { useUserViewMode } from "util/hooks";
 import React from "react";
 import { isEqual } from "lodash";
+import EditorSkeletonView from "@lowcoder-ee/pages/editor/editorSkeletonView";
 
 const EditorView = lazy(
   () => import("pages/editor/editorView"),
@@ -73,10 +73,10 @@ const RootView = React.memo((props: RootViewProps) => {
     previewTheme?.previewTheme ||
     selectedTheme?.theme ||
     localDefaultTheme;
-  
+
   const themeId = selectedTheme ? selectedTheme.id : (
     previewTheme ? "preview-theme" : 'default-theme-id'
-  ); 
+  );
 
   useEffect(() => {
     const newEditorState = new EditorState(comp, (changeEditorStateFn) => {
@@ -123,6 +123,14 @@ const RootView = React.memo((props: RootViewProps) => {
     return <ModuleLoading />;
   }
 
+
+
+
+
+
+
+
+  
   const SuspenseFallback = isModuleRoot ? <ModuleLoading /> : <EditorSkeletonView />;
 
   if (!editorState) {
@@ -130,7 +138,7 @@ const RootView = React.memo((props: RootViewProps) => {
   }
 
   return (
-    <div {...divProps} style={{height: '100%'}}>
+    <div {...divProps} style={{ height: '100%' }}>
       <PropertySectionContext.Provider value={propertySectionContextValue}>
         <ThemeContext.Provider value={themeContextValue}>
           <EditorContext.Provider value={editorState}>

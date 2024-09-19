@@ -1,46 +1,26 @@
 import { default as App } from "antd/es/app";
 import { default as ConfigProvider } from "antd/es/config-provider";
 import {
-  ALL_APPLICATIONS_URL,
   APP_EDITOR_URL,
-  APPLICATION_VIEW_URL,
-  BASE_URL,
-  DATASOURCE_CREATE_URL,
-  DATASOURCE_EDIT_URL,
-  DATASOURCE_URL,
-  QUERY_LIBRARY_URL,
-  ADMIN_APP_URL,
 } from "constants/routesURL";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Helmet } from "react-helmet";
 import { connect, Provider } from "react-redux";
-import { Redirect, Router, Switch } from "react-router-dom";
+import { Router, Switch } from "react-router-dom";
 import type { AppState } from "redux/reducers";
-import { fetchConfigAction } from "redux/reduxActions/configActions";
 import { fetchUserAction } from "redux/reduxActions/userActions";
 import { reduxStore } from "redux/store/store";
-import { developEnv } from "util/envUtils";
 import history from "util/history";
 import LazyRoute from "components/LazyRoute";
 import { getAntdLocale } from "i18n/antdLocale";
 import { trans } from "i18n"; // language
 import { loadComps } from "comps";
 import { initApp } from "util/commonUtils";
-import { favicon } from "assets/images";
-import { hasQueryParam } from "util/urlUtils";
-import { isFetchUserFinished } from "redux/selectors/usersSelectors"; // getCurrentUser, 
-import { getIsCommonSettingFetched } from "redux/selectors/commonSettingSelectors";
 import GlobalInstances from 'components/GlobalInstances';
 // import posthog from 'posthog-js'
-import { fetchHomeData } from "./redux/reduxActions/applicationActions";
 
-const LazyInviteLanding = React.lazy(() => import("pages/common/inviteLanding"));
-const LazyComponentDoc = React.lazy(() => import("pages/ComponentDoc"));
-const LazyComponentPlayground = React.lazy(() => import("pages/ComponentPlayground"));
 const LazyAppEditor = React.lazy(() => import("pages/editor/AppEditor"));
-const LazyDebugComp = React.lazy(() => import("./debug"));
-const LazyDebugNewComp = React.lazy(() => import("./debugNew"));
 
 const Wrapper = (props: { children: React.ReactNode, language: string }) => (
   <ConfigProvider
@@ -74,9 +54,6 @@ class AppIndex extends React.Component<AppIndexProps, any> {
   componentDidUpdate(prevProps: AppIndexProps) {
   }
   render() {
-    const isTemplate = hasQueryParam('template');
-    const pathname = history.location.pathname;
-
     // we check if we are on the public cloud
     const isLowCoderDomain = window.location.hostname === 'app.lowcoder.cloud';
     const isLocalhost = window.location.hostname === 'localhost';
@@ -248,25 +225,6 @@ class AppIndex extends React.Component<AppIndexProps, any> {
               path={APP_EDITOR_URL}
               component={LazyAppEditor}
             />
-            <LazyRoute
-              path={`/playground/:name/:dsl`}
-              component={LazyComponentPlayground}
-            />
-            {developEnv() && (
-              <>
-                <LazyRoute
-                  path="/debug_comp/:name"
-                  component={LazyDebugComp}
-                />
-                <LazyRoute
-                  exact
-                  path="/debug_comp"
-                  component={LazyDebugComp}
-                />
-                <LazyRoute path="/debug_editor" component={LazyAppEditor} />
-                <LazyRoute path="/debug_new" component={LazyDebugNewComp} />
-              </>
-            )}
           </Switch>
         </Router>
       </Wrapper>

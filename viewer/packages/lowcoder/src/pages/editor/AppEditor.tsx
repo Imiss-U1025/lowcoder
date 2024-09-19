@@ -1,13 +1,10 @@
 import { AppPathParams, AppTypeEnum } from "constants/applicationConstants";
-import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { AppSummaryInfo, fetchApplicationInfo } from "redux/reduxActions/applicationActions";
-import { fetchDataSourceByApp, fetchDataSourceTypes } from "redux/reduxActions/datasourceActions";
 import { getUser } from "redux/selectors/usersSelectors";
-import { useUserViewMode } from "util/hooks";
 import "comps/uiCompRegistry";
-import { showAppSnapshotSelector } from "redux/selectors/appSnapshotSelector";
 import { setShowAppSnapshot } from "redux/reduxActions/appSnapshotActions";
 import { fetchGroupsAction } from "redux/reduxActions/orgActions";
 import { getFetchOrgGroupsFinished } from "redux/selectors/orgSelectors";
@@ -20,34 +17,24 @@ import {
   perfMark,
 } from "util/perfUtils";
 import { useMount, useUnmount } from "react-use";
-import { fetchQueryLibraryDropdown } from "../../redux/reduxActions/queryLibraryActions";
 import { clearGlobalSettings, setGlobalSettings } from "comps/utils/globalSettings";
-import { fetchFolderElements } from "redux/reduxActions/folderActions";
 import { registryDataSourcePlugin } from "constants/queryConstants";
 import { DatasourceApi } from "api/datasourceApi";
 import { useRootCompInstance } from "./useRootCompInstance";
 import EditorSkeletonView from "./editorSkeletonView";
-import {ErrorBoundary, FallbackProps} from 'react-error-boundary';
+import { ErrorBoundary } from 'react-error-boundary';
 import { ALL_APPLICATIONS_URL } from "@lowcoder-ee/constants/routesURL";
 import history from "util/history";
 import Flex from "antd/es/flex";
 import React from "react";
 
-const AppSnapshot = lazy(() => {
-  return import("pages/editor/appSnapshot")
-    .then(moduleExports => ({default: moduleExports.AppSnapshot}));
-});
-
 const AppEditorInternalView = lazy(
   () => import("pages/editor/appEditorInternal")
-    .then(moduleExports => ({default: moduleExports.AppEditorInternalView}))
+    .then(moduleExports => ({ default: moduleExports.AppEditorInternalView }))
 );
 
 const AppEditor = React.memo(() => {
-  const showAppSnapshot = useSelector(showAppSnapshotSelector);
   const params = useParams<AppPathParams>();
-  const isUserViewModeCheck = useUserViewMode();
-  const isUserViewMode = params.viewMode ? isUserViewModeCheck : true;
   const applicationId = params.applicationId || window.location.pathname.split("/")[2];
   const paramViewMode = params.viewMode || window.location.pathname.split("/")[3];
   const viewMode = (paramViewMode === "view" || paramViewMode === "admin") ? "published" : paramViewMode === "view_marketplace" ? "view_marketplace" : "editing";
@@ -82,25 +69,8 @@ const AppEditor = React.memo(() => {
     appType: AppTypeEnum.Application,
   });
 
-  const readOnly = isUserViewMode;
-  const compInstance = useRootCompInstance(appInfo, readOnly, isDataSourcePluginRegistered);
+  const compInstance = useRootCompInstance(appInfo, true, isDataSourcePluginRegistered);
 
-  // fetch dataSource and plugin
-  useEffect(() => {
-    if (!orgId || paramViewMode !== "edit") {
-      return;
-    }
-    dispatch(fetchDataSourceTypes({ organizationId: orgId }));
-    dispatch(fetchFolderElements({}));
-  }, [dispatch, orgId, paramViewMode]);
-
-  useEffect(() => {
-    if (applicationId && paramViewMode === "edit") {
-      dispatch(fetchDataSourceByApp({ applicationId: applicationId }));
-      dispatch(fetchQueryLibraryDropdown());
-    }
-  }, [dispatch, applicationId, paramViewMode]);
-  
   const fetchJSDataSourceByApp = () => {
     DatasourceApi.fetchJsDatasourceByApp(applicationId).then((res) => {
       res.data.data.forEach((i) => {
@@ -148,8 +118,8 @@ const AppEditor = React.memo(() => {
       width: '400px',
       margin: '0 auto',
     }}>
-      <h4 style={{margin: 0}}>Something went wrong while displaying this webpage</h4>
-      <button onClick={() => history.push(ALL_APPLICATIONS_URL)} style={{background: '#4965f2',border: '1px solid #4965f2', color: '#ffffff',borderRadius:'6px'}}>Go to Apps</button>
+      <h4 style={{ margin: 0 }}>Something went wrong while displaying this webpage</h4>
+      <button onClick={() => history.push(ALL_APPLICATIONS_URL)} style={{ background: '#4965f2', border: '1px solid #4965f2', color: '#ffffff', borderRadius: '6px' }}>Go to Apps</button>
     </Flex>
   ), []);
 
@@ -161,34 +131,23 @@ const AppEditor = React.memo(() => {
         margin: '0 auto',
       }}>
         <h4>{appError}</h4>
-        <button onClick={() => history.push(ALL_APPLICATIONS_URL)} style={{background: '#4965f2',border: '1px solid #4965f2', color: '#ffffff',borderRadius:'6px'}}>Back to Home</button>
+        <button onClick={() => history.push(ALL_APPLICATIONS_URL)} style={{ background: '#4965f2', border: '1px solid #4965f2', color: '#ffffff', borderRadius: '6px' }}>Back to Home</button>
       </Flex>
     )
   }
 
   return (
     <ErrorBoundary fallback={fallbackUI}>
-      {showAppSnapshot ? (
-        <Suspense fallback={<EditorSkeletonView />}>
-          <AppSnapshot
-            currentAppInfo={{
-              ...appInfo,
-              dsl: compInstance.comp?.toJsonValue() || {},
-            }}
-          />
-        </Suspense>
-      ) : (
-        <Suspense fallback={<EditorSkeletonView />}>
-          <AppEditorInternalView
-            appInfo={appInfo}
-            readOnly={readOnly}
-            loading={
-              !fetchOrgGroupsFinished || !isDataSourcePluginRegistered || isCommonSettingsFetching
-            }
-            compInstance={compInstance}
-          />
-        </Suspense>
-      )}
+      <Suspense fallback={<EditorSkeletonView />}>
+        <AppEditorInternalView
+          appInfo={appInfo}
+          readOnly={false}
+          loading={
+            !fetchOrgGroupsFinished || !isDataSourcePluginRegistered || isCommonSettingsFetching
+          }
+          compInstance={compInstance}
+        />
+      </Suspense>
     </ErrorBoundary>
   );
 });
