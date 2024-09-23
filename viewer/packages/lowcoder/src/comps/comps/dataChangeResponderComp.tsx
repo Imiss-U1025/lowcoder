@@ -15,7 +15,6 @@ import {
   QueryPropertyViewWrapper,
   QuerySectionWrapper,
 } from "lowcoder-design";
-import { BottomTabs } from "pages/editor/bottom/BottomTabs";
 import { ReactNode } from "react";
 import { BottomResComp, BottomResCompResult, BottomResTypeEnum } from "types/bottomRes";
 import { setFieldsNoTypeCheck } from "util/objectUtils";
@@ -38,58 +37,6 @@ const DataResponderItemCompBase = new MultiCompBuilder(
   },
   () => null
 )
-  .setPropertyViewFn((children) => {
-    return (
-      <BottomTabs
-        type={BottomResTypeEnum.DateResponder}
-        tabsConfig={[
-          {
-            key: "general",
-            title: trans("query.generalTab"),
-            children: (
-              <><QueryPropertyViewWrapper>
-                <QuerySectionWrapper>
-                  {children.data.propertyView({
-                    label: trans("dataResponder.data"),
-                    tooltip: trans("dataResponder.dataTooltip"),
-                    placement: "bottom",
-                    placeholder: "{{anyDependencies}}",
-                    /* extraChildren: QueryTutorials.dataResponder && (
-                      <DocLink style={{ marginTop: 8 }} href={QueryTutorials.dataResponder}>
-                        {trans("dataResponder.docLink")}
-                      </DocLink>
-                    ), */
-                  })}
-                </QuerySectionWrapper>
-
-                <QuerySectionWrapper>
-                  <QueryConfigWrapper>
-                    <QueryConfigLabel labelHeight="auto">
-                      {trans("eventHandler.eventHandlers")}
-                    </QueryConfigLabel>
-                    {children.onEvent.getPropertyView()}
-                  </QueryConfigWrapper>
-                </QuerySectionWrapper>
-              </QueryPropertyViewWrapper><><TacoMarkDown>{trans("dataResponder.documentationText")}</TacoMarkDown><DocLink style={{ marginTop: 8 }} href={QueryTutorials.dataResponder} title={trans("dataResponder.documentationText")}>
-                {trans("dataResponder.docLink")}
-              </DocLink><br/><br/>
-
-              <SupaDemoDisplay
-                url={trans("supademos.dataresponder")}
-                modalWidth="80%"
-                modalTop="20px"
-              />
-              
-              </></>
-              
-            ),
-          },
-        ]}
-        tabTitle={children.name.getView()}
-        status=""
-      />
-    );
-  })
   .build();
 
 class DataChangeResponderAsBottomRes extends DataResponderItemCompBase implements BottomResComp {

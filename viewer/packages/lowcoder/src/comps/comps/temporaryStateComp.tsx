@@ -7,7 +7,6 @@ import { withMethodExposing } from "comps/generators/withMethodExposing";
 import { trans } from "i18n";
 import _ from "lodash";
 import { DocLink } from "lowcoder-design";
-import { BottomTabs } from "pages/editor/bottom/BottomTabs";
 import { ReactNode, useState } from "react";
 import { BottomResComp, BottomResCompResult, BottomResTypeEnum } from "types/bottomRes";
 import { JSONObject } from "util/jsonTypes";
@@ -23,53 +22,6 @@ const TemporaryStateItemCompBase = new MultiCompBuilder(
     },
     () => null
   )
-  .setPropertyViewFn((children) => {
-    const PropertyViewWithModal = () => {
-      const [isOpen, setIsOpen] = useState(false);
-  
-      const handleOpen = () => {
-        setIsOpen(true);
-      };
-  
-      const handleClose = () => {
-        setIsOpen(false);
-      };
-
-      return (
-        <BottomTabs
-          type={BottomResTypeEnum.TempState}
-          tabsConfig={[
-            {
-              key: "general",
-              title: trans("query.generalTab"),
-              children: children.value.propertyView({
-                label: trans("temporaryState.value"),
-                tooltip: trans("temporaryState.valueTooltip"),
-                placement: "bottom",
-                extraChildren: QueryTutorials.tempState && (
-                  <><br/><TacoMarkDown>{trans("temporaryState.documentationText")}</TacoMarkDown><br/><DocLink style={{ marginTop: 8 }} href={QueryTutorials.tempState} title={trans("temporaryState.documentationText")}>
-                    {trans("temporaryState.docLink")}
-                  </DocLink><br/><br/>
-
-                  <SupaDemoDisplay
-                    url={trans("supademos.temporarystate")}
-                    modalWidth="80%"
-                    modalTop="20px"
-                  />
-                  
-                  </>
-                ),
-              }),
-            },
-          ]}
-          tabTitle={children.name.getView()}
-          status=""
-        />
-      );
-    };
-
-    return <PropertyViewWithModal />;
-  })
   .build();
 
 class TemporaryStateAsBottomRes extends TemporaryStateItemCompBase implements BottomResComp {

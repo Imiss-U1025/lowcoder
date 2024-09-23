@@ -60,7 +60,6 @@ const LeftContent = lazy(
 );
 const RightPanel = lazy(() => import('pages/editor/right/RightPanel'));
 const EditorTutorials = lazy(() => import('pages/tutorials/editorTutorials'));
-const Bottom = lazy(() => import('./bottom/BottomPanel'));
 const CustomShortcutWrapper = lazy(
   () => import('pages/editor/editorHotKeys')
     .then(module => ({default: module.CustomShortcutWrapper}))
@@ -546,7 +545,6 @@ function EditorView(props: EditorViewProps) {
                   </EditorContainerWithViewMode>
                 </EditorHotKeys>
               </EditorWrapper>
-              {panelStatus.bottom && editorModeStatus !== "layout" && <Bottom />}
             </MiddlePanel>
             {showRight && (
               <RightPanel

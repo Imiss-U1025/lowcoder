@@ -22,7 +22,6 @@ import { executeQueryAction, renameAction } from "lowcoder-core";
 import { deleteQueryLibrary } from "redux/reduxActions/queryLibraryActions";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { DataSourceStructureTree } from "pages/editor/bottom/BottomMetaDrawer";
 import { trans } from "i18n";
 import { QueryLibraryResultPanel } from "components/resultPanel/QueryLibraryResultPanel";
 import { DatasourceStructure } from "api/datasourceApi";
@@ -64,11 +63,7 @@ export const QueryLibraryComp = class extends QueryLibraryCompBase {
           {this.children.inputs.getPropertyView()}
         </BaseSection>
         <BaseSection key={"meta"} name={trans("prop.meta")} width={296} noMargin>
-          <div style={{ padding: " 0 8px" }}>
-            <DataSourceStructureTree
-              dataSourceId={this.children.query.children.datasourceId.getView()}
-              datasourceType={this.children.query.children.compType.getView()}
-            />
+          <div style={{ padding: " 0 0px" }}>
           </div>
         </BaseSection>
       </>

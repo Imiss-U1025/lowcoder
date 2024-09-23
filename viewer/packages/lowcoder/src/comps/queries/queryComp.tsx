@@ -72,7 +72,6 @@ import { HttpQuery } from "./httpQuery/httpQuery";
 import { StreamQuery } from "./httpQuery/streamQuery";
 import { QueryConfirmationModal } from "./queryComp/queryConfirmationModal";
 import { QueryNotificationControl } from "./queryComp/queryNotificationControl";
-import { QueryPropertyView } from "./queryComp/queryPropertyView";
 import { getTriggerType, onlyManualTrigger } from "./queryCompUtils";
 import { messageInstance } from "lowcoder-design/src/components/GlobalInstances";
 
@@ -473,7 +472,6 @@ QueryCompTmp = class extends QueryCompTmp {
           resourceType: this.children.compType.getView(),
         }}
       >
-        <QueryPropertyView comp={this as any} />
       </QueryContext.Provider>
     );
   }

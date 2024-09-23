@@ -21,7 +21,6 @@ import {
   QuerySectionWrapper,
   TriggerTypeStyled,
 } from "lowcoder-design";
-import { BottomTabs } from "pages/editor/bottom/BottomTabs";
 import { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getDataSource, getDataSourceTypes } from "redux/selectors/datasourceSelectors";
@@ -32,132 +31,6 @@ import { ResourceDropdown } from "../resourceDropdown";
 import { NOT_SUPPORT_GUI_SQL_QUERY, SQLQuery } from "../sqlQuery/SQLQuery";
 import { StreamQuery } from "../httpQuery/streamQuery";
 import SupaDemoDisplay from "../../utils/supademoDisplay";
-
-export function QueryPropertyView(props: { comp: InstanceType<typeof QueryComp> }) {
-  const { comp } = props;
-
-  const editorState = useContext(EditorContext);
-  const datasource = useSelector(getDataSource);
-
-  const children = comp.children;
-  const dispatch = comp.dispatch;
-  const datasourceId = children.datasourceId.getView();
-  const datasourceType = children.compType.getView();
-  const datasourceConfig = datasource.find((d) => d.datasource.id === datasourceId)?.datasource
-    .datasourceConfig;
-
-  const datasourceStatus = useDatasourceStatus(datasourceId, datasourceType);
-  const isStreamQuery  = children.compType.getView() === 'streamApi';
-
-  return (
-    <BottomTabs
-      type={BottomResTypeEnum.Query}
-      tabsConfig={
-        [
-          {
-            key: "general",
-            title: trans("query.generalTab"),
-            children: <QueryGeneralPropertyView comp={comp} />,
-          },
-          {
-            key: "notification",
-            title: trans("query.notificationTab"),
-            children: children.notification.propertyView(children.triggerType.getView()),
-          },
-          {
-            key: "advanced",
-            title: trans("query.advancedTab"),
-            children: (
-              <QueryPropertyViewWrapper>
-                {datasourceConfig &&
-                  (datasourceConfig as PreparedStatementConfig).enableTurnOffPreparedStatement && (
-                    <QuerySectionWrapper>
-                      <QueryConfigWrapper style={{ alignItems: "center" }}>
-                        <QueryConfigLabel>SQL</QueryConfigLabel>
-                        <QueryConfigItemWrapper>
-                          {(children.comp.children as any).disablePreparedStatement.propertyView({
-                            label: trans("query.disablePreparedStatement"),
-                            type: "checkbox",
-                            tooltip: trans("query.disablePreparedStatementTooltip"),
-                          })}
-                        </QueryConfigItemWrapper>
-                      </QueryConfigWrapper>
-                    </QuerySectionWrapper>
-                  )}
-
-                {children.triggerType.getView() === "manual" && (
-                  <QuerySectionWrapper>
-                    {children.confirmationModal.getPropertyView()}
-                  </QuerySectionWrapper>
-                )}
-
-                <QuerySectionWrapper>
-                  {children.timeout.propertyView({
-                    label: trans("query.timeout"),
-                    placeholder: "10s",
-                    tooltip: trans("query.timeoutTooltip", { maxSeconds: 3600, defaultSeconds: 10 }),
-                    placement: "bottom",
-                  })}
-                </QuerySectionWrapper>
-
-                <QuerySectionWrapper>
-                  {children.triggerType.getView() === "automatic" && (
-                    <>
-                      {children.periodic.propertyView({
-                        label: trans("query.periodic"),
-                        type: "checkbox",
-                        placement: "bottom",
-                      })}
-                      {children.periodic.getView() &&
-                        children.periodicTime.propertyView({
-                          placement: "bottom",
-                          label: trans("query.periodicTime"),
-                          placeholder: "5s",
-                          tooltip: trans("query.periodicTimeTooltip"),
-                        })}
-                    </>
-                  )}
-                </QuerySectionWrapper>
-
-                <QuerySectionWrapper>
-                  <>
-                    {children.cancelPrevious.propertyView({
-                      label: trans("query.cancelPrevious"),
-                      type: "checkbox",
-                      placement: "bottom",
-                      tooltip: trans("query.cancelPreviousTooltip"),
-                    })}
-                  </>
-                </QuerySectionWrapper>
-              </QueryPropertyViewWrapper>
-            ),
-          },
-        ] as const
-      }
-      tabTitle={children.name.getView()}
-      onRunBtnClick={() =>
-        dispatch(
-          executeQueryAction({
-            afterExecFunc: () => editorState.setShowResultCompName(children.name.getView()),
-          })
-        )
-      }
-      btnLoading={children.isFetching.getView()}
-      status={datasourceStatus}
-      message={datasourceStatus === "error" ? trans("query.dataSourceStatusError") : undefined}
-      isStreamQuery={isStreamQuery}
-      isSocketConnected={
-        isStreamQuery
-          ? (children.comp as StreamQuery).children.isSocketConnected.getView()
-          : false
-      }
-      disconnectSocket={() => {
-        const streamQueryComp = comp.children.comp as StreamQuery;
-        streamQueryComp?.destroy();
-      }}
-    />
-  );
-}
 
 export const QueryGeneralPropertyView = (props: {
   comp: InstanceType<typeof QueryComp>;
@@ -227,8 +100,8 @@ export const QueryGeneralPropertyView = (props: {
                         newDatasourceType === children.compType.getView()
                           ? children.triggerType.getView() // Switching data sources of the same type retains the original trigger type
                           : includes(manualTriggerResource, newDatasourceType)
-                          ? "manual"
-                          : "automatic",
+                            ? "manual"
+                            : "automatic",
                       lastQueryStartTime: children.lastQueryStartTime.getView(),
                       datasourceId: newDatasourceId,
                       compType: newDatasourceType,
@@ -338,8 +211,8 @@ export const QueryGeneralPropertyView = (props: {
       <QuerySectionWrapper>
         {isCompWithPropertyView(children.comp)
           ? children.comp.propertyView({
-              datasourceId: datasourceId,
-            })
+            datasourceId: datasourceId,
+          })
           : children.comp.getPropertyView()}
       </QuerySectionWrapper>
 
@@ -364,8 +237,8 @@ export const QueryGeneralPropertyView = (props: {
             {children.onEvent.getPropertyView()}
           </QueryConfigWrapper>
 
-          <br/>    
-          
+          <br />
+
           {["postgres", "mysql", "mssql", "oracle", "mariadb"].includes(datasourceType) && (
             <SupaDemoDisplay
               url={trans("supademos.dataquery2table")}

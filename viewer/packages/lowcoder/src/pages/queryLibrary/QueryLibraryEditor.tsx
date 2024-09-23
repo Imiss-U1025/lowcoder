@@ -16,7 +16,6 @@ import {
 import styled from "styled-components";
 import { LeftNav } from "./LeftNav";
 import { ResCreatePanel } from "../../components/ResCreatePanel";
-import { EmptyQueryWithoutTab } from "../editor/bottom/BottomContent";
 import { BottomResTypeEnum } from "../../types/bottomRes";
 import { useCompInstance } from "../../comps/utils/useCompInstance";
 import { QueryLibraryComp } from "../../comps/comps/queryLibrary/queryLibraryComp";
@@ -190,39 +189,6 @@ export const QueryLibraryEditor = () => {
             showCreatePanel(false);
           } }
           readOnly={showHistory} />
-        <RightContent>
-          {!selectedQuery || !comp?.children.query.children.id.getView() ? (
-            EmptyQueryWithoutTab
-          ) : showHistory ? (
-            <QueryLibraryHistoryView
-              libraryQueryId={selectedQuery}
-              compContainer={container}
-              onClose={() => setShowHistory(false)} />
-          ) : (
-            comp.propertyView({
-              onPublish: () => setPublishModalVisible(true),
-              onHistoryShow: () => setShowHistory(true),
-            })
-          )}
-
-          {isCreatePanelShow && (
-            <ResCreatePanel
-              recentlyUsed={recentlyUsed}
-              datasource={datasource.filter((d) => d.creationSource !== 2)}
-              onSelect={handleAdd}
-              onClose={() => showCreatePanel(false)}
-              placement={"queryLibrary"}
-              onImport={(options) => importQueryLibrary({
-                dispatch: dispatch,
-                options: options,
-                orgId: orgId,
-                onSuccess: (resp) => {
-                  setSelectedQuery(resp.data.data.id);
-                  showCreatePanel(false);
-                },
-              })} />
-          )}
-        </RightContent>
         <PublishModal
           libraryQueryId={comp?.children.query.children.id.getView() || ""}
           visible={publishModalVisible}

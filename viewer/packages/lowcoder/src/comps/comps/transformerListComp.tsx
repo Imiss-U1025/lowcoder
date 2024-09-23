@@ -7,7 +7,6 @@ import { withExposingRaw } from "comps/generators/withExposing";
 import { trans } from "i18n";
 import { fromRecord } from "lowcoder-core";
 import { DocLink } from "lowcoder-design";
-import { BottomTabs } from "pages/editor/bottom/BottomTabs";
 import { ReactNode } from "react";
 import { BottomResComp, BottomResCompResult, BottomResTypeEnum } from "types/bottomRes";
 import { QueryTutorials } from "util/tutorialUtils";
@@ -22,53 +21,6 @@ const TransformerItemCompBase = new MultiCompBuilder(
   },
   (props) => props
 )
-  .setPropertyViewFn((children) => {
-    return (
-      <EditorContext.Consumer>
-        {(editorState) => {
-          return (
-            <BottomTabs
-              runButtonText={trans("transformer.preview")}
-              type={BottomResTypeEnum.Transformer}
-              tabsConfig={[
-                {
-                  key: "general",
-                  title: trans("query.generalTab"),
-                  children: (
-                    <div>
-                      {children.script.propertyView({
-                        placement: "bottom",
-                        styleName: "medium",
-                        width: "100%",
-                      })}
-                      {QueryTutorials.transformer && (
-                        <><br/><TacoMarkDown>{trans("transformer.documentationText")}</TacoMarkDown>
-                        <DocLink style={{ marginTop: 8 }} href={QueryTutorials.transformer} title={trans("transformer.documentationText")}>
-                          {trans("transformer.docLink")}
-                        </DocLink><br/><br/>
-
-                        <SupaDemoDisplay
-                          url={trans("supademos.transformer")}
-                          modalWidth="80%"
-                          modalTop="20px"
-                        />
-
-                        </>
-                      )}
-                    </div>
-                  ),
-                },
-              ]}
-              tabTitle={children.name.getView()}
-              onRunBtnClick={() => {
-                editorState.setShowResultCompName(children.name.getView());
-              }}
-            />
-          );
-        }}
-      </EditorContext.Consumer>
-    );
-  })
   .build();
 
 class TransformerAsBottomRes extends TransformerItemCompBase implements BottomResComp {
