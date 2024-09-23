@@ -52,16 +52,11 @@ import {
   saveEditorModeStatus,
 } from "util/localStorageUtil";
 import { isAggregationApp } from "util/appUtils";
-import EditorSkeletonView from "./editorSkeletonView";
 import { getCommonSettings } from "@lowcoder-ee/redux/selectors/commonSettingSelectors";
 
 const LeftContent = lazy(
   () => import('./LeftContent')
     .then(module => ({default: module.LeftContent}))
-);
-const LeftLayersContent = lazy(
-  () => import('./LeftLayersContent')
-    .then(module => ({default: module.LeftLayersContent}))
 );
 const RightPanel = lazy(() => import('pages/editor/right/RightPanel'));
 const EditorTutorials = lazy(() => import('pages/tutorials/editorTutorials'));
@@ -105,10 +100,6 @@ const MiddlePanel = lazy(
 const HelpDropdown = lazy(
   () => import('pages/common/help')
     .then(module => ({default: module.HelpDropdown}))
-);
-const PreviewHeader = lazy(
-  () => import('pages/common/previewHeader')
-    .then(module => ({default: module.PreviewHeader}))
 );
 
 const HookCompContainer = styled.div`
@@ -407,8 +398,7 @@ function EditorView(props: EditorViewProps) {
             <script key="clearbit-script" src="https://tag.clearbitscripts.com/v1/pk_dfbc0aeefb28dc63475b67134facf127/tags.js" referrerPolicy="strict-origin-when-cross-origin" type="text/javascript"></script>
           ]}
         </Helmet>
-        <Suspense fallback={<EditorSkeletonView />}>
-          {!hideBodyHeader && <PreviewHeader />}
+        <Suspense>
           <EditorContainerWithViewMode>
             <ViewBody $hideBodyHeader={hideBodyHeader} $height={height}>
               {uiComp.getView()}
@@ -543,10 +533,6 @@ function EditorView(props: EditorViewProps) {
 
                     {props.preloadComp.getJSLibraryPropertyView()}
                   </SettingsDiv>
-                )}
-
-                {menuKey === SiderKey.Layout && (
-                  <LeftLayersContent uiComp={uiComp} />
                 )}
 
               </LeftPanel>

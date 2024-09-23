@@ -1,11 +1,9 @@
 import Api from "api/api";
 import { AxiosPromise } from "axios";
 import { ApiResponse } from "api/apiResponses";
-import { AuthType } from "@lowcoder-ee/pages/setting/idSource/idSourceConstants";
 
 export interface ConfigItem {
   id: string;
-  authType: AuthType;
   enableRegister: boolean;
   enable?: boolean;
   clientId?: string;

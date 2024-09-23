@@ -1,5 +1,4 @@
 import { PanelStatus } from "pages/common/header";
-import { DisabledCollisionStatus as DisabledCollisionStatus } from "pages/editor/LeftLayersContent";
 import { EditorModeStatus } from "pages/common/header";
 import log from "loglevel";
 import { JSONValue } from "util/jsonTypes";

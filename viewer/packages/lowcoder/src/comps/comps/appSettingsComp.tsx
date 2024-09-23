@@ -3,7 +3,6 @@ import { RecordConstructorToComp } from "lowcoder-core";
 import { dropdownInputSimpleControl } from "comps/controls/dropdownInputSimpleControl";
 import { MultiCompBuilder, valueComp, withDefault } from "comps/generators";
 import { AddIcon, Dropdown } from "lowcoder-design";
-import { EllipsisSpan } from "pages/setting/theme/styledComponents";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getDefaultTheme, getThemeList } from "redux/selectors/commonSettingSelectors";
@@ -252,7 +251,6 @@ function AppSettingsModal(props: ChildrenInstance) {
           <div className="left" />
           <div className="right" />
         </TagDesc>
-        <EllipsisSpan style={{ maxWidth: "238px" }}>{themeItem?.name}</EllipsisSpan>
         {themeItem?.id === defaultTheme && <DefaultSpan>{trans("appSetting.default")}</DefaultSpan>}
       </ItemSpan>
     );

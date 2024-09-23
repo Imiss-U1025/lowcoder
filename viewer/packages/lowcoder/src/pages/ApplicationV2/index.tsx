@@ -60,7 +60,6 @@ import { ModuleView } from "./ModuleView";
 import { useCreateFolder } from "./useCreateFolder";
 import { trans } from "../../i18n";
 import { foldersSelector } from "../../redux/selectors/folderSelector";
-import Setting from "pages/setting";
 import { TypographyText } from "../../components/TypographyText";
 import { messageInstance } from "lowcoder-design/src/components/GlobalInstances";
 import { isEE } from "util/envUtils";
@@ -140,9 +139,9 @@ const FolderName = (props: { id: string; name: string }) => {
         }}
       />
       <EditPopover items={[
-          { text: trans("rename"), onClick: () => setFolderNameEditing(true) },
-          // Falk: TODO: Implement delete for Folders
-        ]}>
+        { text: trans("rename"), onClick: () => setFolderNameEditing(true) },
+        // Falk: TODO: Implement delete for Folders
+      ]}>
         <PopoverIcon tabIndex={-1} />
       </EditPopover>
     </>
@@ -159,7 +158,7 @@ const MoreFoldersWrapper = styled.div<{ $selected: boolean }>`
   }}
 `;
 
-const MoreFoldersIcon = styled(PointIcon)<{ $selected: boolean }>`
+const MoreFoldersIcon = styled(PointIcon) <{ $selected: boolean }>`
   cursor: pointer;
   flex-shrink: 0;
 
@@ -260,7 +259,7 @@ export default function ApplicationHome() {
   const isSelfHost = window.location.host !== 'app.lowcoder.cloud';
 
   const handleFolderCreate = useCreateFolder();
-  
+
   const isOrgAdmin = org?.createdBy == user.id ? true : false;
 
   useEffect(() => {
@@ -356,13 +355,13 @@ export default function ApplicationHome() {
                 text: <TabLabel>{trans("home.profile")}</TabLabel>,
                 routePath: USER_PROFILE_URL,
                 routeComp: UserProfileView,
-                icon: ({ selected, ...otherProps }) => selected ? <UserIcon {...otherProps} width={"24px"}/> : <UserIcon {...otherProps} width={"24px"}/>,
+                icon: ({ selected, ...otherProps }) => selected ? <UserIcon {...otherProps} width={"24px"} /> : <UserIcon {...otherProps} width={"24px"} />,
               },
               {
                 text: <TabLabel>{trans("home.news")}</TabLabel>,
                 routePath: NEWS_URL,
                 routeComp: NewsView,
-                icon: ({ selected, ...otherProps }) => selected ? <NewsIcon {...otherProps} width={"24px"}/> : <NewsIcon {...otherProps} width={"24px"}/>,
+                icon: ({ selected, ...otherProps }) => selected ? <NewsIcon {...otherProps} width={"24px"} /> : <NewsIcon {...otherProps} width={"24px"} />,
                 visible: ({ user }) => user.orgDev,
                 style: { color: "red" },
               },
@@ -371,7 +370,7 @@ export default function ApplicationHome() {
                 routePath: ORG_HOME_URL,
                 routePathExact: false,
                 routeComp: OrgView,
-                icon: ({ selected, ...otherProps }) => selected ? <WorkspacesIcon {...otherProps} width={"24px"}/> : <WorkspacesIcon {...otherProps} width={"24px"}/>,
+                icon: ({ selected, ...otherProps }) => selected ? <WorkspacesIcon {...otherProps} width={"24px"} /> : <WorkspacesIcon {...otherProps} width={"24px"} />,
                 visible: ({ user }) => !user.orgDev,
               },
               {
@@ -379,7 +378,7 @@ export default function ApplicationHome() {
                 routePath: MARKETPLACE_URL,
                 routePathExact: false,
                 routeComp: MarketplaceView,
-                icon: ({ selected, ...otherProps }) => selected ? <MarketplaceIcon {...otherProps} width={"24px"}/> : <MarketplaceIcon {...otherProps} width={"24px"}/>,
+                icon: ({ selected, ...otherProps }) => selected ? <MarketplaceIcon {...otherProps} width={"24px"} /> : <MarketplaceIcon {...otherProps} width={"24px"} />,
               },
             ]
           },
@@ -390,45 +389,45 @@ export default function ApplicationHome() {
                 text: <TabLabel>{trans("home.allApplications")}</TabLabel>,
                 routePath: ALL_APPLICATIONS_URL,
                 routeComp: HomeView,
-                icon: ({ selected, ...otherProps }) => selected ? <AppsIcon {...otherProps} width={"24px"}/> : <AppsIcon {...otherProps} width={"24px"}/>,
+                icon: ({ selected, ...otherProps }) => selected ? <AppsIcon {...otherProps} width={"24px"} /> : <AppsIcon {...otherProps} width={"24px"} />,
               },
               {
                 text: <TabLabel>{trans("home.allModules")}</TabLabel>,
                 routePath: MODULE_APPLICATIONS_URL,
                 routeComp: ModuleView,
-                icon: ({ selected, ...otherProps }) => selected ? <HomeModuleIcon {...otherProps} width={"24px"}/> : <HomeModuleIcon {...otherProps} width={"24px"}/>,
+                icon: ({ selected, ...otherProps }) => selected ? <HomeModuleIcon {...otherProps} width={"24px"} /> : <HomeModuleIcon {...otherProps} width={"24px"} />,
                 visible: ({ user }) => isOrgAdmin,
               },
-              
+
             ],
           },
 
           allFolders.length > 0
             ? {
-                title: (
-                  <FolderSectionLabel>
-                    {trans("home.yourFolders")}
-                    <FolderCountLabel>{`(${allFolders.length})`}</FolderCountLabel>
-                    {user.orgDev && (
-                      <CreateFolderIcon onClick={handleFolderCreate}>
-                        <PlusIcon />
-                      </CreateFolderIcon>
-                    )}
-                  </FolderSectionLabel>
-                ),
-                items: folderItems,
-                style: { marginTop: "8px" },
-              }
+              title: (
+                <FolderSectionLabel>
+                  {trans("home.yourFolders")}
+                  <FolderCountLabel>{`(${allFolders.length})`}</FolderCountLabel>
+                  {user.orgDev && (
+                    <CreateFolderIcon onClick={handleFolderCreate}>
+                      <PlusIcon />
+                    </CreateFolderIcon>
+                  )}
+                </FolderSectionLabel>
+              ),
+              items: folderItems,
+              style: { marginTop: "8px" },
+            }
             : { items: [] },
-          
+
           {
             items: [
-              
+
               {
                 text: <TabLabel>{trans("home.queryLibrary")}</TabLabel>,
                 routePath: QUERY_LIBRARY_URL,
                 routeComp: QueryLibraryEditor,
-                icon: ({ selected, ...otherProps }) => selected ? <HomeQueryLibraryIcon {...otherProps} width={"24px"}/> : <HomeQueryLibraryIcon {...otherProps} width={"24px"}/>,
+                icon: ({ selected, ...otherProps }) => selected ? <HomeQueryLibraryIcon {...otherProps} width={"24px"} /> : <HomeQueryLibraryIcon {...otherProps} width={"24px"} />,
                 visible: ({ user }) => user.orgDev,
               },
               {
@@ -436,7 +435,7 @@ export default function ApplicationHome() {
                 routePath: DATASOURCE_URL,
                 routePathExact: false,
                 routeComp: DatasourceHome,
-                icon: ({ selected, ...otherProps }) => selected ? <HomeDataSourceIcon {...otherProps} width={"24px"}/> : <HomeDataSourceIcon {...otherProps} width={"24px"}/>,
+                icon: ({ selected, ...otherProps }) => selected ? <HomeDataSourceIcon {...otherProps} width={"24px"} /> : <HomeDataSourceIcon {...otherProps} width={"24px"} />,
                 visible: ({ user }) => user.orgDev,
                 onSelected: (_, currentPath) => currentPath.split("/")[1] === "datasource",
               },
@@ -449,7 +448,7 @@ export default function ApplicationHome() {
                 routePath: "/ee/6600ae8724a23f365ba2ed4c/admin",
                 routePathExact: false,
                 routeComp: AppEditor,
-                icon: ({ selected, ...otherProps }) => selected ? ( <EnterpriseIcon {...otherProps} width={"24px"}/> ) : ( <EnterpriseIcon {...otherProps} width={"24px"}/> ),
+                icon: ({ selected, ...otherProps }) => selected ? (<EnterpriseIcon {...otherProps} width={"24px"} />) : (<EnterpriseIcon {...otherProps} width={"24px"} />),
                 visible: ({ user }) => user.orgDev,
               },
             ],
@@ -458,24 +457,10 @@ export default function ApplicationHome() {
           {
             items: [
               {
-                text: <TabLabel>{trans("settings.title")}</TabLabel>,
-                routePath: SETTING,
-                routePathExact: false,
-                routeComp: Setting,
-                icon: ({ selected, ...otherProps }) => selected ? <HomeSettingIcon {...otherProps} width={"24px"}/> : <HomeSettingIcon {...otherProps} width={"24px"}/>,
-                visible: ({ user }) => user.orgDev,
-                onSelected: (_, currentPath) => currentPath.split("/")[1] === "setting",
-              },
-            ]
-          },
-
-          {
-            items: [
-              {
                 text: <TabLabel>{trans("home.trash")}</TabLabel>,
                 routePath: TRASH_URL,
                 routeComp: TrashView,
-                icon: ({ selected, ...otherProps }) => selected ? <RecyclerIcon {...otherProps} width={"24px"}/> : <RecyclerIcon {...otherProps} width={"24px"}/>,
+                icon: ({ selected, ...otherProps }) => selected ? <RecyclerIcon {...otherProps} width={"24px"} /> : <RecyclerIcon {...otherProps} width={"24px"} />,
                 visible: ({ user }) => user.orgDev,
               },
             ],
@@ -483,7 +468,7 @@ export default function ApplicationHome() {
 
         ]}
       />
-      
+
       {/* 
         // we have the invite dialog in the Admin Area, so we don't need it here
         {user.orgDev && (

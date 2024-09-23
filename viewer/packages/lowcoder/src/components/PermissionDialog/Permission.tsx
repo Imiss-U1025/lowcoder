@@ -7,7 +7,6 @@ import {
 } from "lowcoder-design";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import ProfileImage from "pages/common/profileImage";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGroupsAction, fetchOrgUsersAction } from "redux/reduxActions/orgActions";
 import { getOrgGroups, getOrgUsers } from "redux/selectors/orgSelectors";
@@ -171,14 +170,8 @@ const StyledTag = styled(Tag)`
   }
 `;
 
-const LabelProfileImage = styled(ProfileImage)`
-  && > span {
-    font-size: 1px;
-    transform: scale(0.5, 0.5);
-  }
-`;
 
-const AddRoleSelect = styled(StyledRoleSelect)<{ $isVisible: boolean }>`
+const AddRoleSelect = styled(StyledRoleSelect) <{ $isVisible: boolean }>`
   .ant-select {
     height: 24px;
   }
@@ -245,12 +238,6 @@ function PermissionSelectorOption(props: { optionView: AddAppOptionView }) {
   );
   return (
     <OptionViewWrapper>
-      <ProfileImage
-        userName={optionView.name}
-        side={32}
-        source={optionView.avatarUrl}
-        svg={groupIcon}
-      />
       <PermissionItemName title={optionView.name}>{optionView.name}</PermissionItemName>
     </OptionViewWrapper>
   );
@@ -263,7 +250,6 @@ function PermissionSelectorLabel(props: { view: AddAppOptionView }) {
   );
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      <LabelProfileImage userName={view.name} side={18} source={view.avatarUrl} svg={groupIcon} />
       <CommonTextLabel
         style={{
           marginLeft: "4px",

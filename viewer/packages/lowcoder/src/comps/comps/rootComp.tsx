@@ -19,7 +19,6 @@ import { ThemeContext } from "comps/utils/themeContext";
 import { ModuleLayoutCompName } from "constants/compConstants";
 import { defaultTheme as localDefaultTheme } from "constants/themeConstants";
 import { ModuleLoading } from "components/ModuleLoading";
-import EditorSkeletonView from "pages/editor/editorSkeletonView";
 import { getGlobalSettings } from "comps/utils/globalSettings";
 import { getCurrentTheme } from "comps/utils/themeUtil";
 import { DataChangeResponderListComp } from "./dataChangeResponderComp";
@@ -71,10 +70,10 @@ function RootView(props: RootViewProps) {
     previewTheme?.previewTheme ||
     selectedTheme?.theme ||
     localDefaultTheme;
-  
+
   const themeId = selectedTheme ? selectedTheme.id : (
     previewTheme ? "preview-theme" : 'default-theme-id'
-  ); 
+  );
 
   useEffect(() => {
     const newEditorState = new EditorState(comp, (changeEditorStateFn) => {
@@ -121,14 +120,14 @@ function RootView(props: RootViewProps) {
     return <ModuleLoading />;
   }
 
-  const SuspenseFallback = isModuleRoot ? <ModuleLoading /> : <EditorSkeletonView />;
+  const SuspenseFallback = isModuleRoot ? <ModuleLoading /> : <></>;
 
   if (!editorState) {
     return SuspenseFallback;
   }
 
   return (
-    <div {...divProps} style={{height: '100%'}}>
+    <div {...divProps} style={{ height: '100%' }}>
       <PropertySectionContext.Provider value={propertySectionContextValue}>
         <ThemeContext.Provider value={themeContextValue}>
           <EditorContext.Provider value={editorState}>

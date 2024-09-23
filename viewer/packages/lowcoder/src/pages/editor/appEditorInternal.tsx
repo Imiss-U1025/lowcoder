@@ -8,7 +8,6 @@ import {
 } from "util/context/ExternalEditorContext";
 import { setEditorExternalStateAction } from "redux/reduxActions/configActions";
 import { AppTypeEnum } from "constants/applicationConstants";
-import EditorSkeletonView from "pages/editor/editorSkeletonView";
 import { useThrottle, useUnmount } from "react-use";
 import { Comp } from "lowcoder-core";
 import { localEnv } from "util/envUtils";
@@ -117,7 +116,7 @@ export function AppEditorInternalView(props: AppEditorInternalViewProps) {
 
   return loading ? (
     window.location.pathname.split("/")[3] === "admin" ? <div></div> : 
-    <EditorSkeletonView />
+    <></>
   ) : (
     <ConfigProvider locale={getAntdLocale(currentUser.uiLanguage)}>
       <ExternalEditorContext.Provider value={externalEditorState}>

@@ -13,7 +13,6 @@ import {
   StyledGroupIcon,
   StyledRoleSelect,
 } from "./commonComponents";
-import ProfileImage from "pages/common/profileImage";
 import styled from "styled-components";
 import { getInitialsAndColorCode } from "util/stringUtils";
 import { trans } from "i18n";
@@ -97,12 +96,6 @@ function PermissionLiItem(props: {
   }
   return (
     <PermissionLi key={permissionItem.permissionId}>
-      <ProfileImage
-        side={32}
-        userName={permissionItem.name}
-        source={permissionItem.avatar && ASSETS_URI(permissionItem.avatar)}
-        svg={SvgIcon && <SvgIcon $color={getInitialsAndColorCode(permissionItem.name)[1]} />}
-      />
       <PermissionItemName title={permissionItem.name}>
         {permissionItem.type === "GROUP" && trans("home.groupWithSquareBrackets")}
         {permissionItem.name}

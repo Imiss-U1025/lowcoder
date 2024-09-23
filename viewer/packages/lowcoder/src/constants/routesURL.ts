@@ -60,8 +60,10 @@ export const MARKETPLACE_TYPE_URL = `${MARKETPLACE_URL}/:marketplaceType`;
 export const APPLICATION_VIEW_URL = (appId: string, viewMode: AppViewMode) =>
   `${ALL_APPLICATIONS_URL}/${appId}/${viewMode}`;
 
-export const APPLICATION_MARKETPLACE_VIEW_URL = (appId: string, viewMode: AppViewMode) =>
-`${APPLICATION_MARKETPLACE_URL}/${appId}/${viewMode}`;
+export const APPLICATION_MARKETPLACE_VIEW_URL = (
+  appId: string,
+  viewMode: AppViewMode
+) => `${APPLICATION_MARKETPLACE_URL}/${appId}/${viewMode}`;
 
 export const MARKETPLACE_URL_BY_TYPE = (type: MarketplaceType) =>
   `${MARKETPLACE_URL}/${type}`;
@@ -70,17 +72,19 @@ export const isAuthUnRequired = (pathname: string): boolean => {
   return (
     pathname.startsWith("/invite/") ||
     pathname.startsWith(USER_AUTH_URL) ||
-    pathname.endsWith('/auth/login') ||
-    pathname.endsWith('/auth/register') ||
+    pathname.endsWith("/auth/login") ||
+    pathname.endsWith("/auth/register") ||
     pathname.startsWith(COMPONENT_DOC_URL)
   );
 };
 
 export const buildDatasourceCreateUrl = (datasourceType: DatasourceType) =>
   `${DATASOURCE_URL}/new/${datasourceType}`;
-export const buildDatasourceEditUrl = (datasourceId: string) => `${DATASOURCE_URL}/${datasourceId}`;
+export const buildDatasourceEditUrl = (datasourceId: string) =>
+  `${DATASOURCE_URL}/${datasourceId}`;
 
-export const buildFolderUrl = (folderId: string) => `${FOLDER_URL_PREFIX}/${folderId}`;
+export const buildFolderUrl = (folderId: string) =>
+  `${FOLDER_URL_PREFIX}/${folderId}`;
 
 export const buildAppRouteWithState = (
   appId: string,
@@ -98,8 +102,10 @@ export function preview(applicationId: string) {
   window.open(APPLICATION_VIEW_URL(applicationId, "preview"));
 }
 
-export const buildGroupId = (groupId: string) => `${PERMISSION_SETTING}/${groupId}`;
+export const buildGroupId = (groupId: string) =>
+  `${PERMISSION_SETTING}/${groupId}`;
 
 export const buildOrgId = (orgId: string) => `${ORGANIZATION_SETTING}/${orgId}`;
 
-export const buildSubscriptionId = (subscriptionId: string) => `${SUBSCRIPTION_SETTING}/${subscriptionId}`;
+export const buildSubscriptionId = (subscriptionId: string) =>
+  `${SUBSCRIPTION_SETTING}/${subscriptionId}`;

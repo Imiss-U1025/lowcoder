@@ -35,7 +35,6 @@ import { useRootCompInstance } from "./useRootCompInstance";
 import { TopHeaderHeight } from "constants/style";
 import { SnapshotItemProps, SnapshotList } from "../../components/SnapshotList";
 import { trans } from "i18n";
-import EditorSkeletonView from "./editorSkeletonView";
 
 const AppEditorInternalView = lazy(
   () => import("pages/editor/appEditorInternal")
@@ -253,7 +252,7 @@ export function AppSnapshot(props: { currentAppInfo: AppSummaryInfo }) {
   }
 
   return (
-    <Suspense fallback={<EditorSkeletonView />}>
+    <Suspense>
       <AppEditorInternalView
         appInfo={appInfo}
         loading={isSnapshotDslLoading}

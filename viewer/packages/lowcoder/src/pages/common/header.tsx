@@ -46,7 +46,6 @@ import { ExternalEditorContext } from "util/context/ExternalEditorContext";
 import history from "util/history";
 import { useApplicationId } from "util/hooks";
 import { canManageApp } from "util/permissionUtils";
-import ProfileDropdown from "./profileDropdown";
 import { Logo, LogoHome, LogoWithName } from "@lowcoder-ee/assets/images";
 import { HeaderStartDropdown } from "./headerStartDropdown";
 import { AppPermissionDialog } from "../../components/PermissionDialog/AppPermissionDialog";
@@ -86,7 +85,7 @@ const LayoutIcon = styled(Layout)`
 const LeftIcon = styled(Left)`
   ${IconCss}
 `;
-const MiddleIcon = styled(Middle)<{ $show: boolean }>`
+const MiddleIcon = styled(Middle) <{ $show: boolean }>`
   ${IconCss}
   & g line {
     stroke: ${(props) => (props.$show ? "#dddddd" : "#dddddd65")};
@@ -277,7 +276,7 @@ function HeaderProfile(props: { user: User }) {
           {trans("userAuth.login")}
         </LoginBtn>
       ) : (
-        <ProfileDropdown user={user} profileSide={28} fontSize={12} />
+        <></>
       )}
     </div>
   );
@@ -388,7 +387,7 @@ export default function Header(props: HeaderProps) {
 
   const headerMiddle = (
     <>
-      <>      
+      <>
       </>
       <Radio.Group
         onChange={onEditorStateValueChange}

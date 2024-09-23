@@ -26,7 +26,6 @@ import { fetchFolderElements } from "redux/reduxActions/folderActions";
 import { registryDataSourcePlugin } from "constants/queryConstants";
 import { DatasourceApi } from "api/datasourceApi";
 import { useRootCompInstance } from "./useRootCompInstance";
-import EditorSkeletonView from "./editorSkeletonView";
 import {ErrorBoundary, FallbackProps} from 'react-error-boundary';
 import { ALL_APPLICATIONS_URL } from "@lowcoder-ee/constants/routesURL";
 import history from "util/history";
@@ -168,7 +167,7 @@ export default function AppEditor() {
   return (
     <ErrorBoundary fallback={fallbackUI}>
       {showAppSnapshot ? (
-        <Suspense fallback={<EditorSkeletonView />}>
+        <Suspense>
           <AppSnapshot
             currentAppInfo={{
               ...appInfo,
@@ -177,7 +176,7 @@ export default function AppEditor() {
           />
         </Suspense>
       ) : (
-        <Suspense fallback={<EditorSkeletonView />}>
+        <Suspense>
           <AppEditorInternalView
             appInfo={appInfo}
             readOnly={readOnly}

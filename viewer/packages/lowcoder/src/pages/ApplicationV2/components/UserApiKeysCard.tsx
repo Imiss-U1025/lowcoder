@@ -9,7 +9,6 @@ import { useState } from "react";
 import { styled } from "styled-components";
 import { AddIcon, CustomModal, EditPopover, TacoButton, messageInstance } from "lowcoder-design";
 import { trans } from "i18n";
-import { PopoverIcon } from "pages/setting/permission/styledComponents";
 import CreateApiKeyModal from "./CreateApiKeyModal";
 import { fetchApiKeysAction } from "redux/reduxActions/userActions";
 import UserApi from "@lowcoder-ee/api/userApi";
@@ -53,7 +52,7 @@ export default function UserApiKeysCard() {
   return (
     <>
       <Card style={{ marginBottom: "20px" }}>
-        <Flex justify="space-between" align="center" style={{marginBottom: '8px'}}>
+        <Flex justify="space-between" align="center" style={{ marginBottom: '8px' }}>
           <Title level={4}>{trans("profile.apiKeys")}</Title>
           <h4><a href={trans("docUrls.apiDocHome")} target="_blank">{trans("home.howToUseAPI")}</a></h4>
           <CreateButton
@@ -71,7 +70,7 @@ export default function UserApiKeysCard() {
           scroll={{ x: "100%" }}
           pagination={false}
           onRow={(record) => ({
-            
+
           })}
           columns={[
             {
@@ -86,7 +85,7 @@ export default function UserApiKeysCard() {
               render: (value: string) => {
                 return (
                   <>
-                    { value || '-'}
+                    {value || '-'}
                   </>
                 )
               }
@@ -99,7 +98,7 @@ export default function UserApiKeysCard() {
                 const startToken = value.substring(0, 6);
                 const endToken = value.substring(value.length - 6);
                 return (
-                  <Tooltip placement="topLeft" title={ trans("profile.apiKeyCopy")}>
+                  <Tooltip placement="topLeft" title={trans("profile.apiKeyCopy")}>
                     <div onClick={() => handleCopy(value)} style={{ cursor: 'pointer' }}>
                       {`${startToken}********************${endToken}`}
                     </div>
@@ -114,28 +113,6 @@ export default function UserApiKeysCard() {
             key: i,
             operation: (
               <OperationWrapper>
-                <EditPopover
-                  del={() => {
-                    CustomModal.confirm({
-                      title: trans("profile.deleteApiKey"),
-                      content: trans("profile.deleteApiKeyContent"),
-                      onConfirm: () => {
-                        UserApi.deleteApiKey(apiKey.id).then(resp => {
-                          if(validateResponse(resp)) {
-                            dispatch(fetchApiKeysAction());
-                          }
-                        })
-                        .catch((e) => {
-                          messageInstance.error(trans("profile.deleteApiKeyError"));
-                        })
-                      },
-                      confirmBtnType: "delete",
-                      okText: trans("delete"),
-                    })
-                  }}
-                >
-                  <PopoverIcon tabIndex={-1} />
-                </EditPopover>
               </OperationWrapper>
             ),
           }))}
