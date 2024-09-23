@@ -2,7 +2,6 @@ import { default as App } from "antd/es/app";
 import { default as ConfigProvider } from "antd/es/config-provider";
 import {
   USER_PROFILE_URL,
-  NEWS_URL,
   ORG_HOME_URL,
   ALL_APPLICATIONS_URL,
   APP_EDITOR_URL,
@@ -17,11 +16,9 @@ import {
   IMPORT_APP_FROM_TEMPLATE_URL,
   INVITE_LANDING_URL,
   isAuthUnRequired,
-  MARKETPLACE_URL,
   ORG_AUTH_LOGIN_URL,
   ORG_AUTH_REGISTER_URL,
   QUERY_LIBRARY_URL,
-  TRASH_URL,
   USER_AUTH_URL,
   ADMIN_APP_URL,
   ORG_AUTH_FORGOT_PASSWORD_URL,
@@ -311,7 +308,6 @@ class AppIndex extends React.Component<AppIndexProps, any> {
                 fallback="layout"
                 path={[
                   USER_PROFILE_URL,
-                  NEWS_URL,
                   ORG_HOME_URL,
                   ALL_APPLICATIONS_URL,
                   DATASOURCE_CREATE_URL,
@@ -320,8 +316,6 @@ class AppIndex extends React.Component<AppIndexProps, any> {
                   QUERY_LIBRARY_URL,
                   FOLDERS_URL,
                   FOLDER_URL,
-                  TRASH_URL,
-                  MARKETPLACE_URL,
                   ADMIN_APP_URL
                 ]}
                 // component={ApplicationListPage}

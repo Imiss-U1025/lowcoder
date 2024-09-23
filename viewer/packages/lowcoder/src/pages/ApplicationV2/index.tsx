@@ -5,12 +5,9 @@ import {
   FOLDER_URL,
   FOLDER_URL_PREFIX,
   FOLDERS_URL,
-  MARKETPLACE_URL,
   MODULE_APPLICATIONS_URL,
   QUERY_LIBRARY_URL,
-  TRASH_URL,
   // ADMIN_APP_URL,
-  NEWS_URL,
   ORG_HOME_URL,
 } from "constants/routesURL";
 import { getUser, isFetchingUser } from "redux/selectors/usersSelectors";
@@ -49,8 +46,6 @@ import { OrgView } from "./OrgView";
 import styled, { css } from "styled-components";
 import history from "../../util/history";
 import { FolderView } from "./FolderView";
-import { TrashView } from "./TrashView";
-import { MarketplaceView } from "./MarketplaceView";
 import { SideBarItemType } from "../../components/layout/SideBarSection";
 import { RootFolderListView } from "./RootFolderListView";
 import InviteDialog from "../common/inviteDialog";
@@ -357,28 +352,13 @@ export default function ApplicationHome() {
                 icon: ({ selected, ...otherProps }) => selected ? <UserIcon {...otherProps} width={"24px"} /> : <UserIcon {...otherProps} width={"24px"} />,
               },
               {
-                text: <TabLabel>{trans("home.news")}</TabLabel>,
-                routePath: NEWS_URL,
-                routeComp: NewsView,
-                icon: ({ selected, ...otherProps }) => selected ? <NewsIcon {...otherProps} width={"24px"} /> : <NewsIcon {...otherProps} width={"24px"} />,
-                visible: ({ user }) => user.orgDev,
-                style: { color: "red" },
-              },
-              {
                 text: <TabLabel>{trans("home.orgHome")}</TabLabel>,
                 routePath: ORG_HOME_URL,
                 routePathExact: false,
                 routeComp: OrgView,
                 icon: ({ selected, ...otherProps }) => selected ? <WorkspacesIcon {...otherProps} width={"24px"} /> : <WorkspacesIcon {...otherProps} width={"24px"} />,
                 visible: ({ user }) => !user.orgDev,
-              },
-              {
-                text: <TabLabel>{trans("home.marketplace")}</TabLabel>,
-                routePath: MARKETPLACE_URL,
-                routePathExact: false,
-                routeComp: MarketplaceView,
-                icon: ({ selected, ...otherProps }) => selected ? <MarketplaceIcon {...otherProps} width={"24px"} /> : <MarketplaceIcon {...otherProps} width={"24px"} />,
-              },
+              }
             ]
           },
 
@@ -452,18 +432,6 @@ export default function ApplicationHome() {
               },
             ],
           } : { items: [] },
-
-          {
-            items: [
-              {
-                text: <TabLabel>{trans("home.trash")}</TabLabel>,
-                routePath: TRASH_URL,
-                routeComp: TrashView,
-                icon: ({ selected, ...otherProps }) => selected ? <RecyclerIcon {...otherProps} width={"24px"} /> : <RecyclerIcon {...otherProps} width={"24px"} />,
-                visible: ({ user }) => user.orgDev,
-              },
-            ],
-          },
 
         ]}
       />
