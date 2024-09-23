@@ -12,7 +12,6 @@ import {
   EmptyCompContent,
   RightPanelContentWrapper,
 } from "pages/editor/right/styledComponent";
-import { tableDragClassName } from "pages/tutorials/tutorialsConstant";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import {

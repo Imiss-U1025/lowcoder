@@ -79,13 +79,13 @@ export default function FormLogin(props: FormLoginProps) {
           onChange={(value) => setPassword(value)}
           valueCheck={() => [true, ""]}
         />
-        <Flex justify="end" style={{margin: '10px 0'}}>
+        <Flex justify="end" style={{ margin: '10px 0' }}>
           <Link to={{
             pathname: orgId
               ? ORG_AUTH_FORGOT_PASSWORD_URL.replace(':orgId', orgId)
               : AUTH_FORGOT_PASSWORD_URL,
             state: location.state
-            }}
+          }}
           >
             {`${trans("userAuth.forgotPassword")}?`}
           </Link>
@@ -101,14 +101,14 @@ export default function FormLogin(props: FormLoginProps) {
           />
         )}
       </AccountLoginWrapper>
-      <Divider/>
+      <Divider />
       <AuthBottomView>
         <StyledRouteLink to={{
           pathname: orgId
             ? ORG_AUTH_REGISTER_URL.replace(':orgId', orgId)
             : AUTH_REGISTER_URL,
           state: location.state
-          }}>{trans("userAuth.register")}
+        }}>{trans("userAuth.register")}
         </StyledRouteLink>
       </AuthBottomView>
     </>

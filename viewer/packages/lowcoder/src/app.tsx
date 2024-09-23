@@ -58,7 +58,6 @@ import { fetchHomeData } from "./redux/reduxActions/applicationActions";
 
 const LazyUserAuthComp = React.lazy(() => import("pages/userAuth"));
 const LazyInviteLanding = React.lazy(() => import("pages/common/inviteLanding"));
-const LazyComponentDoc = React.lazy(() => import("pages/ComponentDoc"));
 const LazyComponentPlayground = React.lazy(() => import("pages/ComponentPlayground"));
 const LazyAppEditor = React.lazy(() => import("pages/editor/AppEditor"));
 const LazyAppFromTemplate = React.lazy(() => import("pages/ApplicationV2/AppFromTemplate"));
@@ -350,10 +349,6 @@ class AppIndex extends React.Component<AppIndexProps, any> {
               <LazyRoute
                 path={INVITE_LANDING_URL}
                 component={LazyInviteLanding}
-              />
-              <LazyRoute
-                path={`${COMPONENT_DOC_URL}/:name`}
-                component={LazyComponentDoc}
               />
               <LazyRoute
                 path={`/playground/:name/:dsl`}
