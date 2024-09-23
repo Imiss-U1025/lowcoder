@@ -167,7 +167,7 @@ export const UICompPanel = () => {
               >
                 <InsertContain>
                   {infos.map((info) => (
-                    <CompDiv key={info[0]} className={info[0] === "table" ? tableDragClassName : ""}>
+                    <CompDiv key={info[0]} className={""}>
                       <HovDiv
                         draggable
                         onDragStart={(e) => {
