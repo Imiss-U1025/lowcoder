@@ -56,8 +56,6 @@ const LazyUserAuthComp = React.lazy(() => import("pages/userAuth"));
 const LazyInviteLanding = React.lazy(() => import("pages/common/inviteLanding"));
 const LazyComponentPlayground = React.lazy(() => import("pages/ComponentPlayground"));
 const LazyAppEditor = React.lazy(() => import("pages/editor/AppEditor"));
-const LazyAppFromTemplate = React.lazy(() => import("pages/ApplicationV2/AppFromTemplate"));
-const LazyApplicationHome = React.lazy(() => import("pages/ApplicationV2"));
 const LazyDebugComp = React.lazy(() => import("./debug"));
 const LazyDebugNewComp = React.lazy(() => import("./debugNew"));
 
@@ -295,31 +293,9 @@ class AppIndex extends React.Component<AppIndexProps, any> {
           <Router history={history}>
             <Switch>
               <LazyRoute
-                exact
-                path={IMPORT_APP_FROM_TEMPLATE_URL}
-                component={LazyAppFromTemplate}
-              />
-              <LazyRoute
                 fallback="layout"
                 path={APP_EDITOR_URL}
                 component={LazyAppEditor}
-              />
-              <LazyRoute
-                fallback="layout"
-                path={[
-                  USER_PROFILE_URL,
-                  ORG_HOME_URL,
-                  ALL_APPLICATIONS_URL,
-                  DATASOURCE_CREATE_URL,
-                  DATASOURCE_EDIT_URL,
-                  DATASOURCE_URL,
-                  QUERY_LIBRARY_URL,
-                  FOLDERS_URL,
-                  FOLDER_URL,
-                  ADMIN_APP_URL
-                ]}
-                // component={ApplicationListPage}
-                component={LazyApplicationHome}
               />
               <LazyRoute path={USER_AUTH_URL} component={LazyUserAuthComp} />
               <LazyRoute

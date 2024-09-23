@@ -10,7 +10,6 @@ import {
   ModuleIcon,
 } from "lowcoder-design";
 import { trans, transToNode } from "i18n";
-import { exportApplicationAsJSONFile } from "pages/ApplicationV2/components/AppImport";
 import { useContext, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currentApplication } from "redux/selectors/applicationSelector";
@@ -136,9 +135,7 @@ export function HeaderStartDropdown(props: { setEdit: () => void, isViewMarketpl
             onClick={(e) => {
               if (e.key === "edit") {
                 props.setEdit();
-              } else if (e.key === "export") {
-                exportApplicationAsJSONFile(applicationId);
-              } else if (e.key === "duplicate") {
+              }else if (e.key === "duplicate") {
                 setShowCopyModal(true);
               } else if (e.key === "delete") {
                 CustomModal.confirm({
