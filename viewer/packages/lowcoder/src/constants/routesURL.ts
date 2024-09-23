@@ -9,21 +9,6 @@ export const USER_PROFILE_URL = "/user/profile";
 export const NEWS_URL = "/news";
 export const ORG_HOME_URL = "/org/home";
 export const COMPONENT_DOC_URL = "/components";
-export const SETTING = "/setting";
-export const PERMISSION_SETTING = "/setting/permission";
-export const ORGANIZATION_SETTING = "/setting/organization";
-export const SUBSCRIPTION_SETTING = "/setting/subscription";
-export const THEME_SETTING = "/setting/theme";
-export const PLUGINS_SETTING = "/setting/plugins";
-export const THEME_DETAIL = "/setting/theme/detail";
-export const THEME_DETAIL_URL = `${THEME_DETAIL}/:themeId`;
-
-export const OAUTH_PROVIDER_SETTING = "/setting/oauth-provider";
-export const OAUTH_PROVIDER_DETAIL = "/setting/oauth-provider/detail";
-
-export const PERMISSION_SETTING_DETAIL = `${PERMISSION_SETTING}/:groupId`;
-export const ORGANIZATION_SETTING_DETAIL = `${ORGANIZATION_SETTING}/:orgId`;
-export const SUBSCRIPTION_DETAIL = `${SUBSCRIPTION_SETTING}/:subscriptionId`;
 
 export const ALL_APPLICATIONS_URL = "/apps";
 export const ADMIN_APP_URL = "/ee/:applicationId/:viewMode";
@@ -101,11 +86,3 @@ export const buildAppRouteWithState = (
 export function preview(applicationId: string) {
   window.open(APPLICATION_VIEW_URL(applicationId, "preview"));
 }
-
-export const buildGroupId = (groupId: string) =>
-  `${PERMISSION_SETTING}/${groupId}`;
-
-export const buildOrgId = (orgId: string) => `${ORGANIZATION_SETTING}/${orgId}`;
-
-export const buildSubscriptionId = (subscriptionId: string) =>
-  `${SUBSCRIPTION_SETTING}/${subscriptionId}`;

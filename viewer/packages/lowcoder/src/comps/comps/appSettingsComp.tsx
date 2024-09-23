@@ -10,7 +10,6 @@ import styled, { css } from "styled-components";
 import { trans } from "i18n";
 import { GreyTextColor } from "constants/style";
 import { default as Divider } from "antd/es/divider";
-import { THEME_SETTING } from "constants/routesURL";
 import { CustomShortcutsComp } from "./customShortcutsComp";
 import { DEFAULT_THEMEID } from "comps/utils/themeUtil";
 import { StringControl } from "comps/controls/codeControl";
@@ -304,11 +303,6 @@ function AppSettingsModal(props: ChildrenInstance) {
           itemNode={(value) => <DropdownItem value={value} />}
           preNode={() => (
             <>
-              <CreateDiv onClick={() => window.open(THEME_SETTING)}>
-                <StyledAddIcon />
-                {trans("appSetting.themeCreate")}
-              </CreateDiv>
-              <DividerStyled />
             </>
           )}
           allowClear

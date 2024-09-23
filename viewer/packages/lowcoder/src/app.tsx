@@ -21,7 +21,6 @@ import {
   ORG_AUTH_LOGIN_URL,
   ORG_AUTH_REGISTER_URL,
   QUERY_LIBRARY_URL,
-  SETTING,
   TRASH_URL,
   USER_AUTH_URL,
   ADMIN_APP_URL,
@@ -322,7 +321,6 @@ class AppIndex extends React.Component<AppIndexProps, any> {
                   FOLDERS_URL,
                   FOLDER_URL,
                   TRASH_URL,
-                  SETTING,
                   MARKETPLACE_URL,
                   ADMIN_APP_URL
                 ]}

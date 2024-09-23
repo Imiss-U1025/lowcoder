@@ -58,7 +58,6 @@ const LeftContent = lazy(
   () => import('./LeftContent')
     .then(module => ({default: module.LeftContent}))
 );
-const RightPanel = lazy(() => import('pages/editor/right/RightPanel'));
 const EditorTutorials = lazy(() => import('pages/tutorials/editorTutorials'));
 const CustomShortcutWrapper = lazy(
   () => import('pages/editor/editorHotKeys')
@@ -546,13 +545,6 @@ function EditorView(props: EditorViewProps) {
                 </EditorHotKeys>
               </EditorWrapper>
             </MiddlePanel>
-            {showRight && (
-              <RightPanel
-                uiComp={uiComp}
-                onCompDrag={onCompDrag}
-                showPropertyPane={editorState.showPropertyPane}
-                onTabChange={setShowPropertyPane} />
-            )}
           </Body>
         </EditorGlobalHotKeys>
       </Height100Div></>
