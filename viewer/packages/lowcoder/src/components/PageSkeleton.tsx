@@ -2,7 +2,6 @@ import { default as Layout } from "antd/es/layout";
 import { default as Skeleton } from "antd/es/skeleton";
 import MainContent from "components/layout/MainContent";
 import SideBar from "components/layout/SideBar";
-import Header from "./layout/Header";
 import { Logo, LogoWithName, LogoHome } from "@lowcoder-ee/assets/images";
 import styled from "styled-components";
 import { useSelector } from "react-redux";

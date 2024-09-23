@@ -10,7 +10,6 @@ import {
   selectCompModifierKeyPressed,
   ShortcutsWrapper,
 } from "util/keyUtils";
-import { PanelStatus, TogglePanel } from "pages/common/header";
 import { clickCompNameClass } from "base/codeEditor/clickCompName";
 import { getShortcutAction } from "pages/common/shortcutConfigs";
 import { preview } from "constants/routesURL";
@@ -21,34 +20,15 @@ type Props = {
   disabled?: boolean;
 };
 
-type GlobalProps = Props & {
-  togglePanel: TogglePanel;
-  panelStatus: PanelStatus;
-  toggleShortcutList: () => void;
-};
-
 // global hotkeys
 function handleGlobalKeyDown(
   e: KeyboardEvent,
   editorState: EditorState,
   editorHistory: EditorHistory | undefined,
-  togglePanel: TogglePanel,
   toggleShortcutList: () => void,
   applicationId: string
 ) {
   switch (getShortcutAction(e, "global")) {
-    case "toggleLeftPanel":
-      togglePanel("left");
-      break;
-    case "toggleBottomPanel":
-      togglePanel("bottom");
-      break;
-    case "toggleRightPanel":
-      togglePanel("right");
-      break;
-    case "toggleAllPanels":
-      togglePanel();
-      break;
     case "preview":
       preview(applicationId);
       break;
@@ -111,50 +91,6 @@ function handleMouseDown(e: MouseEvent, editorState: EditorState, showLeftPanel:
     editorState.setSelectedBottomRes(compName, bottomResComp.type());
     return;
   }
-}
-
-export function EditorGlobalHotKeys(props: GlobalProps) {
-  const editorState = useContext(EditorContext);
-  const { history: editorHistory } = useContext(ExternalEditorContext);
-  const { togglePanel, panelStatus, toggleShortcutList } = props;
-  const applicationId = useApplicationId();
-  const onKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      setGlobalState(editorState, e);
-      handleGlobalKeyDown(
-        e,
-        editorState,
-        editorHistory,
-        togglePanel,
-        toggleShortcutList,
-        applicationId
-      );
-      editorState.getAppSettingsComp().children.customShortcuts.handleKeyEvent(e);
-    },
-    [editorState, editorHistory, togglePanel, toggleShortcutList, applicationId]
-  );
-  const setGlobalStateCb = useCallback(
-    (e: KeyboardEvent | MouseEvent) => setGlobalState(editorState, e),
-    [editorState]
-  );
-  const onMouseDown = useCallback(
-    (e: MouseEvent) => {
-      setGlobalState(editorState, e);
-      handleMouseDown(e, editorState, () => !panelStatus.left && togglePanel("left"));
-    },
-    [editorState, panelStatus, togglePanel]
-  );
-  return (
-    <GlobalShortcutsWrapper
-      disabled={props.disabled}
-      onKeyDownCapture={onKeyDown}
-      onKeyUpCapture={setGlobalStateCb}
-      // fix the problem when a user press keys without focus
-      onMouseMoveCapture={setGlobalStateCb}
-      onMouseDownCapture={onMouseDown}
-      children={props.children}
-    />
-  );
 }
 
 // local hotkeys

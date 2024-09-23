@@ -1,5 +1,3 @@
-import { PanelStatus } from "pages/common/header";
-import { EditorModeStatus } from "pages/common/header";
 import log from "loglevel";
 import { JSONValue } from "util/jsonTypes";
 
@@ -13,12 +11,6 @@ export type PanelStyle = {
   };
 };
 
-export const DefaultPanelStatus: PanelStatus = {
-  left: true,
-  bottom: true,
-  right: true,
-};
-
 const DefaultPanelStyle: PanelStyle = {
   bottom: {
     h: 285,
@@ -29,32 +21,15 @@ const DefaultPanelStyle: PanelStyle = {
   },
 };
 
-export function savePanelStatus(panelStatus: PanelStatus) {
-  localStorage.setItem("editor_panel_status", JSON.stringify(panelStatus));
-}
-
-export function getPanelStatus(): PanelStatus {
-  const str = localStorage.getItem("editor_panel_status");
-  if (!str) {
-    return DefaultPanelStatus;
-  }
-  return { ...DefaultPanelStatus, ...JSON.parse(str) };
-}
-
-export function saveEditorModeStatus(editorModeStatus: EditorModeStatus) {
-  localStorage.setItem("editor_mode_status", editorModeStatus);
-}
 //ADDED BY FRED TO SAVE enabledCollision
-export function saveCollisionStatus(
-  collisionStatus: boolean
-) {
+export function saveCollisionStatus(collisionStatus: boolean) {
   localStorage.setItem("disableCollision", String(collisionStatus));
 }
 
 // export const DefaultCollisionStatus: DisabledCollisionStatus = "true";
 export function getCollisionStatus(): boolean {
   const str = localStorage.getItem("disableCollision");
-  if (str === 'true') {
+  if (str === "true") {
     return true;
   }
   return false;
@@ -62,15 +37,6 @@ export function getCollisionStatus(): boolean {
 
 export function removeCollisionStatus() {
   localStorage.removeItem("disableCollision");
-}
-
-export const DefaultEditorModeStatus: EditorModeStatus = "both";
-export function getEditorModeStatus(): EditorModeStatus {
-  const str = localStorage.getItem("editor_mode_status");
-  if (!str) {
-    return DefaultEditorModeStatus;
-  }
-  return str as EditorModeStatus;
 }
 
 export function savePanelStyle(panelStyle: PanelStyle) {

@@ -17,7 +17,7 @@ import { NameAndExposingInfo } from "./utils/exposingTypes";
 import { checkName } from "./utils/rename";
 import { trans } from "i18n";
 import type { UiLayoutType } from "./comps/uiComp";
-import { getEditorModeStatus, saveCollisionStatus } from "util/localStorageUtil";
+import { saveCollisionStatus } from "util/localStorageUtil";
 
 type RootComp = InstanceType<typeof RootCompTmp>;
 
@@ -64,7 +64,7 @@ export class EditorState {
   constructor(
     rootComp: RootComp,
     setEditorState: (fn: (editorState: EditorState) => EditorState) => void,
-    initialEditorModeStatus: string = getEditorModeStatus(),
+    initialEditorModeStatus = "view",
   ) {
     this.rootComp = rootComp;
     this.setEditorState = setEditorState;

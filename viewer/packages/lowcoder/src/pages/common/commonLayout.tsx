@@ -1,6 +1,5 @@
 import { Route, Switch, useLocation } from "react-router-dom";
 import { default as Layout } from "antd/es/layout";
-import { AppHeader } from "pages/common/header";
 import { Menu } from "lowcoder-design";
 import history from "util/history";
 import styled from "styled-components";
@@ -73,7 +72,6 @@ export function CommonLayout(props: LayoutProps) {
 
   return (
     <Layout id={props.id}>
-      <AppHeader />
       <HelpDropdown />
       <Layout>
         <SideBar className={CNSidebar} theme="light" width={240}>

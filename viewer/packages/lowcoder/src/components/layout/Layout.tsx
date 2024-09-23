@@ -1,6 +1,5 @@
 import { Route, Switch } from "react-router-dom";
 import { default as AntdLayout } from "antd/es/layout";
-import { AppHeader } from "pages/common/header";
 import * as React from "react";
 import { ReactElement } from "react";
 import { HelpDropdown } from "pages/common/help";
@@ -46,7 +45,6 @@ export function Layout(props: LayoutProps) {
 
   return (
     <AntdLayout style={{ height: "100%" }}>
-      <AppHeader />
       <HelpDropdown />
       <AntdLayout>
         <SideBarV2 className={CNSidebar}>
