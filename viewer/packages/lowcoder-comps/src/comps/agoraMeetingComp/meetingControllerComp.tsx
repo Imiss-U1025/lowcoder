@@ -32,7 +32,6 @@ import {
   closeEvent,
   MeetingEventHandlerControl,
 } from "lowcoder-sdk";
-import { default as CloseOutlined } from "@ant-design/icons/CloseOutlined";
 import type { JSONValue } from "../../../../lowcoder/src/util/jsonTypes";
 // import { default as Button } from "antd/es/button";
 

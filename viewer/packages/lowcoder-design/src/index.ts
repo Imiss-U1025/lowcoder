@@ -50,5 +50,3 @@ export * from "./components/video";
 export * from "./components/shapeSelect";
 
 export * from "./icons";
-
-export * from "./icons/antIcon";

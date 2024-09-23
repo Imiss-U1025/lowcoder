@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { Modal, Button, Tooltip } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { default as InfoCircleOutlined } from '@ant-design/icons/InfoCircleOutlined';
 import { trans } from 'i18n'; // Adjust this import according to your project's structure
 
 interface SupaDemoDisplayProps {

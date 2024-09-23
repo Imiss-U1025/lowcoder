@@ -20,8 +20,6 @@ import Draggable from "react-draggable";
 import { default as List, type ListRowProps } from "react-virtualized/dist/es/List";
 import styled from "styled-components";
 import { CloseIcon, SearchIcon } from "icons";
-import { ANTDICON } from "icons/antIcon";
-
 const PopupContainer = styled.div`
   width: 580px;
   background: #ffffff;
@@ -153,7 +151,7 @@ class Icon {
       return (
         <FontAwesomeIcon
           icon={this.def}
-          style={{ width: "1em", height: "1em"}}
+          style={{ width: "1em", height: "1em" }}
         />
       );
   }
@@ -187,12 +185,6 @@ async function getAllIcons() {
     }
   }
   //append ant icon
-  for (let key of Object.keys(ANTDICON)) {
-    ret["antd/" + key] = new Icon(
-      ANTDICON[key.toLowerCase() as keyof typeof ANTDICON],
-      ["antd/" + key]
-    );
-  }
   allIcons = ret;
   return ret;
 }

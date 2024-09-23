@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { findIconDefinition, library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
-import * as AntdIcons from '@ant-design/icons';
 
 library.add(far,fas);
 
@@ -65,17 +64,6 @@ const baseMultiIconDisplay: React.FC<IconProps> = ({ identifier, width = '24px',
       return null;
     }
     return <FontAwesomeIcon icon={iconLookup} style={{ width, height, ...style }} />;
-  } 
-  else if (iconData.type === 'antd') {
-    let iconName = convertToCamelCase(iconData.name);
-    iconName = appendStyleSuffix(iconName);
-    iconName = iconName.charAt(0).toUpperCase() + iconName.slice(1); 
-    const AntdIcon = (AntdIcons as any)[iconName];
-    if (!AntdIcon) {
-      console.error(`ANTd Icon ${iconData.name} not found`);
-      return null;
-    }
-    return <AntdIcon style={{ fontSize: width, ...style }} />;
   } 
   else if (iconData.type === 'url' || iconData.type === 'base64') {
     return <img src={iconData.type === 'url' ? iconData.url : iconData.data} alt="icon" style={{ width, height, ...style }} />;

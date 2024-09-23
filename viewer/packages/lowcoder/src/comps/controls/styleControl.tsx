@@ -79,9 +79,6 @@ import {
 
 
 } from "./styleControlConstants";
-import { faTextWidth } from "@fortawesome/free-solid-svg-icons";
-import appSelectControl from "./appSelectControl";
-import { JSONObject, JSONValue } from "@lowcoder-ee/util/jsonTypes";
 import { CompTypeContext } from "../utils/compTypeContext";
 import { defaultTheme } from "@lowcoder-ee/constants/themeConstants";
 import { CompContext } from "../utils/compContext";

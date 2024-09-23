@@ -25,7 +25,6 @@ import {
 } from "react-virtualized/dist/es/List";
 import styled from "styled-components";
 import { CloseIcon, SearchIcon } from "icons";
-import { ANTDICON } from "icons/antIcon";
 import { JSX } from "react/jsx-runtime";
 
 const PopupContainer = styled.div`

@@ -74,7 +74,7 @@ const childrenMap = {
 const loadIcon = async (iconName: string) => {
   if (!iconName) return null;
   try {
-    const module = await import(`@ant-design/icons`);
+    const module = await import(`@fortawesome/free-solid-svg-icons`);
     const IconComponent = (module as any)[iconName];
     return IconComponent ? <IconComponent /> : null;
   } catch (error) {
@@ -190,18 +190,18 @@ let TimeLineBasicComp = (function () {
 
         {["layout", "both"].includes(useContext(EditorContext).editorModeStatus) && (
           <><Section name={sectionNames.layout}>
-              {children.mode.propertyView({
-                label: trans("timeLine.mode"),
-                tooltip: trans("timeLine.modeTooltip"),
-              })}
-              {children.pending.propertyView({
-                label: trans("timeLine.pending"),
-                tooltip: trans("timeLine.pendingDescription"),
-              })}
-              {children.reverse.propertyView({
-                label: trans("timeLine.reverse"),
-              })}
-            </Section>
+            {children.mode.propertyView({
+              label: trans("timeLine.mode"),
+              tooltip: trans("timeLine.modeTooltip"),
+            })}
+            {children.pending.propertyView({
+              label: trans("timeLine.pending"),
+              tooltip: trans("timeLine.pendingDescription"),
+            })}
+            {children.reverse.propertyView({
+              label: trans("timeLine.reverse"),
+            })}
+          </Section>
             <Section name={sectionNames.style}>
               {children.style.getPropertyView()}
             </Section>
