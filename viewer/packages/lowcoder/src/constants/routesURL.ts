@@ -5,7 +5,6 @@ import { DatasourceType } from "@lowcoder-ee/constants/queryConstants";
 
 export const BASE_URL = "/";
 export const USER_AUTH_URL = "/user/auth";
-export const USER_PROFILE_URL = "/user/profile";
 export const ORG_HOME_URL = "/org/home";
 export const COMPONENT_DOC_URL = "/components";
 
