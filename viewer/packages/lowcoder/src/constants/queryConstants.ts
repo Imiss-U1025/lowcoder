@@ -13,7 +13,7 @@ import { GoogleSheetsQuery } from "../comps/queries/googleSheetsQuery";
 import { GraphqlQuery } from "../comps/queries/httpQuery/graphqlQuery";
 import { toPluginQuery } from "comps/queries/pluginQuery/pluginQuery";
 import { MultiCompConstructor } from "lowcoder-core";
-import { DataSourcePluginMeta } from "lowcoder/package/sdk/dataSource";
+import { DataSourcePluginMeta } from "lowcoder/sdk/dataSource";
 
 export type DatasourceType =
   | "mysql"

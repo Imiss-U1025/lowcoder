@@ -2,7 +2,7 @@ import { DatasourceType } from "@lowcoder-ee/constants/queryConstants";
 import { DatasourceConfigType } from "api/datasourceApi";
 import { getBottomResIcon } from "@lowcoder-ee/util/bottomResUtils";
 import { trans } from "i18n";
-import { DataSourcePluginMeta } from "lowcoder/package/sdk/dataSource";
+import { DataSourcePluginMeta } from "lowcoder/sdk/dataSource";
 
 export const databasePlugins: Partial<DatasourceType>[] = [
   "mysql",
@@ -24,7 +24,9 @@ export const apiPluginsForQueryLibrary: Partial<DatasourceType>[] = [
   "googleSheets",
 ];
 
-export const apiPlugins: Partial<DatasourceType>[] = [...apiPluginsForQueryLibrary];
+export const apiPlugins: Partial<DatasourceType>[] = [
+  ...apiPluginsForQueryLibrary,
+];
 
 export interface Datasource {
   id: string;

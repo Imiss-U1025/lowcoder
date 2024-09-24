@@ -5,9 +5,12 @@ import { DEFAULT_TEST_DATA_SOURCE_TIMEOUT_MS } from "constants/apiConstants";
 import { Datasource as CEDatasource } from "../constants/datasourceConstants";
 import { DatasourceType } from "@lowcoder-ee/constants/queryConstants";
 import { JSONArray } from "util/jsonTypes";
-import { AuthType, HttpOAuthGrantType } from "pages/datasource/form/httpDatasourceForm";
+import {
+  AuthType,
+  HttpOAuthGrantType,
+} from "pages/datasource/form/httpDatasourceForm";
 import { Datasource } from "@lowcoder-ee/constants/datasourceConstants";
-import { DataSourcePluginMeta } from "lowcoder/package/sdk/dataSource";
+import { DataSourcePluginMeta } from "lowcoder/sdk/dataSource";
 
 export interface PreparedStatementConfig {
   enableTurnOffPreparedStatement: boolean;
@@ -130,7 +133,8 @@ export interface DatasourceInfo {
   creatorName?: string;
 }
 
-export interface NodePluginDatasourceInfo extends Omit<CEDatasource, "datasourceConfig"> {
+export interface NodePluginDatasourceInfo
+  extends Omit<CEDatasource, "datasourceConfig"> {
   pluginDefinition: DataSourcePluginMeta;
 }
 
@@ -164,11 +168,15 @@ export class DatasourceApi extends Api {
     return Api.get(DatasourceApi.url + `/jsDatasourcePlugins?appId=${appId}`);
   }
 
-  static fetchDatasourceByApp(appId: string): AxiosPromise<GenericApiResponse<DatasourceInfo[]>> {
+  static fetchDatasourceByApp(
+    appId: string
+  ): AxiosPromise<GenericApiResponse<DatasourceInfo[]>> {
     return Api.get(DatasourceApi.url + `/listByApp?appId=${appId}`);
   }
 
-  static fetchDatasourceByOrg(orgId: string): AxiosPromise<GenericApiResponse<DatasourceInfo[]>> {
+  static fetchDatasourceByOrg(
+    orgId: string
+  ): AxiosPromise<GenericApiResponse<DatasourceInfo[]>> {
     return Api.get(DatasourceApi.url + `/listByOrg?orgId=${orgId}`);
   }
 
@@ -193,7 +201,9 @@ export class DatasourceApi extends Api {
     return Api.put(DatasourceApi.url + `/${id}`, datasourceConfig);
   }
 
-  static deleteDatasource(id: string): AxiosPromise<GenericApiResponse<Datasource>> {
+  static deleteDatasource(
+    id: string
+  ): AxiosPromise<GenericApiResponse<Datasource>> {
     return Api.delete(DatasourceApi.url + `/${id}`);
   }
 
@@ -201,7 +211,9 @@ export class DatasourceApi extends Api {
     id: string,
     ignoreCache = false
   ): AxiosPromise<GenericApiResponse<{ tables: DatasourceStructure[] }>> {
-    return Api.get(DatasourceApi.url + `/${id}/structure?ignoreCache=${ignoreCache}`);
+    return Api.get(
+      DatasourceApi.url + `/${id}/structure?ignoreCache=${ignoreCache}`
+    );
   }
 
   static fetchDatasourceType(
