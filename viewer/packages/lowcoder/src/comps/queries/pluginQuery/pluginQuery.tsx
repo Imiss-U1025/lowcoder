@@ -4,7 +4,7 @@ import {
   ActionParamConfig,
   KeyedParamConfig,
   QueryConfig,
-} from "lowcoder-sdk/dataSource";
+} from "lowcoder/package/sdk/dataSource";
 import {
   ParamsBooleanCodeControl,
   ParamsNumberControl,

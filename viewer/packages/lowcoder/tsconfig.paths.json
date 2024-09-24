@@ -3,7 +3,8 @@
     "paths": {
       "@lowcoder-ee/*": ["*"],
       "lowcoder-sdk": ["index.sdk"],
-      "*": ["*", "../../lowcoder-comps/src/*", "../../lowcoder-design/src/*"]
+      "*": ["*", "../../lowcoder-comps/src/*", "../../lowcoder-design/src/*"],
+      "package": ["./package/*"]
     }
   }
 }

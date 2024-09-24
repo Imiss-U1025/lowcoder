@@ -29,7 +29,7 @@ import {
   DataSourceParamType,
   DataSourcePluginMeta,
   DataSourceExtraConfig,
-} from "lowcoder-sdk/dataSource";
+} from "lowcoder/package/sdk/dataSource";
 import styled from "styled-components";
 import { trans } from "i18n";
 import { Datasource } from "constants/datasourceConstants";
@@ -133,12 +133,12 @@ export const PluginDataSourceForm = (props: DatasourceFormProps) => {
   const [extraParamConfigs, setExtraParamConfigs] = useState<DataSourceParamConfig[]>([]);
   const [isExtraParamsRefreshing, setExtraParamRefreshing] = useState(false);
   const [isExtraParamsRefreshError, setExtraParamRefreshError] = useState(false);
-  
+
   const pluginDef = dataSourceTypeInfo?.definition || datasource.pluginDefinition;
   const pluginName = dataSourceTypeInfo?.id || datasource.pluginDefinition?.id;
   const isEditing = !!datasource;
   const hasDynamicConfig = !!pluginDef?.dataSourceConfig?.extra;
-  
+
   const [authType, setAuthType] = useState(pluginDef?.dataSourceConfig?.authConfig?.type);
   const [authId, setAuthId] = useState(pluginDef?.dataSourceConfig?.authConfig?.authId);
 
@@ -195,7 +195,7 @@ export const PluginDataSourceForm = (props: DatasourceFormProps) => {
     // only no-extra fields change can trigger extra params refresh
     const shouldRefresh = changedFields.some((i) => {
       const name = Array.isArray(i.name) ? i.name[0] : i.name;
-      return pluginDef.dataSourceConfig.params.find((j) => j.key === name);
+      return pluginDef.dataSourceConfig.params.find((j: any) => j.key === name);
     });
     if (!shouldRefresh) {
       return;
@@ -269,7 +269,7 @@ export const PluginDataSourceForm = (props: DatasourceFormProps) => {
           label="User Authentication Source"
           options={userAuthSourcesOptions}
           initialValue={dataSourceConfig?.authConfig ? authId : null}
-          afterChange={(value) => setAuthId(value) }
+          afterChange={(value) => setAuthId(value)}
           labelWidth={142}
         />
       );

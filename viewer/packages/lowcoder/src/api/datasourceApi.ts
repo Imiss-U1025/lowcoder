@@ -7,7 +7,7 @@ import { DatasourceType } from "@lowcoder-ee/constants/queryConstants";
 import { JSONArray } from "util/jsonTypes";
 import { AuthType, HttpOAuthGrantType } from "pages/datasource/form/httpDatasourceForm";
 import { Datasource } from "@lowcoder-ee/constants/datasourceConstants";
-import { DataSourcePluginMeta } from "lowcoder-sdk/dataSource";
+import { DataSourcePluginMeta } from "lowcoder/package/sdk/dataSource";
 
 export interface PreparedStatementConfig {
   enableTurnOffPreparedStatement: boolean;
