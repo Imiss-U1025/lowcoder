@@ -15,13 +15,6 @@ import Login, { ThirdPartyBindCard } from "pages/userAuth/login";
 import UserRegister from "pages/userAuth/register";
 import { AuthRedirect } from "pages/userAuth/thirdParty/authRedirect";
 import React from "react";
-import {
-  GoogleLoginIcon,
-  GithubLoginIcon,
-  OryLoginIcon,
-  KeyCloakLoginIcon,
-  EmailLoginIcon
-} from "assets/icons";
 import ForgotPassword from "pages/userAuth/forgotPassword";
 import ResetPassword from "pages/userAuth/resetPassword";
 
@@ -106,26 +99,26 @@ export type ServerAuthType = "GOOGLE" | "GITHUB" | "FORM" | "KEYCLOAK" | "ORY" |
 export type ServerAuthTypeInfoValueType = { logo?: string; sourceIcon?: string; isOAuth2?: boolean };
 export const ServerAuthTypeInfo: { [key in ServerAuthType]?: ServerAuthTypeInfoValueType } = {
   GOOGLE: {
-    logo: GoogleLoginIcon,
+    logo: "",
     isOAuth2: true,
   },
   GITHUB: {
-    logo: GithubLoginIcon,
+    logo: "",
     isOAuth2: true
   },
   KEYCLOAK: {
-    logo: KeyCloakLoginIcon,
+    logo: "",
     isOAuth2: true
   },
   ORY: {
-    logo: OryLoginIcon,
+    logo: "",
     isOAuth2: true
   },
   GENERIC: {
     logo: undefined,
     isOAuth2: true
   },
-  FORM: { logo: EmailLoginIcon },
+  FORM: { logo: "" },
 };
 
 export function isRouteLink(authType: ServerAuthType) {

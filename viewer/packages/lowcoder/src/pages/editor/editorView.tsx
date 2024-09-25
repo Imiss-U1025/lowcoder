@@ -66,10 +66,6 @@ const MiddlePanel = lazy(
   () => import('pages/common/styledComponent')
     .then(module => ({ default: module.MiddlePanel }))
 );
-const HelpDropdown = lazy(
-  () => import('pages/common/help')
-    .then(module => ({ default: module.HelpDropdown }))
-);
 
 const HookCompContainer = styled.div`
   pointer-events: none;

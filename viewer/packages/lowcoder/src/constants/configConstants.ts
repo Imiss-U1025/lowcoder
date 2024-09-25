@@ -1,7 +1,6 @@
 import { ThirdPartyConfigType } from "constants/authConstants";
 import { QR_CODE_OAUTH_URL } from "constants/routesURL";
 import { UserConnectionSource } from "@lowcoder-ee/constants/userConstants";
-import { GeneralLoginIcon } from "assets/icons";
 import {
   isRouteLink,
   ServerAuthType,
@@ -75,7 +74,7 @@ export const transToSystemConfig = (responseData: ConfigResponseData): SystemCon
   const thirdPartyAuthConfigs: ThirdPartyConfigType[] = [];
   responseData.authConfigs?.forEach((authConfig) => {
 
-    const logo = ServerAuthTypeInfo[authConfig.authType]?.logo || GeneralLoginIcon;
+    const logo = ServerAuthTypeInfo[authConfig.authType]?.logo || "";
     var icon = "";
     if (authConfig.authType === "GENERIC" && authConfig.sourceIcon) {
       icon = authConfig.sourceIcon;
