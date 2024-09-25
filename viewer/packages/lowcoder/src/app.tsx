@@ -1,13 +1,10 @@
 import { default as App } from "antd/es/app";
 import { default as ConfigProvider } from "antd/es/config-provider";
 import {
-  ORG_HOME_URL,
   ALL_APPLICATIONS_URL,
   APP_EDITOR_URL,
   APPLICATION_VIEW_URL,
   BASE_URL,
-  COMPONENT_DOC_URL,
-  INVITE_LANDING_URL,
   isAuthUnRequired,
   ORG_AUTH_LOGIN_URL,
   ORG_AUTH_REGISTER_URL,
@@ -24,7 +21,6 @@ import type { AppState } from "redux/reducers";
 import { fetchConfigAction } from "redux/reduxActions/configActions";
 import { fetchUserAction } from "redux/reduxActions/userActions";
 import { reduxStore } from "redux/store/store";
-import { developEnv } from "util/envUtils";
 import history from "util/history";
 import LazyRoute from "components/LazyRoute";
 import { getAntdLocale } from "i18n/antdLocale";
@@ -44,11 +40,7 @@ import posthog from 'posthog-js'
 import { fetchHomeData } from "./redux/reduxActions/applicationActions";
 
 const LazyUserAuthComp = React.lazy(() => import("pages/userAuth"));
-const LazyInviteLanding = React.lazy(() => import("pages/common/inviteLanding"));
-const LazyComponentPlayground = React.lazy(() => import("pages/ComponentPlayground"));
 const LazyAppEditor = React.lazy(() => import("pages/editor/AppEditor"));
-const LazyDebugComp = React.lazy(() => import("./debug"));
-const LazyDebugNewComp = React.lazy(() => import("./debugNew"));
 
 const Wrapper = (props: { children: React.ReactNode, language: string }) => (
   <ConfigProvider
@@ -305,41 +297,11 @@ class AppIndex extends React.Component<AppIndexProps, any> {
                 path={ORG_AUTH_RESET_PASSWORD_URL}
                 component={LazyUserAuthComp}
               />
-              <LazyRoute
-                path={INVITE_LANDING_URL}
-                component={LazyInviteLanding}
-              />
-              <LazyRoute
-                path={`/playground/:name/:dsl`}
-                component={LazyComponentPlayground}
-              />
 
               {this.props.isFetchUserFinished && this.props.defaultHomePage? (
-                !this.props.orgDev ? ( 
-                  <Redirect exact from={BASE_URL} to={APPLICATION_VIEW_URL(this.props.defaultHomePage || "", "view")}/>
-                ) : (
-                  <Redirect exact from={BASE_URL} to={ORG_HOME_URL} />
-                )
+                <Redirect exact from={BASE_URL} to={APPLICATION_VIEW_URL(this.props.defaultHomePage || "", "view")}/>
               ) : (
                 <Redirect exact from={BASE_URL} to={ALL_APPLICATIONS_URL} />
-              )}
-
-              <Redirect to={`${COMPONENT_DOC_URL}/input`} path="/components" />
-
-              {developEnv() && (
-                <>
-                  <LazyRoute
-                    path="/debug_comp/:name"
-                    component={LazyDebugComp}
-                  />
-                  <LazyRoute
-                    exact
-                    path="/debug_comp"
-                    component={LazyDebugComp}
-                  />
-                  <LazyRoute path="/debug_editor" component={LazyAppEditor} />
-                  <LazyRoute path="/debug_new" component={LazyDebugNewComp} />
-                </>
               )}
             </Switch>
           </Router>

@@ -5,11 +5,8 @@ import { DatasourceType } from "@lowcoder-ee/constants/queryConstants";
 
 export const BASE_URL = "/";
 export const USER_AUTH_URL = "/user/auth";
-export const ORG_HOME_URL = "/org/home";
-export const COMPONENT_DOC_URL = "/components";
 
 export const ALL_APPLICATIONS_URL = "/apps";
-export const ADMIN_APP_URL = "/ee/:applicationId/:viewMode";
 export const APPLICATION_MARKETPLACE_URL = `https://app.lowcoder.cloud/apps`;
 export const MODULE_APPLICATIONS_URL = "/apps/module";
 export const DATASOURCE_URL = `/datasource`;
@@ -17,9 +14,6 @@ export const DATASOURCE_CREATE_URL = `${DATASOURCE_URL}/new/:datasourceType`;
 export const DATASOURCE_EDIT_URL = `${DATASOURCE_URL}/:datasourceId`;
 export const QUERY_LIBRARY_URL = `/query-library`;
 export const FOLDER_URL_PREFIX = `/folder`;
-export const FOLDER_URL = `${FOLDER_URL_PREFIX}/:folderId`;
-export const FOLDERS_URL = `/folders`;
-export const IMPORT_APP_FROM_TEMPLATE_URL = `${ALL_APPLICATIONS_URL}/template-import/:templateId`;
 export const APP_EDITOR_URL = `${ALL_APPLICATIONS_URL}/:applicationId/:viewMode/:appPageId?`;
 
 export const AUTH_BIND_URL = `${USER_AUTH_URL}/bind`;
@@ -30,8 +24,6 @@ export const AUTH_RESET_PASSWORD_URL = `${USER_AUTH_URL}/lost-password`;
 export const QR_CODE_OAUTH_URL = `${USER_AUTH_URL}/oauth/qrcode`;
 export const OAUTH_REDIRECT = `${USER_AUTH_URL}/oauth/redirect`;
 export const CAS_AUTH_REDIRECT = `${USER_AUTH_URL}/cas/redirect`;
-export const LDAP_AUTH_LOGIN_URL = `${USER_AUTH_URL}/ldap/login`;
-export const INVITE_LANDING_URL = "/invite/:invitationId";
 export const ORG_AUTH_LOGIN_URL = `/org/:orgId/auth/login`;
 export const ORG_AUTH_REGISTER_URL = `/org/:orgId/auth/register`;
 export const ORG_AUTH_FORGOT_PASSWORD_URL = `/org/:orgId/auth/forgot-password`;
@@ -51,8 +43,7 @@ export const isAuthUnRequired = (pathname: string): boolean => {
     pathname.startsWith("/invite/") ||
     pathname.startsWith(USER_AUTH_URL) ||
     pathname.endsWith("/auth/login") ||
-    pathname.endsWith("/auth/register") ||
-    pathname.startsWith(COMPONENT_DOC_URL)
+    pathname.endsWith("/auth/register")
   );
 };
 
