@@ -1,26 +1,21 @@
 import { AppSummaryInfo, updateApplication } from "redux/reduxActions/applicationActions";
 import { useDispatch, useSelector } from "react-redux";
 import { getExternalEditorState } from "redux/selectors/configSelectors";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ExternalEditorContext,
   ExternalEditorContextState,
 } from "util/context/ExternalEditorContext";
 import { setEditorExternalStateAction } from "redux/reduxActions/configActions";
 import { AppTypeEnum } from "constants/applicationConstants";
-import { useThrottle, useUnmount } from "react-use";
+import { useThrottle } from "react-use";
 import { Comp } from "lowcoder-core";
 import { localEnv } from "util/envUtils";
 import { saveMainComp } from "util/localStorageUtil";
-import { RootComp } from "comps/comps/rootComp";
-import { useAppHistory } from "util/editoryHistory";
-import { useCompInstance } from "comps/utils/useCompInstance";
-import { MarkAppInitialized, perfMark } from "util/perfUtils";
 import { default as ConfigProvider } from "antd/es/config-provider";
 import { default as message } from "antd/es/message";
 import { getAntdLocale } from "i18n/antdLocale";
 import { useUserViewMode } from "../../util/hooks";
-import { QueryApi } from "api/queryApi";
 import { RootCompInstanceType } from "./useRootCompInstance";
 import { getCurrentUser } from "redux/selectors/usersSelectors";
 
