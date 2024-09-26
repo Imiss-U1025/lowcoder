@@ -1,5 +1,5 @@
 import { AppPathParams, AppTypeEnum } from "constants/applicationConstants";
-import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { AppSummaryInfo, fetchApplicationInfo } from "redux/reduxActions/applicationActions";
@@ -7,7 +7,6 @@ import { fetchDataSourceByApp, fetchDataSourceTypes } from "redux/reduxActions/d
 import { getUser } from "redux/selectors/usersSelectors";
 import { useUserViewMode } from "util/hooks";
 import "comps/uiCompRegistry";
-import { showAppSnapshotSelector } from "redux/selectors/appSnapshotSelector";
 import { setShowAppSnapshot } from "redux/reduxActions/appSnapshotActions";
 import { fetchGroupsAction } from "redux/reduxActions/orgActions";
 import { getFetchOrgGroupsFinished } from "redux/selectors/orgSelectors";
@@ -26,15 +25,10 @@ import { fetchFolderElements } from "redux/reduxActions/folderActions";
 import { registryDataSourcePlugin } from "constants/queryConstants";
 import { DatasourceApi } from "api/datasourceApi";
 import { useRootCompInstance } from "./useRootCompInstance";
-import {ErrorBoundary, FallbackProps} from 'react-error-boundary';
+import {ErrorBoundary} from 'react-error-boundary';
 import { ALL_APPLICATIONS_URL } from "@lowcoder-ee/constants/routesURL";
 import history from "util/history";
 import Flex from "antd/es/flex";
-
-const AppSnapshot = lazy(() => {
-  return import("pages/editor/appSnapshot")
-    .then(moduleExports => ({default: moduleExports.AppSnapshot}));
-});
 
 const AppEditorInternalView = lazy(
   () => import("pages/editor/appEditorInternal")
@@ -42,7 +36,6 @@ const AppEditorInternalView = lazy(
 );
 
 export default function AppEditor() {
-  const showAppSnapshot = useSelector(showAppSnapshotSelector);
   const params = useParams<AppPathParams>();
   const isUserViewModeCheck = useUserViewMode();
   const isUserViewMode = params.viewMode ? isUserViewModeCheck : true;
@@ -166,27 +159,16 @@ export default function AppEditor() {
 
   return (
     <ErrorBoundary fallback={fallbackUI}>
-      {showAppSnapshot ? (
-        <Suspense>
-          <AppSnapshot
-            currentAppInfo={{
-              ...appInfo,
-              dsl: compInstance.comp?.toJsonValue() || {},
-            }}
-          />
-        </Suspense>
-      ) : (
-        <Suspense>
-          <AppEditorInternalView
-            appInfo={appInfo}
-            readOnly={readOnly}
-            loading={
-              !fetchOrgGroupsFinished || !isDataSourcePluginRegistered || isCommonSettingsFetching
-            }
-            compInstance={compInstance}
-          />
-        </Suspense>
-      )}
+      <Suspense>
+        <AppEditorInternalView
+          appInfo={appInfo}
+          readOnly={readOnly}
+          loading={
+            !fetchOrgGroupsFinished || !isDataSourcePluginRegistered || isCommonSettingsFetching
+          }
+          compInstance={compInstance}
+        />
+      </Suspense>
     </ErrorBoundary>
   );
 }

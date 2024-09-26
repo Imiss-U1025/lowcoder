@@ -1,7 +1,6 @@
 import { isSafeRedirectURL } from "util/urlUtils";
 import {
   BASE_URL,
-  CAS_AUTH_REDIRECT,
   OAUTH_REDIRECT,
 } from "constants/routesURL";
 import { AxiosPromise, AxiosResponse } from "axios";
@@ -178,7 +177,7 @@ export const getAuthUrl = (config: ThirdPartyConfigType, redirectUrl: string, st
 };
 export const getRedirectUrl = (authType: ThirdPartyAuthType) => {
   return encodeURIComponent(
-    `${window.location.origin}${authType === "CAS" ? CAS_AUTH_REDIRECT : OAUTH_REDIRECT}`
+    `${window.location.origin}${OAUTH_REDIRECT}`
   );
 };
 

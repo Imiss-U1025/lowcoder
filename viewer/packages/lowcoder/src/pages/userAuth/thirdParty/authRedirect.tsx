@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { AuthSessionStoreParams } from "constants/authConstants";
 import { messageInstance } from "lowcoder-design/src/components/GlobalInstances";
 
-import { AUTH_LOGIN_URL, AUTH_REGISTER_URL, BASE_URL } from "constants/routesURL";
+import { AUTH_LOGIN_URL, BASE_URL } from "constants/routesURL";
 import history from "util/history";
 import PageSkeleton from "components/PageSkeleton";
 import { trans } from "i18n";
@@ -39,7 +39,7 @@ function validateParam(authParams: AuthSessionStoreParams, urlParam: AuthRedirec
     if(authParams.authGoal === "login") {
       redirectUrl = AUTH_LOGIN_URL;
     } else if(authParams.authGoal === "register") {
-      redirectUrl = AUTH_REGISTER_URL;
+      redirectUrl = "";
     }
     history.push(redirectUrl, {
       thirdPartyAuthError: true,

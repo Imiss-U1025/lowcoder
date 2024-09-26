@@ -3,7 +3,6 @@ import {
   AuthBottomView,
   ConfirmButton,
   FormWrapperMobile,
-  LoginCardTitle,
   StyledRouteLink,
 } from "pages/userAuth/authComponents";
 import React, { useContext, useState } from "react";
@@ -15,7 +14,6 @@ import { UserConnectionSource } from "@lowcoder-ee/constants/userConstants";
 import { trans } from "i18n";
 import { AuthContext, useAuthSubmit } from "pages/userAuth/authUtils";
 import { ThirdPartyAuth } from "pages/userAuth/thirdParty/thirdPartyAuth";
-import { AUTH_FORGOT_PASSWORD_URL, AUTH_REGISTER_URL, ORG_AUTH_FORGOT_PASSWORD_URL, ORG_AUTH_REGISTER_URL } from "constants/routesURL";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Divider } from "antd";
 import Flex from "antd/es/flex";
@@ -81,9 +79,7 @@ export default function FormLogin(props: FormLoginProps) {
         />
         <Flex justify="end" style={{ margin: '10px 0' }}>
           <Link to={{
-            pathname: orgId
-              ? ORG_AUTH_FORGOT_PASSWORD_URL.replace(':orgId', orgId)
-              : AUTH_FORGOT_PASSWORD_URL,
+            pathname: "",
             state: location.state
           }}
           >
@@ -104,9 +100,7 @@ export default function FormLogin(props: FormLoginProps) {
       <Divider />
       <AuthBottomView>
         <StyledRouteLink to={{
-          pathname: orgId
-            ? ORG_AUTH_REGISTER_URL.replace(':orgId', orgId)
-            : AUTH_REGISTER_URL,
+          pathname: "",
           state: location.state
         }}>{trans("userAuth.register")}
         </StyledRouteLink>

@@ -1,22 +1,12 @@
 import {
-  AUTH_BIND_URL,
-  AUTH_FORGOT_PASSWORD_URL,
   AUTH_LOGIN_URL,
-  AUTH_REGISTER_URL,
-  AUTH_RESET_PASSWORD_URL,
   OAUTH_REDIRECT,
-  ORG_AUTH_FORGOT_PASSWORD_URL,
   ORG_AUTH_LOGIN_URL,
-  ORG_AUTH_REGISTER_URL,
-  ORG_AUTH_RESET_PASSWORD_URL,
 } from "constants/routesURL";
 import { InviteInfo } from "api/inviteApi";
-import Login, { ThirdPartyBindCard } from "pages/userAuth/login";
-import UserRegister from "pages/userAuth/register";
+import Login from "pages/userAuth/login";
 import { AuthRedirect } from "pages/userAuth/thirdParty/authRedirect";
 import React from "react";
-import ForgotPassword from "pages/userAuth/forgotPassword";
-import ResetPassword from "pages/userAuth/resetPassword";
 
 export type AuthInviteInfo = InviteInfo & { invitationId: string };
 export type AuthLocationState = { inviteInfo?: AuthInviteInfo; thirdPartyAuthError?: boolean };
@@ -83,15 +73,8 @@ export type ThirdPartyAuthGoal = "register" | "login" | "bind" | "innerBind";
 
 export const AuthRoutes: Array<{ path: string; component: React.ComponentType<any> }> = [
   { path: AUTH_LOGIN_URL, component: Login },
-  { path: AUTH_BIND_URL, component: ThirdPartyBindCard },
-  { path: AUTH_REGISTER_URL, component: UserRegister },
-  { path: AUTH_FORGOT_PASSWORD_URL, component: ForgotPassword },
-  { path: AUTH_RESET_PASSWORD_URL, component: ResetPassword },
   { path: OAUTH_REDIRECT, component: AuthRedirect },
   { path: ORG_AUTH_LOGIN_URL, component: Login },
-  { path: ORG_AUTH_REGISTER_URL, component: UserRegister },
-  { path: ORG_AUTH_FORGOT_PASSWORD_URL, component: ForgotPassword },
-  { path: ORG_AUTH_RESET_PASSWORD_URL, component: ResetPassword },
 ];
 
 export type ServerAuthType = "GOOGLE" | "GITHUB" | "FORM" | "KEYCLOAK" | "ORY" | "GENERIC";

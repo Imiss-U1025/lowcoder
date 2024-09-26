@@ -5,35 +5,26 @@ import { EditorContext } from "comps/editorState";
 import { AppPathParams } from "constants/applicationConstants";
 import { Layers } from "constants/Layers";
 import { TopHeaderHeight } from "constants/style";
-import {
-  LeftStateIcon,
-  LeftLayersIcon,
-} from "lowcoder-design";
 import { useTemplateViewMode } from "util/hooks";
 import {
   editorContentClassName,
-  UserGuideLocationState,
 } from "pages/tutorials/tutorialsConstant";
 import React, {
   Suspense,
   lazy,
-  useCallback,
   useContext,
   useLayoutEffect,
   useMemo,
   useState,
 } from "react";
 import { Helmet } from "react-helmet";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
-import { setEditorExternalStateAction } from "redux/reduxActions/configActions";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { currentApplication } from "redux/selectors/applicationSelector";
 import { showAppSnapshotSelector } from "redux/selectors/appSnapshotSelector";
 import styled from "styled-components";
 import { ExternalEditorContext } from "util/context/ExternalEditorContext";
-import { isAggregationApp } from "util/appUtils";
 import { getCommonSettings } from "@lowcoder-ee/redux/selectors/commonSettingSelectors";
-const EditorTutorials = lazy(() => import('pages/tutorials/editorTutorials'));
 const CustomShortcutWrapper = lazy(
   () => import('pages/editor/editorHotKeys')
     .then(module => ({ default: module.CustomShortcutWrapper }))
@@ -53,14 +44,6 @@ const EditorContainer = lazy(
 const EditorContainerWithViewMode = lazy(
   () => import('pages/common/styledComponent')
     .then(module => ({ default: module.EditorContainerWithViewMode }))
-);
-const Height100Div = lazy(
-  () => import('pages/common/styledComponent')
-    .then(module => ({ default: module.Height100Div }))
-);
-const LeftPanel = lazy(
-  () => import('pages/common/styledComponent')
-    .then(module => ({ default: module.LeftPanel }))
 );
 const MiddlePanel = lazy(
   () => import('pages/common/styledComponent')
@@ -85,74 +68,6 @@ const ViewBody = styled.div<{ $hideBodyHeader?: boolean; $height?: number }>`
   )`};
 `;
 
-const HelpDiv = styled.div`
-  > div {
-    left: 6px;
-    right: auto;
-    height: 28px;
-    bottom: 36px;
-
-    > div.shortcutList {
-      left: 42px;
-      bottom: 2px;
-    }
-  }
-`;
-
-const LayoutMenuDiv = styled.div`
-  > div {
-    left: 6px;
-    right: auto;
-    height: 28px;
-    top: 15px;
-  }
-`;
-
-const SettingsDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-  .ant-divider {
-    margin: 16px 0;
-    border-color: #e1e3eb;
-  }
-`;
-const TitleDiv = styled.div`
-  font-weight: 500;
-  font-size: 14px;
-  color: #8b8fa3;
-  line-height: 14px;
-  margin: 16px;
-`;
-const PreloadDiv = styled.div`
-  margin: 16px 8px;
-  height: 33px;
-  display: flex;
-  align-items: center;
-  padding: 0 8px 0 7px;
-  color: #333;
-  cursor: pointer;
-
-  svg {
-    margin-right: 8px;
-
-    path {
-      fill: #222222;
-    }
-  }
-
-  &:hover,
-  &:active {
-    background: #f2f7fc;
-    border-radius: 4px;
-
-    svg path {
-      fill: #315efb;
-    }
-  }
-`;
-
 export const EditorWrapper = styled.div`
   overflow: auto;
   position: relative;
@@ -164,30 +79,6 @@ interface EditorViewProps {
   preloadComp: InstanceType<typeof PreloadComp>;
 }
 
-enum SiderKey {
-  State = "state",
-  Setting = "setting",
-  Layout = "layout",
-}
-
-const standardSiderItems = [
-  {
-    key: SiderKey.State,
-    icon: <LeftStateIcon />,
-  },
-  {
-    key: SiderKey.Layout,
-    icon: <LeftLayersIcon />,
-  },
-];
-
-const aggregationSiderItems = [
-  {
-    key: SiderKey.State,
-    icon: <LeftStateIcon />,
-  },
-];
-
 function EditorView(props: EditorViewProps) {
   const { uiComp } = props;
   const params = useParams<AppPathParams>();
@@ -195,17 +86,8 @@ function EditorView(props: EditorViewProps) {
   const { readOnly, hideHeader } = useContext(ExternalEditorContext);
   const application = useSelector(currentApplication);
   const commonSettings = useSelector(getCommonSettings);
-  const locationState = useLocation<UserGuideLocationState>().state;
-  const showNewUserGuide = locationState?.showNewUserGuide;
   const showAppSnapshot = useSelector(showAppSnapshotSelector);
-  const [showShortcutList, setShowShortcutList] = useState(false);
-  const toggleShortcutList = useCallback(
-    () => setShowShortcutList(!showShortcutList),
-    [showShortcutList]
-  );
-  const [menuKey, setMenuKey] = useState<string>(SiderKey.State);
   const [height, setHeight] = useState<number>();
-  const dispatch = useDispatch();
 
   const isViewMode = params.viewMode === 'view';
 
@@ -214,19 +96,6 @@ function EditorView(props: EditorViewProps) {
 
 
   // added by Falk Wolsky to support a Layout and Logic Mode in Lowcoder
-
-  const onCompDrag = useCallback(
-    (dragCompKey: string) => {
-      editorState.setDraggingCompType(dragCompKey);
-    },
-    [editorState]
-  );
-  const setShowPropertyPane = useCallback(
-    (tabKey: string) => {
-      editorState.setShowPropertyPane(tabKey === "property");
-    },
-    [editorState]
-  );
 
   const hookCompViews = useMemo(() => {
     return Object.keys(editorState.getHooksComp().children).map((key) => (
@@ -331,7 +200,6 @@ function EditorView(props: EditorViewProps) {
           <script key="clearbit-script" src="https://tag.clearbitscripts.com/v1/pk_dfbc0aeefb28dc63475b67134facf127/tags.js" referrerPolicy="strict-origin-when-cross-origin" type="text/javascript"></script>
         ]}
       </Helmet>
-      {showNewUserGuide && <EditorTutorials />}
       <Body>
         <MiddlePanel>
           <EditorWrapper className={editorContentClassName}>

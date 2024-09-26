@@ -1,5 +1,4 @@
 import { ThirdPartyConfigType } from "constants/authConstants";
-import { QR_CODE_OAUTH_URL } from "constants/routesURL";
 import { UserConnectionSource } from "@lowcoder-ee/constants/userConstants";
 import {
   isRouteLink,
@@ -83,7 +82,7 @@ export const transToSystemConfig = (responseData: ConfigResponseData): SystemCon
     if (isOAuthConfig(authConfig)) {
       const routeLinkConf: Partial<ThirdPartyConfigType> = isRouteLink(authConfig.authType)
         ? {
-            url: QR_CODE_OAUTH_URL,
+            url: "",
             routeLink: true,
           }
         : {};

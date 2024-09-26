@@ -7,10 +7,7 @@ import {
   BASE_URL,
   isAuthUnRequired,
   ORG_AUTH_LOGIN_URL,
-  ORG_AUTH_REGISTER_URL,
   USER_AUTH_URL,
-  ORG_AUTH_FORGOT_PASSWORD_URL,
-  ORG_AUTH_RESET_PASSWORD_URL,
 } from "constants/routesURL";
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -283,18 +280,6 @@ class AppIndex extends React.Component<AppIndexProps, any> {
               <LazyRoute path={USER_AUTH_URL} component={LazyUserAuthComp} />
               <LazyRoute
                 path={ORG_AUTH_LOGIN_URL}
-                component={LazyUserAuthComp}
-              />
-              <LazyRoute
-                path={ORG_AUTH_REGISTER_URL}
-                component={LazyUserAuthComp}
-              />
-              <LazyRoute
-                path={ORG_AUTH_FORGOT_PASSWORD_URL}
-                component={LazyUserAuthComp}
-              />
-              <LazyRoute
-                path={ORG_AUTH_RESET_PASSWORD_URL}
                 component={LazyUserAuthComp}
               />
 

@@ -1,7 +1,4 @@
-import { AppViewMode, MarketplaceType } from "constants/applicationConstants";
-import { LocationDescriptor } from "history";
-import { UserGuideLocationState } from "pages/tutorials/tutorialsConstant";
-import { DatasourceType } from "@lowcoder-ee/constants/queryConstants";
+import { AppViewMode } from "constants/applicationConstants";
 
 export const BASE_URL = "/";
 export const USER_AUTH_URL = "/user/auth";
@@ -10,24 +7,13 @@ export const ALL_APPLICATIONS_URL = "/apps";
 export const APPLICATION_MARKETPLACE_URL = `https://app.lowcoder.cloud/apps`;
 export const MODULE_APPLICATIONS_URL = "/apps/module";
 export const DATASOURCE_URL = `/datasource`;
-export const DATASOURCE_CREATE_URL = `${DATASOURCE_URL}/new/:datasourceType`;
-export const DATASOURCE_EDIT_URL = `${DATASOURCE_URL}/:datasourceId`;
 export const QUERY_LIBRARY_URL = `/query-library`;
 export const FOLDER_URL_PREFIX = `/folder`;
 export const APP_EDITOR_URL = `${ALL_APPLICATIONS_URL}/:applicationId/:viewMode/:appPageId?`;
 
-export const AUTH_BIND_URL = `${USER_AUTH_URL}/bind`;
 export const AUTH_LOGIN_URL = `${USER_AUTH_URL}/login`;
-export const AUTH_REGISTER_URL = `${USER_AUTH_URL}/register`;
-export const AUTH_FORGOT_PASSWORD_URL = `${USER_AUTH_URL}/forgot-password`;
-export const AUTH_RESET_PASSWORD_URL = `${USER_AUTH_URL}/lost-password`;
-export const QR_CODE_OAUTH_URL = `${USER_AUTH_URL}/oauth/qrcode`;
 export const OAUTH_REDIRECT = `${USER_AUTH_URL}/oauth/redirect`;
-export const CAS_AUTH_REDIRECT = `${USER_AUTH_URL}/cas/redirect`;
 export const ORG_AUTH_LOGIN_URL = `/org/:orgId/auth/login`;
-export const ORG_AUTH_REGISTER_URL = `/org/:orgId/auth/register`;
-export const ORG_AUTH_FORGOT_PASSWORD_URL = `/org/:orgId/auth/forgot-password`;
-export const ORG_AUTH_RESET_PASSWORD_URL = `/org/:orgId/auth/lost-password`;
 
 export const APPLICATION_VIEW_URL = (appId: string, viewMode: AppViewMode) =>
   `${ALL_APPLICATIONS_URL}/${appId}/${viewMode}`;
@@ -47,25 +33,8 @@ export const isAuthUnRequired = (pathname: string): boolean => {
   );
 };
 
-export const buildDatasourceCreateUrl = (datasourceType: DatasourceType) =>
-  `${DATASOURCE_URL}/new/${datasourceType}`;
-export const buildDatasourceEditUrl = (datasourceId: string) =>
-  `${DATASOURCE_URL}/${datasourceId}`;
-
 export const buildFolderUrl = (folderId: string) =>
   `${FOLDER_URL_PREFIX}/${folderId}`;
-
-export const buildAppRouteWithState = (
-  appId: string,
-  showGuide: boolean
-): LocationDescriptor<UserGuideLocationState> => {
-  return {
-    pathname: APPLICATION_VIEW_URL(appId, "edit"),
-    state: {
-      showNewUserGuide: showGuide,
-    },
-  };
-};
 
 export function preview(applicationId: string) {
   window.open(APPLICATION_VIEW_URL(applicationId, "preview"));
