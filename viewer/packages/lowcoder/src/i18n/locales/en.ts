@@ -1,5 +1,3 @@
-// import table from "./componentDocExtra/table.md?url";
-
 export const en = {
   "productName": "Lowcoder",
   "productDesc": "Create software applications for your company and customers with minimal coding experience. Lowcoder is an excellent alternative to Retool, Appsmith, and Tooljet.",
@@ -2902,40 +2900,15 @@ export const en = {
     "editorMode_both": "Both"
   },
   "userAuth": {
-    "registerByEmail": "Sign Up",
     "email": "Email:",
     "inputEmail": "Please enter your email",
     "inputValidEmail": "Please enter a valid email",
     "forgotPassword": "Forgot Password",
-    "forgotPasswordInfo": "Enter your email and we'll send you a link to reset your password.",
-    "forgotPasswordSuccess": "Please check your email for reset password link.",
-    "forgotPasswordError": "Something went wrong. Please try again.",
     "register": "Sign Up",
     "userLogin": "Sign In",
     "login": "Sign In",
-    "bind": "Bind",
-    "passwordCheckLength": "At Least {min} Characters",
-    "passwordCheckContainsNumberAndLetter": "Must Contain Letters and Numbers",
-    "passwordCheckSpace": "Cannot Contain Whitespace Characters",
-    "welcomeTitle": "Welcome to {productName}",
     "inviteWelcomeTitle": "{username} invites You to work together",
-    "terms": "Terms",
-    "privacy": "Privacy Policy",
-    "registerHint": "I Have Read and Agree to the",
-    "chooseAccount": "Choose Your Account",
-    "signInLabel": "Sign In with {name}",
-    "bindAccount": "Bind Account",
-    "scanQrCode": "Scan the QR Code with {name}",
     "invalidThirdPartyParam": "Invalid Third-Party Param",
-    "account": "Account",
-    "inputAccount": "Please Enter Your Account",
-    "ldapLogin": "LDAP Sign In",
-    "resetPassword": "Reset Password",
-    "resetPasswordDesc": "Reset User {name}'s Password. A New Password Will Be Generated After Reset.",
-    "resetSuccess": "Reset Succeeded",
-    "resetSuccessDesc": "Password Reset Succeeded. The New Password is: {password}",
-    "resetLostPasswordSuccess": "Password Reset Succeeded. Please login again.",
-    "copyPassword": "Copy Password",
     "poweredByLowcoder": "Powered by: Lowcoder.cloud"
   },
   "preLoad": {

@@ -1,10 +1,8 @@
-import { CheckboxChangeEvent } from "antd/es/checkbox";
 import React, { CSSProperties, useRef } from "react";
-import { CheckBox, PackUpIcon, TacoButton } from "lowcoder-design";
+import { TacoButton } from "lowcoder-design";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ReactHotkeys from "util/hotkeys";
-import { StyledLink } from "pages/common/styledComponent";
 import { trans } from "i18n";
 import { favicon } from "assets/images";
 
@@ -193,47 +191,6 @@ export const ConfirmButton = (props: {
   );
 };
 
-const TermsAndPrivacyContent = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 16px;
-
-  font-size: 13px;
-  color: #333333;
-  line-height: 13px;
-  @media screen and (max-width: 640px) {
-    font-size: 14px;
-    line-height: 1.2;
-  }
-`;
-
-const TermsAndPrivacyLabel = styled.span`
-  margin-left: 8px;
-`;
-
-export const TermsAndPrivacyInfo = (props: { onCheckChange: (e: CheckboxChangeEvent) => void }) => {
-  const termsUrl = trans("docUrls.terms");
-  const privacyUrl = trans("docUrls.privacy");
-  if (!termsUrl || !privacyUrl) {
-    return null;
-  }
-  return (
-    <TermsAndPrivacyContent>
-      <CheckBox defaultChecked onChange={(e) => props.onCheckChange(e)} />
-      <TermsAndPrivacyLabel>
-        {trans("userAuth.registerHint")}{`: `}
-        <StyledLink href={termsUrl} target="_blank">
-          {trans("userAuth.terms")}
-        </StyledLink>
-        {` & `}
-        <StyledLink href={privacyUrl} target="_blank">
-          {trans("userAuth.privacy")}
-        </StyledLink>
-      </TermsAndPrivacyLabel>
-    </TermsAndPrivacyContent>
-  );
-};
-
 export const LoginLogoStyle = styled.img`
   margin-right: 8px;
   width: 32px;
@@ -291,27 +248,6 @@ export const StyledRouteLink = styled(Link)`
   }
 `;
 
-export const StyledRouteLinkLogin = styled(StyledRouteLink)`
-  margin-bottom: 8px;
-  @media screen and (max-width: 640px) {
-    margin-bottom: 0;
-  }
-`;
-
-export const LoginCardTitle = styled.header`
-  font-weight: 500;
-  font-size: 2em;
-  color: #222222;
-  line-height: 18px;
-  margin-bottom: 36px;
-  margin-top: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  @media screen and (max-width: 640px) {
-    margin: 0 0 26px 0;
-  }
-`;
-
 export const FormWrapperMobile = styled.div`
   @media screen and (max-width: 640px) {
     .form-input {
@@ -349,40 +285,3 @@ export const FormWrapperMobile = styled.div`
     }
   }
 `;
-
-const BackNavLink = styled.a`
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-  font-size: 18px;
-  color: #222222;
-  line-height: 20px;
-  margin: 6px 0 0 -4px;
-
-  span {
-    margin-left: 4px;
-  }
-
-  &:hover {
-    color: #4965f2;
-
-    svg g path {
-      fill: #4965f2;
-    }
-  }
-`;
-
-const StyledPackUpIcon = styled(PackUpIcon)`
-  transform: rotate(-90deg);
-  width: 24px;
-  height: 24px;
-`;
-
-export function AuthNavBack(props: { onBack: () => void; style?: CSSProperties }) {
-  return (
-    <BackNavLink type="button" onClick={props.onBack} style={props.style}>
-      <StyledPackUpIcon />
-      <span>{trans("back")}</span>
-    </BackNavLink>
-  );
-}

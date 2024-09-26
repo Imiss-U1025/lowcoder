@@ -20,49 +20,6 @@ const initialState: FolderReduxState = {
 };
 
 export const folderReducer = createReducer(initialState, {
-  [ReduxActionTypes.CREATE_APPLICATION_SUCCESS]: (
-    state: FolderReduxState,
-    action: ReduxAction<ApplicationDetail>
-  ): FolderReduxState => {
-    const info = action.payload.applicationInfoView;
-    const elements = { ...state.folderElements };
-    elements[info.folderId ?? ""] = [info, ...(elements[info.folderId ?? ""] ?? [])];
-    return {
-      ...state,
-      folderElements: elements,
-    };
-  },
-
-  [ReduxActionTypes.RECYCLE_APPLICATION_SUCCESS]: (
-    state: FolderReduxState,
-    action: ReduxAction<RecycleApplicationPayload>
-  ): FolderReduxState => {
-    const elements = { ...state.folderElements };
-    elements[action.payload.folderId ?? ""] = elements[action.payload.folderId ?? ""]?.filter(
-      (e) => e.folder || (!e.folder && e.applicationId !== action.payload.applicationId)
-    );
-    return {
-      ...state,
-      folderElements: elements,
-    };
-  },
-
-  [ReduxActionTypes.UPDATE_APPLICATION_META_SUCCESS]: (
-    state: FolderReduxState,
-    action: ReduxAction<UpdateAppMetaPayload>
-  ): FolderReduxState => {
-    const elements = { ...state.folderElements };
-    elements[action.payload.folderId ?? ""] = elements[action.payload.folderId ?? ""]?.map((e) => {
-      if (!e.folder && e.applicationId === action.payload.applicationId) {
-        return { ...e, ...action.payload };
-      }
-      return e;
-    });
-    return {
-      ...state,
-      folderElements: elements,
-    };
-  },
 
   [ReduxActionTypes.CREATE_FOLDER_SUCCESS]: (
     state: FolderReduxState,

@@ -7,20 +7,10 @@ import { NameConfig, withExposingConfigs } from "comps/generators/withExposing";
 import { trans } from "i18n";
 import _ from "lodash";
 import { CompAction, CompActionTypes } from "lowcoder-core";
-import {
-  TacoMarkDown,
-  DocLink,
-  QueryConfigLabel,
-  QueryConfigWrapper,
-  QueryPropertyViewWrapper,
-  QuerySectionWrapper,
-} from "lowcoder-design";
 import { ReactNode } from "react";
 import { BottomResComp, BottomResCompResult, BottomResTypeEnum } from "types/bottomRes";
 import { setFieldsNoTypeCheck } from "util/objectUtils";
-import { QueryTutorials } from "util/tutorialUtils";
 import { SimpleNameComp } from "./simpleNameComp";
-import SupaDemoDisplay from "comps/utils/supademoDisplay";
 
 const dataChangeEvent: EventConfigType = {
   label: "onDataChange",

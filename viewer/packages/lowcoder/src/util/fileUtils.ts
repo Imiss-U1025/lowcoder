@@ -1,30 +1,7 @@
-import { messageInstance } from "lowcoder-design/src/components/GlobalInstances";
-
-import { RcFile } from "antd/es/upload/interface";
 import { Buffer } from "buffer";
 import mime from "mime";
 import { saveAs } from "file-saver";
 import { isArray, isObject } from "lodash";
-import { trans } from "i18n";
-
-export function getBase64(img: any, callback: (imageUrl: any) => void) {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
-  reader.readAsDataURL(img);
-}
-
-export function beforeImgUpload(file: RcFile) {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    messageInstance.error(trans("imgUpload.notSupportError", { types: "JPG/PNG" }));
-    return false;
-  }
-  const sizeExceed = file.size / 1024 > 300;
-  if (sizeExceed) {
-    messageInstance.error(trans("imgUpload.exceedSizeError", { size: "300kb" }));
-  }
-  return !sizeExceed;
-}
 
 interface SaveDataAsFileParams {
   data: any;

@@ -4,7 +4,6 @@ import { datasourceSagas } from "redux/sagas/datasourceSagas";
 import userSagas from "redux/sagas/userSagas";
 import applicationSagas from "redux/sagas/applicationSagas";
 import configSagas from "redux/sagas/configSagas";
-import appSnapshotSagas from "redux/sagas/appSnapshotSagas";
 import commonSettingsSagas from "./commonSettingsSagas";
 import { queryLibrarySagas } from "./queryLibrarySagas";
 import { folderSagas } from "./folderSagas";
@@ -23,7 +22,6 @@ export const sagas = [
   datasourcePermissionSagas,
   pluginSagas,
   configSagas,
-  appSnapshotSagas,
   commonSettingsSagas,
   jsLibrarySagas,
 ];

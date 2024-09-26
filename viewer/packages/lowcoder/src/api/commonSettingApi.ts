@@ -69,23 +69,6 @@ export interface ThemeDetail {
 }
 
 export function getThemeDetailName(key: keyof ThemeDetail) {
-  switch (key) {
-    case "primary": return trans("themeDetail.primary");
-    case "textDark": return trans("themeDetail.textDark");
-    case "textLight": return trans("themeDetail.textLight");
-    case "canvas": return trans("themeDetail.canvas");
-    case "primarySurface": return trans("themeDetail.primarySurface");
-    case "radius": return trans("themeDetail.borderRadius");
-    case "border": return trans("themeDetail.borderColor");
-    case "borderWidth": return trans("themeDetail.borderWidth");
-    case "borderStyle": return trans("themeDetail.borderStyle");
-    case "fontFamily": return trans("themeDetail.fontFamily");
-    case "margin": return trans("style.margin");	
-    case "padding":	return trans("style.padding");
-    case "gridColumns": return trans("themeDetail.gridColumns");
-    case "textSize": return trans("style.textSize");
-    case "lineHeight": return trans("themeDetail.lineHeight"); 
-  }
   return "";
 }
 

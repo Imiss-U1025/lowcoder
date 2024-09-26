@@ -13,24 +13,15 @@ import { CodeTextControl } from "comps/controls/codeTextControl";
 import SimpleStringControl from "comps/controls/simpleStringControl";
 import { MultiCompBuilder, withPropertyViewFn } from "comps/generators";
 import { list } from "comps/generators/list";
-import { BaseSection, CustomModal, PlusIcon, ScrollBar } from "lowcoder-design";
+import { CustomModal, ScrollBar } from "lowcoder-design";
 import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
 import { ExternalEditorContext } from "util/context/ExternalEditorContext";
 import { runScriptInHost } from "util/commonUtils";
 import { getGlobalSettings } from "comps/utils/globalSettings";
 import { trans } from "i18n";
 import log from "loglevel";
-import { JSLibraryModal } from "components/JSLibraryModal";
 import { JSLibraryTree } from "components/JSLibraryTree";
 import { fetchJSLibrary } from "util/jsLibraryUtils";
-
-export interface ExternalPreload {
-  css?: string;
-  libs?: string[];
-  script?: string;
-  runJavaScriptInHost?: boolean;
-}
 
 interface RunAndClearable<T> {
   run(id: string, externalPreload?: T): Promise<any>;
@@ -310,25 +301,6 @@ const PreloadCompBase = new MultiCompBuilder(childrenMap, () => {})
   .setPropertyViewFn((children) => <PreloadConfigModal {...children} />)
   .build();
 
-const AddJSLibraryButton = styled.div`
-  cursor: pointer;
-  margin-right: 16px;
-
-  g g {
-    stroke: #8b8fa3;
-  }
-
-  &:hover {
-    g g {
-      stroke: #222222;
-    }
-  }
-`;
-
-const JSLibraryWrapper = styled.div`
-  position: relative;
-`;
-
 export class PreloadComp extends PreloadCompBase {
   async clear() {
     return Promise.allSettled(Object.values(this.children).map((i) => i.clear()));
@@ -341,35 +313,5 @@ export class PreloadComp extends PreloadCompBase {
     await this.children.globalCSS.run('body', preloadGlobalCSS || "");
     await this.children.libs.run(id, preloadLibs || [], !!runJavaScriptInHost);
     await this.children.script.run(id, preloadJavaScript || "", !!runJavaScriptInHost);
-  }
-
-  getJSLibraryPropertyView() {
-    const libs = this.children.libs;
-    return (
-      <JSLibraryWrapper>
-        <BaseSection
-          name={trans("preLoad.jsLibrary")}
-          width={288}
-          noMargin
-          style={{
-            borderTop: "1px solid #e1e3eb",
-            backgroundColor: "#fff",
-          }}
-          additionalButton={
-            <AddJSLibraryButton>
-              <JSLibraryModal
-                runInHost={libs.runInHost}
-                trigger={<PlusIcon height={"46px"} />}
-                onCheck={(url) => !libs.getAllLibs().includes(url)}
-                onLoad={(url) => libs.loadScript(url)}
-                onSuccess={(url) => libs.dispatch(libs.pushAction(url))}
-              />
-            </AddJSLibraryButton>
-          }
-        >
-          {this.children.libs.getPropertyView()}
-        </BaseSection>
-      </JSLibraryWrapper>
-    );
   }
 }

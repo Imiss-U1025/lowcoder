@@ -6,14 +6,10 @@ import { NameConfig, withExposingConfigs } from "comps/generators/withExposing";
 import { withMethodExposing } from "comps/generators/withMethodExposing";
 import { trans } from "i18n";
 import _ from "lodash";
-import { DocLink } from "lowcoder-design";
 import { ReactNode, useState } from "react";
 import { BottomResComp, BottomResCompResult, BottomResTypeEnum } from "types/bottomRes";
 import { JSONObject } from "util/jsonTypes";
-import { QueryTutorials } from "util/tutorialUtils";
 import { SimpleNameComp } from "./simpleNameComp";
-import { markdownCompCss, TacoMarkDown } from "lowcoder-design";
-import SupaDemoDisplay from "comps/utils/supademoDisplay";
 
 const TemporaryStateItemCompBase = new MultiCompBuilder(
     {

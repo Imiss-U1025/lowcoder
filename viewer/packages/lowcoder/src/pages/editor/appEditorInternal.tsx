@@ -1,4 +1,4 @@
-import { AppSummaryInfo, updateApplication } from "redux/reduxActions/applicationActions";
+import { AppSummaryInfo } from "redux/reduxActions/applicationActions";
 import { useDispatch, useSelector } from "react-redux";
 import { getExternalEditorState } from "redux/selectors/configSelectors";
 import { useEffect, useState } from "react";
@@ -50,12 +50,12 @@ function useSaveComp(
     }
     // the first time is a normal change, the latter is the manual update
     if (prevComp) {
-      dispatch(
-        updateApplication({
-          applicationId: applicationId,
-          editingApplicationDSL: curJson as object,
-        })
-      );
+      // dispatch(
+      //   updateApplication({
+      //     applicationId: applicationId,
+      //     editingApplicationDSL: curJson as object,
+      //   })
+      // );
       // save to local
       localEnv() && saveMainComp(curJson);
     }

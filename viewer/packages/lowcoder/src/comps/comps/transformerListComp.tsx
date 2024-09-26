@@ -1,18 +1,13 @@
 import { getBottomResIcon } from "@lowcoder-ee/util/bottomResUtils";
 import { codeControl, TransformerCodeControl } from "comps/controls/codeControl";
-import { EditorContext } from "comps/editorState";
 import { MultiCompBuilder } from "comps/generators";
 import { bottomResListComp } from "comps/generators/bottomResList";
 import { withExposingRaw } from "comps/generators/withExposing";
 import { trans } from "i18n";
 import { fromRecord } from "lowcoder-core";
-import { DocLink } from "lowcoder-design";
 import { ReactNode } from "react";
 import { BottomResComp, BottomResCompResult, BottomResTypeEnum } from "types/bottomRes";
-import { QueryTutorials } from "util/tutorialUtils";
 import { SimpleNameComp } from "./simpleNameComp";
-import { markdownCompCss, TacoMarkDown } from "lowcoder-design";
-import SupaDemoDisplay from "comps/utils/supademoDisplay";
 
 const TransformerItemCompBase = new MultiCompBuilder(
   {

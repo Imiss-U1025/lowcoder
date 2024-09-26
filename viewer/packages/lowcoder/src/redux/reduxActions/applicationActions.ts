@@ -3,7 +3,6 @@ import {
   ApplicationDetail,
   ApplicationDSLType,
   ApplicationRoleType,
-  AppPermissionInfo,
   AppTypeEnum,
 } from "constants/applicationConstants";
 import { JSONValue } from "util/jsonTypes";
@@ -23,19 +22,6 @@ export const fetchAllApplications = (payload: HomeDataPayload) => ({
   payload: {},
 });
 
-export const fetchAllModules = (payload: HomeDataPayload) => ({
-  type: ReduxActionTypes.FETCH_ALL_MODULES_INIT,
-  payload: {},
-});
-
-export const fetchApplicationRecycleList = () => ({
-  type: ReduxActionTypes.FETCH_APPLICATION_RECYCLE_LIST_INIT,
-});
-
-export const fetchAllMarketplaceApps = () => ({
-  type: ReduxActionTypes.FETCH_ALL_MARKETPLACE_APPS,
-});
-
 export type CreateApplicationPayload = {
   applicationName: string;
   applicationType: AppTypeEnum;
@@ -44,81 +30,27 @@ export type CreateApplicationPayload = {
   folderId?: string;
   onSuccess: (app: ApplicationDetail) => void;
 };
-export const createApplication = (payload: CreateApplicationPayload) => ({
-  type: ReduxActionTypes.CREATE_APPLICATION_INIT,
-  payload: payload,
-});
 
 export type RecycleApplicationPayload = {
   folderId: string;
   applicationId: string;
 };
-export const recycleApplication = (
-  payload: RecycleApplicationPayload,
-  onSuccessCallback: (response: any) => void,
-  onErrorCallback: () => void
-) => ({
-  type: ReduxActionTypes.RECYCLE_APPLICATION_INIT,
-  payload: payload,
-  onSuccessCallback: onSuccessCallback,
-  onErrorCallback: onErrorCallback,
-});
 
 export type RestoreApplicationPayload = {
   applicationId: string;
 };
-export const restoreApplication = (
-  payload: RestoreApplicationPayload,
-  onSuccessCallback: (response: any) => void,
-  onErrorCallback?: () => void
-) => ({
-  type: ReduxActionTypes.RESTORE_APPLICATION_INIT,
-  payload: payload,
-  onSuccessCallback: onSuccessCallback,
-  onErrorCallback: onErrorCallback,
-});
-
 export type DeleteApplicationPayload = {
   applicationId: string;
 };
-export const deleteApplication = (
-  payload: DeleteApplicationPayload,
-  onSuccessCallback?: (response: any) => void,
-  onErrorCallback?: () => void
-) => ({
-  type: ReduxActionTypes.DELETE_APPLICATION_INIT,
-  payload: payload,
-  onSuccessCallback: onSuccessCallback,
-  onErrorCallback: onErrorCallback,
-});
-
-export type UpdateApplicationPayload = {
-  applicationId: string;
-  publishedApplicationDSL?: object;
-  editingApplicationDSL?: object;
-};
-export const updateApplication = (payload: UpdateApplicationPayload) => ({
-  type: ReduxActionTypes.UPDATE_APPLICATION,
-  payload: payload,
-});
 
 export type UpdateAppMetaPayload = {
   folderId?: string;
   applicationId: string;
   name: string;
 };
-export const updateAppMetaAction = (payload: UpdateAppMetaPayload) => ({
-  type: ReduxActionTypes.UPDATE_APPLICATION_META,
-  payload: payload,
-});
-
 export type PublishApplicationPayload = {
   applicationId: string;
 };
-export const publishApplication = (payload: PublishApplicationPayload) => ({
-  type: ReduxActionTypes.PUBLISH_APPLICATION,
-  payload: payload,
-});
 
 export interface AppSummaryInfo {
   id: string;
@@ -142,31 +74,12 @@ export const fetchApplicationInfo = (payload: FetchAppInfoPayload) => ({
 export type FetchAppPermissionPayload = {
   applicationId: string;
 };
-export const fetchApplicationPermissions = (payload: FetchAppPermissionPayload) => ({
-  type: ReduxActionTypes.FETCH_APP_PERMISSIONS,
-  payload: payload,
-});
-
 export type UpdateAppPermissionPayload = {
   applicationId: string;
   role: ApplicationRoleType;
   permissionId: string;
 };
-export const updateAppPermission = (payload: UpdateAppPermissionPayload) => ({
-  type: ReduxActionTypes.UPDATE_APP_PERMISSION,
-  payload: payload,
-});
-
-export const updateAppPermissionInfo = (payload: Partial<AppPermissionInfo>) => ({
-  type: ReduxActionTypes.UPDATE_APP_PERMISSION_INFO,
-  payload: payload,
-});
-
 export type DeleteAppPermissionPayload = {
   applicationId: string;
   permissionId: string;
 };
-export const deleteAppPermission = (payload: DeleteAppPermissionPayload) => ({
-  type: ReduxActionTypes.DELETE_APP_PERMISSION,
-  payload: payload,
-});

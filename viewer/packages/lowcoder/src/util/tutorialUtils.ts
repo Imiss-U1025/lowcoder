@@ -1,20 +1,4 @@
-import { DatasourceType } from "@lowcoder-ee/constants/queryConstants";
 import { trans } from "i18n";
-
-const DatasourceTutorials: Partial<Record<DatasourceType, string>> = {
-  mysql: trans("datasourceTutorial.mysql"),
-  mongodb: trans("datasourceTutorial.mongodb"),
-  postgres: trans("datasourceTutorial.postgres"),
-  redis: trans("datasourceTutorial.redis"),
-  es: trans("datasourceTutorial.es"),
-  smtp: trans("datasourceTutorial.smtp"),
-  clickHouse: trans("datasourceTutorial.clickHouse"),
-  googleSheets: "https://docs.lowcoder.cloud/connect-your-data/apis-as-datasource/google-sheets",
-};
-
-export const getDatasourceTutorial = (datasourceType: DatasourceType) => {
-  return DatasourceTutorials[datasourceType];
-};
 
 export const QueryTutorials = {
   js: trans("queryTutorial.js"),

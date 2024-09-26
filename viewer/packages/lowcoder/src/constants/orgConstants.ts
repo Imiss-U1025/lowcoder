@@ -4,21 +4,8 @@ import { trans } from "i18n";
 export const ADMIN_ROLE = "admin" || "super_admin";
 export const MEMBER_ROLE = "member";
 
-export const NEW_ORG_PREFIX = trans("orgSettings.newOrg");
-
 export const TacoRoles = [ADMIN_ROLE, MEMBER_ROLE] as const;
 export type RoleIdType = typeof TacoRoles[number];
-type RoleInfoType = Record<RoleIdType, { name: string; desc: string }>;
-
-export const GroupRoleInfo: RoleInfoType = {
-  admin: { name: trans("memberSettings.admin"), desc: trans("memberSettings.adminGroupRoleInfo") },
-  member: { name: trans("memberSettings.member"), desc: trans("memberSettings.memberGroupRoleInfo"), },
-};
-
-export const OrgRoleInfo: RoleInfoType = {
-  admin: { name: trans("memberSettings.admin"), desc: trans("memberSettings.adminOrgRoleInfo") },
-  member: { name: trans("memberSettings.member"), desc: trans("memberSettings.memberOrgRoleInfo") },
-};
 
 export type OrgGroup = {
   groupId: string;
