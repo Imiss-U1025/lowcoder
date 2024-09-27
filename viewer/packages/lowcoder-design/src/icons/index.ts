@@ -1,4 +1,3 @@
-import { FunctionComponent } from "react";
 
 export { ReactComponent as AppSnapshotIcon } from "./v1/app-snapshot.svg";
 export { ReactComponent as HookCompDropIcon } from "./v1/hook-comp-drop.svg";
@@ -242,7 +241,11 @@ export { ReactComponent as FavoritesIcon } from "./v1/icon-application-favorites
 export { ReactComponent as HomeSettingIcon } from "./remix/settings-4-line.svg";
 export { ReactComponent as EnterpriseIcon } from "./remix/earth-line.svg";
 
-// components
+// export { ReactComponent as VideoCompIconSmall } from "./v2/video-player-s.svg";
+export { ReactComponent as VideoCompIcon } from "./v2/video-player-m.svg";
+export { ReactComponent as CalendarCompIconSmall } from "./v2/calendar-s.svg";
+export { ReactComponent as ImageCompIconSmall } from "./v2/image-s.svg";
+export { ReactComponent as ImageCompIcon } from "./v2/image-m.svg";
 
 // small
 export { ReactComponent as LeftCommon } from "./v1/icon-left-comp-common.svg"; // generic
