@@ -1,7 +1,7 @@
 // import ReactPlayer from "react-player";
 import { lazy } from 'react';
 import styled from "styled-components";
-import { VideoCompIcon } from "icons";
+// import { VideoCompIcon } from "icons";
 
 const ReactPlayer = lazy(() => import("react-player"));
 
@@ -28,7 +28,7 @@ export const Container = styled.div`
     }
   }
 `;
-const PlayTriangle = styled(VideoCompIcon)`
+const PlayTriangle = styled.div`
   position: absolute;
   left: 0;
   top: 0;
@@ -55,7 +55,7 @@ const PlayButton = styled.div`
 export const playIcon = () => {
   return (
     <PlayButton>
-      <PlayTriangle />
+      <PlayTriangle >▶️</PlayTriangle>
     </PlayButton>
   );
 };

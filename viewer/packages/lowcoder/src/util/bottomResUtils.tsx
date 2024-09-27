@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ResourceType } from "@lowcoder-ee/constants/queryConstants";
-import {
+/* import {
   ClickHouseIcon,
   DataResponderIcon,
   DeleteApiIcon,
@@ -30,15 +30,15 @@ import {
   TempStateIcon,
   TraceApiIcon,
   TransformerIcon,
-} from "lowcoder-design";
+} from "lowcoder-design"; */
 import { BottomResTypeEnum } from "types/bottomRes";
 import { HttpMethod } from "api/api";
 
-const QueryLibrary = styled(QueryLibraryIcon)`
+/* const QueryLibrary = styled(QueryLibraryIcon)`
   g g g {
     stroke: #222222;
   }
-`;
+`; */
 
 export const IconWrapper = styled.div<{ $isRestApi?: boolean }>`
   display: flex;
@@ -50,25 +50,6 @@ export const IconWrapper = styled.div<{ $isRestApi?: boolean }>`
   align-items: center;
 `;
 
-export const LargeBottomResIconWrapper = styled(IconWrapper)`
-  width: ${(props) => (props.$isRestApi ? "32px" : "20px")};
-  height: ${(props) => (props.$isRestApi ? "16px" : "20px")};
-  margin-right: 8px;
-
-  svg {
-    width: ${(props) => (props.$isRestApi ? "32px" : "20px")};
-    height: ${(props) => (props.$isRestApi ? "16px" : "20px")};
-  }
-`;
-
-function getBottomResIconInnerByUrl(type: BottomResType, url: string) {
-  let fullUrl = url;
-  if (!fullUrl.startsWith("http")) {
-    fullUrl = `${LOWCODER_NODE_SERVICE_URL !== "" ? LOWCODER_NODE_SERVICE_URL : REACT_APP_API_HOST}/node-service/plugin-icons/${url}`;
-  }
-  return <img style={{ width: "100%", height: "100%" }} src={fullUrl} alt="" />;
-}
-
 export type BottomResType =
   | ResourceType
   | BottomResTypeEnum.TempState
@@ -76,7 +57,7 @@ export type BottomResType =
   | BottomResTypeEnum.Folder
   | BottomResTypeEnum.DateResponder;
 
-const HttpMethodIcon = {
+/* const HttpMethodIcon = {
   DELETE: <DeleteApiIcon />,
   GET: <GetApiIcon />,
   PATCH: <PatchApiIcon />,
@@ -85,7 +66,7 @@ const HttpMethodIcon = {
   HEAD: <HeadApiIcon />,
   OPTIONS: <OptionsApiIcon />,
   TRACE: <TraceApiIcon />,
-};
+}; */
 
 export const getBottomResIcon = (
   type: BottomResType,
@@ -93,7 +74,7 @@ export const getBottomResIcon = (
   defaultIconUrl?: string,
   httpMethod?: HttpMethod
 ) => {
-  const getIcon = () => {
+  /* const getIcon = () => {
     switch (type) {
       case BottomResTypeEnum.TempState:
         return <TempStateIcon />;
@@ -143,11 +124,7 @@ export const getBottomResIcon = (
         }
         return <RestApiIcon />;
     }
-  };
-  const isRestApi = type === "restApi" && !!httpMethod;
-  return size === "large" ? (
-    <LargeBottomResIconWrapper $isRestApi={isRestApi}>{getIcon()}</LargeBottomResIconWrapper>
-  ) : (
-    <IconWrapper $isRestApi={isRestApi}>{getIcon()}</IconWrapper>
-  );
+  }; */
+
+  return <IconWrapper></IconWrapper>;
 };
