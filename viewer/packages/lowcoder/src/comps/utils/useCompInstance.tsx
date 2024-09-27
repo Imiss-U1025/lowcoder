@@ -204,16 +204,20 @@ export function getCompContainer<T extends CompConstructor>(params: GetContainer
       // 1ms
       const reduceFn = wrapWithPromiseHandling((act: CompAction) => {
         let action = act;
-        if (reduceContext && reduceContext.readOnly && action.editDSL) {
+        
+        /* if (reduceContext && reduceContext.readOnly && action.editDSL) {
           log.info("editDSL should be false in view mode, action: ", action);
-          action = { ...action, editDSL: false };
-        }
+          // action = { ...action, editDSL: false };
+        } */
 
         // console.info("~~ action: ", action);
         tmpComp = reduceContext
           ? reduceInContext(reduceContext, () => tmpComp.reduce(action))
           : tmpComp.reduce(action);
-        actions.push(action);
+        
+        if (reduceContext && !reduceContext.readOnly && !action.editDSL) {
+          actions.push(action);
+        }
 
         // record the time of the first calm down
         if (!this.appCalmDowned) {
