@@ -43,7 +43,6 @@ export interface UICompManifest {
   description?: ReactNode;
   categories: readonly UICompCategory[]; // Set to empty to hide from insertion panel
   keywords: string;
-  icon: FunctionComponent<React.SVGProps<SVGSVGElement>>;
   comp?: ExposingMultiCompConstructor;
   layoutInfo?: UICompLayoutInfo;
   withoutLoading?: boolean;
