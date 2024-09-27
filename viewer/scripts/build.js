@@ -15,7 +15,7 @@ export function currentDirName(importMetaUrl) {
   return dirname(fileURLToPath(importMetaUrl));
 }
 
-const builtinPlugins = ["lowcoder-comps"];
+// const builtinPlugins = ["lowcoder-comps"];
 const curDirName = currentDirName(import.meta.url);
 
 async function downloadFile(url, dest) {
@@ -94,11 +94,11 @@ buildVars.forEach(({ name, defaultValue }) => {
 shell.exec(`BUILD_TARGET=browserCheck yarn workspace lowcoder build`, { fatal: true });
 shell.exec(`yarn workspace lowcoder build`, { fatal: true });
 
-if (process.env.REACT_APP_BUNDLE_BUILTIN_PLUGIN) {
+/* if (process.env.REACT_APP_BUNDLE_BUILTIN_PLUGIN) {
   for (const pluginName of builtinPlugins) {
     await buildBuiltinPlugin(pluginName);
   }
-}
+} */
 
 if (process.argv.includes("--internal-deploy")) {
   const deployDir = shell.env["DEPLOY_DIR"];
