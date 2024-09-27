@@ -1,5 +1,5 @@
 import { ColorCodeControl } from "./codeControl";
-import { ColorSelect, controlItem, ControlPropertyViewWrapper, IconDep } from "lowcoder-design";
+import { ColorSelect, controlItem, ControlPropertyViewWrapper } from "lowcoder-design";
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { ControlParams } from "./controlParams";
@@ -20,9 +20,9 @@ const ColorContainer = styled.div`
 
 const DEFAULT_COLOR = "#ffffff";
 
-const DepIcon = styled(IconDep)`
-  margin-right: 4px;
-`;
+// const DepIcon = styled(IconDep)`
+//   margin-right: 4px;
+// `;
 
 const ColorInput = styled.div`
   //position: absolute;

@@ -22,13 +22,11 @@ import {
 } from "lowcoder-core";
 import {
   AutoArea,
-  CompressIcon,
   controlItem,
-  ExpandIcon,
-  IconRadius,
-  Option,
-  WidthIcon,
-  ImageCompIcon,
+
+  Option
+
+
 } from "lowcoder-design";
 import styled from "styled-components";
 import { lastValueIfEqual } from "util/objectUtils";
@@ -590,11 +588,11 @@ const ColumnOption = new MultiCompBuilder(
 )
 .setPropertyViewFn((children) => (
   <StyledContent>
-    {children.minWidth.propertyView({
-      label: trans('responsiveLayout.minWidth'),
-      preInputNode: <StyledIcon as={WidthIcon} title="" />,
-      placeholder: '3px',
-    })}
+    {/*{children.minWidth.propertyView({*/}
+    {/*  label: trans('responsiveLayout.minWidth'),*/}
+    {/*  preInputNode: <StyledIcon as={WidthIcon} title="" />,*/}
+    {/*  placeholder: '3px',*/}
+    {/*})}*/}
     {children.background.propertyView({
       label: trans('style.background'),
     })}
@@ -606,21 +604,21 @@ const ColumnOption = new MultiCompBuilder(
     {children.border.propertyView({
       label: trans('style.border')
     })}
-    {children.radius.propertyView({
-      label: trans('style.borderRadius'),
-      preInputNode: <StyledIcon as={IconRadius} title="" />,	
-      placeholder: '3px',
-    })}
-    {children.margin.propertyView({
-      label: trans('style.margin'),
-      preInputNode: <StyledIcon as={ExpandIcon} title="" />,	
-      placeholder: '3px',
-    })}
-    {children.padding.propertyView({
-      label: trans('style.padding'),
-      preInputNode: <StyledIcon as={CompressIcon} title="" />,	
-      placeholder: '3px',
-    })}
+    {/*{children.radius.propertyView({*/}
+    {/*  label: trans('style.borderRadius'),*/}
+    {/*  preInputNode: <StyledIcon as={IconRadius} title="" />,	*/}
+    {/*  placeholder: '3px',*/}
+    {/*})}*/}
+    {/*{children.margin.propertyView({*/}
+    {/*  label: trans('style.margin'),*/}
+    {/*  preInputNode: <StyledIcon as={ExpandIcon} title="" />,	*/}
+    {/*  placeholder: '3px',*/}
+    {/*})}*/}
+    {/*{children.padding.propertyView({*/}
+    {/*  label: trans('style.padding'),*/}
+    {/*  preInputNode: <StyledIcon as={CompressIcon} title="" />,	*/}
+    {/*  placeholder: '3px',*/}
+    {/*})}*/}
   </StyledContent>
 ))
   .build();

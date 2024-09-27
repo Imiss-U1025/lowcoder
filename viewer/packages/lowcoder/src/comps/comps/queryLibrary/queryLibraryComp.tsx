@@ -14,8 +14,7 @@ import {
   EditText,
   PointIcon,
   ScrollBar,
-  TacoButton,
-  UnfoldWhiteIcon,
+  TacoButton
 } from "lowcoder-design";
 import ReactHotkeys from "../../../util/hotkeys";
 import { executeQueryAction, renameAction } from "lowcoder-core";
@@ -172,7 +171,7 @@ const PropertyView = (props: {
                   loading={comp.children.query.children.isFetching.getView()}
                   buttonType="primary"
                 >
-                  <RunIcon />
+                  {/*<RunIcon />*/}
                   {trans("queryLibrary.run")}
                 </RunButton>
               </>
@@ -222,12 +221,12 @@ const PopoverButton = styled.div`
     }
   }
 `;
-const RunIcon = styled(UnfoldWhiteIcon)`
-  transform: rotate(-90deg);
-  display: inline-block;
-  padding-right: 2px;
-  margin-right: 4px;
-`;
+// const RunIcon = styled(UnfoldWhiteIcon)`
+//   transform: rotate(-90deg);
+//   display: inline-block;
+//   padding-right: 2px;
+//   margin-right: 4px;
+// `;
 const RunButton = styled(TacoButton)`
   padding: 0;
   width: 80px;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ReactNode, useContext, useMemo, useRef, useState } from "react";
 import { Layers } from "../../constants/Layers";
-import { CodeEditorOpenIcon, CodeEditorPinnedIcon, CodeEditorUnPinnedIcon } from "lowcoder-design";
+import { CodeEditorOpenIcon } from "lowcoder-design";
 import { CodeEditorCloseIcon } from "lowcoder-design";
 import { DragIcon } from "lowcoder-design";
 import Trigger from "rc-trigger";
@@ -202,8 +202,7 @@ export const CodeEditorPanel = (props: {
                   {[compName, ...(props.breadcrumb ?? [])].filter((t) => !isEmpty(t)).join(" / ")}
                 </TitleWrapper>
                 <Buttons>
-                  <PinButton onClick={() => setPinned(!pinned) }> 
-                    {pinned ? <CodeEditorPinnedIcon/> : <CodeEditorUnPinnedIcon/>}
+                  <PinButton onClick={() => setPinned(!pinned) }>
                   </PinButton>
                   <CloseButton onClick={() => setVisible(false)}>
                     <CodeEditorCloseIcon />

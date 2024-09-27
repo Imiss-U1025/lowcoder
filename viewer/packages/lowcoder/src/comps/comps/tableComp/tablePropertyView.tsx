@@ -15,7 +15,7 @@ import {
   Dropdown,
   labelCss,
   LinkButton,
-  OpenEyeIcon,
+  // OpenEyeIcon,
   Option,
   OptionItem,
   RedButton,
@@ -76,9 +76,9 @@ const eyeIconCss = css`
 const CloseEye = styled(CloseEyeIcon)`
   ${eyeIconCss}
 `;
-const OpenEye = styled(OpenEyeIcon)`
-  ${eyeIconCss}
-`;
+// const OpenEye = styled(OpenEyeIcon)`
+//   ${eyeIconCss}
+// `;
 
 const ColumnDropdown = styled(Dropdown)`
   width: 100px;
@@ -137,13 +137,10 @@ type ColumnBatchOptionValueType = typeof columnBatchOptions[number]["value"];
 
 function HideIcon(props: { hide: boolean; setHide: (hide: boolean) => void }) {
   const { hide, setHide } = props;
-  const Eye = hide ? CloseEye : OpenEye;
+  // const Eye = hide ? CloseEye : OpenEye;
   return (
-    <Eye
-      onClick={(e) => {
-        setHide(!hide);
-      }}
-    />
+    <>
+    </>
   );
 }
 

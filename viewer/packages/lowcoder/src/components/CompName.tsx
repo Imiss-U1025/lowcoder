@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { PointIcon, SearchOutlinedIcon } from "lowcoder-design/src/icons";
+import { PointIcon } from "lowcoder-design/src/icons";
 import type { EditPopoverItemType } from 'lowcoder-design/src/components/popover';
 import { Search } from 'lowcoder-design/src/components/Search';
 import { EditPopover } from "lowcoder-design";
@@ -59,12 +59,12 @@ const Icon = styled(PointIcon)`
   }
 `;
 
-const SearchIcon = styled(SearchOutlinedIcon)`
-  font-size: 20px;
-  margin-left: 6px;
-  margin-right: 16px;
-  cursor: pointer;
-`;
+// const SearchIcon = styled(SearchOutlinedIcon)`
+//   font-size: 20px;
+//   margin-left: 6px;
+//   margin-right: 16px;
+//   cursor: pointer;
+// `;
 
 interface Iprops {
   name: string;
@@ -163,15 +163,15 @@ export const CompName = (props: Iprops) => {
           hasError={!!error}
         />
       </div>
-      {!!search && (
-        <SearchIcon
-          onClick={() => {
-            setShowSearch(!showSearch);
-            search?.setSearchText("");
-          }}
-          style={{ color: showSearch ? "#315EFB" : "#8B8FA3" }}
-        />
-      )}
+      {/*{!!search && (*/}
+      {/*  <SearchIcon*/}
+      {/*    onClick={() => {*/}
+      {/*      setShowSearch(!showSearch);*/}
+      {/*      search?.setSearchText("");*/}
+      {/*    }}*/}
+      {/*    style={{ color: showSearch ? "#315EFB" : "#8B8FA3" }}*/}
+      {/*  />*/}
+      {/*)}*/}
       { compType === "module" ? (
         <EditPopover
           items={items}

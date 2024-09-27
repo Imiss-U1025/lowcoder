@@ -1,89 +1,59 @@
-import { default as Tooltip } from "antd/es/tooltip";
-import { getThemeDetailName, isThemeColorKey, ThemeDetail } from "api/commonSettingApi";
-import { ControlItemCompBuilder } from "comps/generators/controlCompBuilder";
-import { childrenToProps, ToConstructor } from "comps/generators/multi";
-import { BackgroundColorContext } from "comps/utils/backgroundColorContext";
-import { ThemeContext } from "comps/utils/themeContext";
-import { trans } from "i18n";
-import _, { omit, values } from "lodash";
-import {
-  controlItem,
-  IconReset,
-  ExpandIcon,
-  CompressIcon,
-  TextSizeIcon,
-  TextTransformationIcon,
-  FontFamilyIcon,
-  TextWeightIcon,
-  ShowBorderIcon,
-  BorderWidthIcon,
-  ImageCompIconSmall,
-  RotationIcon,
-  TextDecorationIcon,
-  BorderStyleIcon,
-  BorderRadiusIcon,
-  TextStyleIcon,
-  StarSmileIcon,
-  TimerFlashIcon,
-  Timer2Icon,
-  RefreshLineIcon,
-  ShadowIcon,
-  OpacityIcon,
-  LineHeightIcon
-} from 'lowcoder-design';
-import { useContext } from "react";
+import {isThemeColorKey, ThemeDetail} from "api/commonSettingApi";
+import {ControlItemCompBuilder} from "comps/generators/controlCompBuilder";
+import {ToConstructor} from "comps/generators/multi";
+import {BackgroundColorContext} from "comps/utils/backgroundColorContext";
+import {ThemeContext} from "comps/utils/themeContext";
+import {trans} from "i18n";
+import _, {omit} from "lodash";
+import {useContext} from "react";
 import styled from "styled-components";
-import { useIsMobile } from "util/hooks";
-import { CSSCodeControl, ObjectControl, RadiusControl, StringControl } from "./codeControl";
-import { ColorControl } from "./colorControl";
+import {StringControl} from "./codeControl";
+import {ColorControl} from "./colorControl";
 import {
-  DepColorConfig,
-  DEP_TYPE,
-  RadiusConfig,
-  SimpleColorConfig,
-  SingleColorConfig,
-  MarginConfig,
-  PaddingConfig,
-  TextSizeConfig,
-  TextWeightConfig,
-  FontFamilyConfig,
-  FontStyleConfig,
-  BorderWidthConfig,
-  RotationConfig,
-  BackgroundImageConfig,
-  BackgroundImageRepeatConfig,
-  BackgroundImageSizeConfig,
-  BackgroundImagePositionConfig,
-  BackgroundImageOriginConfig,
-  HeaderBackgroundImageConfig,
-  HeaderBackgroundImageRepeatConfig,
-  HeaderBackgroundImageSizeConfig,
-  HeaderBackgroundImagePositionConfig,
-  HeaderBackgroundImageOriginConfig,
-  FooterBackgroundImageConfig,
-  FooterBackgroundImageRepeatConfig,
-  FooterBackgroundImageSizeConfig,
-  FooterBackgroundImagePositionConfig,
-  FooterBackgroundImageOriginConfig,
-  TextTransformConfig,
-  TextDecorationConfig,
-  borderStyleConfig,
-  BoxShadowConfig,
-  BoxShadowColorConfig,
-  AnimationIterationCountConfig,
-  OpacityConfig,
   AnimationConfig,
   AnimationDelayConfig,
   AnimationDurationConfig,
+  AnimationIterationCountConfig,
+  BackgroundImageConfig,
+  BackgroundImageOriginConfig,
+  BackgroundImagePositionConfig,
+  BackgroundImageRepeatConfig,
+  BackgroundImageSizeConfig,
+  borderStyleConfig,
+  BorderWidthConfig,
+  BoxShadowColorConfig,
+  BoxShadowConfig,
+  DEP_TYPE,
+  DepColorConfig,
+  FontFamilyConfig,
+  FontStyleConfig,
+  FooterBackgroundImageConfig,
+  FooterBackgroundImageOriginConfig,
+  FooterBackgroundImagePositionConfig,
+  FooterBackgroundImageRepeatConfig,
+  FooterBackgroundImageSizeConfig,
+  HeaderBackgroundImageConfig,
+  HeaderBackgroundImageOriginConfig,
+  HeaderBackgroundImagePositionConfig,
+  HeaderBackgroundImageRepeatConfig,
+  HeaderBackgroundImageSizeConfig,
   LineHeightConfig,
-
-
+  MarginConfig,
+  OpacityConfig,
+  PaddingConfig,
+  RadiusConfig,
+  RotationConfig,
+  SimpleColorConfig,
+  SingleColorConfig,
+  TextDecorationConfig,
+  TextSizeConfig,
+  TextTransformConfig,
+  TextWeightConfig,
 } from "./styleControlConstants";
-import { CompTypeContext } from "../utils/compTypeContext";
-import { defaultTheme } from "@lowcoder-ee/constants/themeConstants";
-import { CompContext } from "../utils/compContext";
-import { EditorContext } from "../editorState";
-import { inputFieldComps } from "@lowcoder-ee/constants/compConstants";
+import {defaultTheme} from "@lowcoder-ee/constants/themeConstants";
+import {CompContext} from "../utils/compContext";
+import {EditorContext} from "../editorState";
+import {inputFieldComps} from "@lowcoder-ee/constants/compConstants";
 
 function isSimpleColorConfig(config: SingleColorConfig): config is SimpleColorConfig {
   return config.hasOwnProperty("color");
@@ -757,74 +727,6 @@ const StyleContent = styled.div`
     border-radius: 0 0 6px 6px;
   }
 `;
-const LineHeightPropIcon = styled(LineHeightIcon)`
-  margin: 0 8px 0 -3px;
-  padding: 3px;
-  color: #888;
-`;
-
-const MarginIcon = styled(ExpandIcon)` margin: 0 8px 0 2px; color: #888`;
-const PaddingIcon = styled(CompressIcon)`	margin: 0 8px 0 2px; color: #888`;
-const RadiusPropIcon = styled(BorderRadiusIcon)` width: 24px; margin: 0 11px 0 0px; color: #888`;
-const BorderPropIcon = styled(BorderWidthIcon)` margin: 0 8px 0 -3px; padding: 3px; color: #888`;
-const BorderStylePropIcon = styled(BorderStyleIcon)` margin: 0 8px 0 -3px; padding: 3px; color: #888`;
-
-const StyledBackgroundImageIcon = styled(ImageCompIconSmall)` margin: 0 6px 0 0; padding: 2px; color: #888`;
-const AnimationIterationCountPropIcon = styled(RefreshLineIcon)`
-  margin: 0 8px 0 -3px;
-  padding: 3px;
-  color: #888;
-`;
-
-const OpacityPropIcon = styled(OpacityIcon)`
-  margin: 0 8px 0 -3px;
-  padding: 3px;
-  color: #888;
-`;
-
-const BoxShadowColorPropIcon = styled(BorderWidthIcon)`
-  margin: 0 8px 0 -3px;
-  padding: 3px;
-  color: #888;
-`;
-
-const BoxShadowPropIcon = styled(ShadowIcon)`
-  margin: 0 8px 0 -3px;
-  padding: 3px;
-  color: #888;
-`;
-const AnimationPropIcon = styled(StarSmileIcon)`
-  margin: 0 8px 0 -3px;
-  padding: 3px;
-  color: #888;
-`;
-const AnimationDelayPropIcon = styled(TimerFlashIcon)`
-  margin: 0 8px 0 -3px;
-  padding: 3px;
-  color: #888;
-`;
-
-const AnimationDurationPropIcon = styled(Timer2Icon)`
-  margin: 0 8px 0 -3px;
-  padding: 3px;
-  color: #888;
-`;
-
-const RotationPropIcon = styled(RotationIcon)` margin: 0 8px 0 -3px; padding: 3px; color: #888`;
-
-const StyledTextSizeIcon = styled(TextSizeIcon)` margin: 0 8px 0 -3px; padding: 3px; color: #888`;
-const StyledTextTransformIcon = styled(TextTransformationIcon)` margin: 0 8px 0 -3px; padding: 3px; color: #888`;
-const StyledFontFamilyIcon = styled(FontFamilyIcon)` margin: 0 8px 0 -3px; padding: 3px; color: #888`;
-const StyledTextWeightIcon = styled(TextWeightIcon)` margin: 0 8px 0 -3px; padding: 3px; color: #888`;
-const StyledTextStyleIcon = styled(TextStyleIcon)` margin: 0 8px 0 -3px; padding: 3px; color: #888`;
-const StyledTextDecorationPropIcon = styled(TextDecorationIcon)` margin: 0 8px 0 -3px; padding: 3px; color: #888`;
-
-
-const ResetIcon = styled(IconReset)`
-  &:hover g g {
-    stroke: #315efb;
-  }
-`;
 
 export function styleControl<T extends readonly SingleColorConfig[]>(
   colorConfigs: T,
@@ -929,424 +831,6 @@ export function styleControl<T extends readonly SingleColorConfig[]>(
     }
   )
     .setControlItemData({ filterText: label, searchChild: true })
-    .setPropertyViewFn((children) => {
-      const theme = useContext(ThemeContext);
-      const compType = useContext(CompTypeContext);
-      const bgColor = useContext(BackgroundColorContext);
-      const isMobile = useIsMobile();
-      const compTheme = compType
-        ? theme?.theme?.components?.[compType]?.[styleKey]
-        : undefined;
-
-      const props = calcColors(
-        childrenToProps(children) as ColorMap,
-        colorConfigs,
-        theme?.theme,
-        bgColor,
-        compTheme as Record<string, string> | undefined,
-      );
-      const showReset = Object.values(childrenToProps(children)).findIndex((item) => item) > -1;
-      return (
-        <>
-          <TitleDiv>
-            <span>{label}</span>
-            {showReset && (
-              <span
-                onClick={() => {
-                  colorConfigs.map((item) => {
-                    const name: Names<T> = item.name;
-                    if (
-                      name === 'radius' ||
-                      name === 'margin' ||
-                      name === 'padding' ||
-                      name === 'containerHeaderPadding' ||
-                      name === 'containerSiderPadding' ||
-                      name === 'containerFooterPadding' ||
-                      name === 'containerBodyPadding' ||
-                      name === 'borderWidth' ||
-                      name === 'animationIterationCount' ||
-                      name === 'opacity' ||
-                      name === 'boxShadowColor' ||
-                      name === 'boxShadow' ||
-                      name === 'animation' ||
-                      name === 'animationDelay' ||
-                      name === 'animationDuration' ||
-                      name === 'rotation' ||
-                      name === 'backgroundImage' ||
-                      name === 'backgroundImageRepeat' ||
-                      name === 'backgroundImageSize' ||
-                      name === 'backgroundImagePosition' ||
-                      name === 'backgroundImageOrigin' ||
-                      name === 'headerBackgroundImage' ||
-                      name === 'headerBackgroundImageRepeat' ||
-                      name === 'headerBackgroundImageSize' ||
-                      name === 'headerBackgroundImagePosition' ||
-                      name === 'headerBackgroundImageOrigin' ||
-                      name === 'footerBackgroundImage' ||
-                      name === 'footerBackgroundImageRepeat' ||
-                      name === 'footerBackgroundImageSize' ||
-                      name === 'footerBackgroundImagePosition' ||
-                      name === 'footerBackgroundImageOrigin' ||
-                      name === 'lineHeight'
-                    ) {
-                      children[name]?.dispatchChangeValueAction('');
-                    } else {
-                      children[name] &&
-                        children[name].dispatch(
-                          children[name].changeValueAction('')
-                        );
-                    }
-                  });
-                }}
-              >
-                <Tooltip placement="topRight" title={trans("style.resetTooltip")}>
-                  <ResetIcon title=""/>
-                </Tooltip>
-              </span>
-            )}
-          </TitleDiv>
-          <StyleContent>
-            {colorConfigs
-              .filter(
-                (config) =>
-                  !config.platform ||
-                  (isMobile && config.platform === "mobile") ||
-                  (!isMobile && config.platform === "pc")
-              )
-              .map((config, index) => {
-                const name: Names<T> = config.name;
-                let depMsg = (config as SimpleColorConfig)["color"];
-                if (isDepColorConfig(config)) {
-                  if (config.depType === DEP_TYPE.CONTRAST_TEXT) {
-                    depMsg = trans("style.contrastText");
-                  } else if (config.depType === DEP_TYPE.SELF && config.depTheme) {
-                    depMsg = getThemeDetailName(config.depTheme);
-                  } else {
-                    depMsg = trans("style.generated");
-                  }
-                }
-                return controlItem(
-                  {filterText: config.label},
-                  <div key={index}>
-                    {name === 'radius' ||
-                    name === 'gap' ||
-                    name === 'cardRadius'
-                      ? (
-                          children[name] as InstanceType<typeof StringControl>
-                        ).propertyView({
-                          label: config.label,
-                          preInputNode: <RadiusPropIcon title="Radius" />,
-                          placeholder: props[name],
-                        })
-                      : name === 'borderWidth'
-                        ? (
-                            children[name] as InstanceType<typeof StringControl>
-                          ).propertyView({
-                            label: config.label,
-                            preInputNode: (
-                              <BorderPropIcon title="Border-Width" />
-                            ),
-                            placeholder: props[name],
-                          })
-                        : name === 'borderStyle'
-                          ? (
-                              children[name] as InstanceType<
-                                typeof StringControl
-                              >
-                            ).propertyView({
-                              label: config.label,
-                              preInputNode: (
-                                <BorderStylePropIcon title="Border-Style" />
-                              ),
-                              placeholder: props[name],
-                            })
-                          : name === 'margin'
-                            ? (
-                                children[name] as InstanceType<
-                                  typeof StringControl
-                                >
-                              ).propertyView({
-                                label: config.label,
-                                preInputNode: <MarginIcon title="Margin" />,
-                                placeholder: props[name],
-                              })
-                            : name === 'animationIterationCount'
-                              ? (
-                                  children[name] as InstanceType<
-                                    typeof StringControl
-                                  >
-                                ).propertyView({
-                                  label: config.label,
-                                  preInputNode: (
-                                    <AnimationIterationCountPropIcon title="AnimationIterationCount-Type" />
-                                  ),
-                                  placeholder: props[name],
-                                })
-                              : name === 'opacity'
-                                ? (
-                                    children[name] as InstanceType<
-                                      typeof StringControl
-                                    >
-                                  ).propertyView({
-                                    label: config.label,
-                                    preInputNode: (
-                                      <OpacityPropIcon title="Opacity-Type" />
-                                    ),
-                                    placeholder: props[name],
-                                  })
-                                : name === 'boxShadowColor'
-                                  ? (
-                                      children[name] as InstanceType<
-                                        typeof StringControl
-                                      >
-                                    ).propertyView({
-                                      label: config.label,
-                                      preInputNode: (
-                                        <BoxShadowColorPropIcon title="BoxShadowColor-Type" />
-                                      ),
-                                      placeholder: props[name],
-                                    })
-                                : name === 'boxShadow'
-                                  ? (
-                                      children[name] as InstanceType<
-                                        typeof StringControl
-                                      >
-                                    ).propertyView({
-                                      label: config.label,
-                                      preInputNode: (
-                                        <BoxShadowPropIcon title="BoxShadow-Type" />
-                                      ),
-                                      placeholder: props[name],
-                                    })
-                                  : name === 'animation'
-                                    ? (
-                                        children[name] as InstanceType<
-                                          typeof StringControl
-                                        >
-                                      ).propertyView({
-                                        label: config.label,
-                                        preInputNode: (
-                                          <AnimationPropIcon title="Animation-Type" />
-                                        ),
-                                        placeholder: props[name],
-                                      })
-                                    : name === 'animationDelay'
-                                      ? (
-                                          children[name] as InstanceType<
-                                            typeof StringControl
-                                          >
-                                        ).propertyView({
-                                          label: config.label,
-                                          preInputNode: (
-                                            <AnimationDelayPropIcon title="AnimationDelay-Type" />
-                                          ),
-                                          placeholder: props[name],
-                                        })
-                                      : name === 'animationDuration'
-                                        ? (
-                                            children[name] as InstanceType<
-                                              typeof StringControl
-                                            >
-                                          ).propertyView({
-                                            label: config.label,
-                                            preInputNode: (
-                                              <AnimationDurationPropIcon title="AnimationDuration-Type" />
-                                            ),
-                                            placeholder: props[name],
-                                          })
-                                          : name === 'padding' ||
-                                              name ===
-                                                'containerHeaderPadding' ||
-                                              name ===
-                                                'containerSiderPadding' ||
-                                              name ===
-                                                'containerFooterPadding' ||
-                                              name === 'containerBodyPadding'
-                                            ? (
-                                                children[name] as InstanceType<
-                                                  typeof StringControl
-                                                >
-                                              ).propertyView({
-                                                label: config.label,
-                                                preInputNode: (
-                                                  <PaddingIcon title="Padding" />
-                                                ),
-                                                placeholder: props[name],
-                                              })
-                                            : name === 'textSize'
-                                              ? (
-                                                  children[
-                                                    name
-                                                  ] as InstanceType<
-                                                    typeof StringControl
-                                                  >
-                                                ).propertyView({
-                                                  label: config.label,
-                                                  preInputNode: (
-                                                    <StyledTextSizeIcon title="Font Size" />
-                                                  ),
-                                                  placeholder: props[name],
-                                                })
-                                              : name === 'textWeight'
-                                                ? (
-                                                    children[
-                                                      name
-                                                    ] as InstanceType<
-                                                      typeof StringControl
-                                                    >
-                                                  ).propertyView({
-                                                    label: config.label,
-                                                    preInputNode: (
-                                                      <StyledTextWeightIcon title="Font Weight" />
-                                                    ),
-                                                    placeholder: props[name],
-                                                  })
-                                                : name === 'fontFamily'
-                                                  ? (
-                                                      children[
-                                                        name
-                                                      ] as InstanceType<
-                                                        typeof StringControl
-                                                      >
-                                                    ).propertyView({
-                                                      label: config.label,
-                                                      preInputNode: (
-                                                        <StyledFontFamilyIcon title="Font Family" />
-                                                      ),
-                                                      placeholder: props[name],
-                                                    })
-                                                  : name === 'textDecoration'
-                                                    ? (
-                                                        children[
-                                                          name
-                                                        ] as InstanceType<
-                                                          typeof StringControl
-                                                        >
-                                                      ).propertyView({
-                                                        label: config.label,
-                                                        preInputNode: (
-                                                          <StyledTextDecorationPropIcon title="Text Decoration" />
-                                                        ),
-                                                        placeholder:
-                                                          props[name],
-                                                      })
-                                                    : name === 'textTransform'
-                                                      ? (
-                                                          children[
-                                                            name
-                                                          ] as InstanceType<
-                                                            typeof StringControl
-                                                          >
-                                                        ).propertyView({
-                                                          label: config.label,
-                                                          preInputNode: (
-                                                            <StyledTextTransformIcon title="Text Transform" />
-                                                          ),
-                                                          placeholder:
-                                                            props[name],
-                                                        })
-                                                      : name === 'fontStyle'
-                                                        ? (
-                                                            children[
-                                                              name
-                                                            ] as InstanceType<
-                                                              typeof StringControl
-                                                            >
-                                                          ).propertyView({
-                                                            label: config.label,
-                                                            preInputNode: (
-                                                              <StyledTextStyleIcon title="Font Style" />
-                                                            ),
-                                                            placeholder:
-                                                              props[name],
-                                                          })
-                                                        : name ===
-                                                              'backgroundImage' ||
-                                                            name ===
-                                                              'headerBackgroundImage' ||
-                                                            name ===
-                                                              'footerBackgroundImage'
-                                                          ? (
-                                                              children[
-                                                                name
-                                                              ] as InstanceType<
-                                                                typeof StringControl
-                                                              >
-                                                            ).propertyView({
-                                                              label:
-                                                                config.label,
-                                                              preInputNode: (
-                                                                <StyledBackgroundImageIcon title="Background Image" />
-                                                              ),
-                                                              placeholder:
-                                                                props[name],
-                                                            })
-                                                          : name ===
-                                                                'backgroundImageRepeat' ||
-                                                              name ===
-                                                                'headerBackgroundImageRepeat' ||
-                                                              name ===
-                                                                'footerBackgroundImageRepeat'
-                                                            ? (
-                                                                children[
-                                                                  name
-                                                                ] as InstanceType<
-                                                                  typeof StringControl
-                                                                >
-                                                              ).propertyView({
-                                                                label:
-                                                                  config.label,
-                                                                preInputNode: (
-                                                                  <StyledBackgroundImageIcon title="Background Image Repeat" />
-                                                                ),
-                                                                placeholder:
-                                                                  props[name],
-                                                              })
-                                                            : name ===
-                                                                'rotation'
-                                                              ? (
-                                                                  children[
-                                                                    name
-                                                                  ] as InstanceType<
-                                                                    typeof StringControl
-                                                                  >
-                                                                ).propertyView({
-                                                                  label:
-                                                                    config.label,
-                                                                  preInputNode:
-                                                                    (
-                                                                      <RotationPropIcon title="Rotation" />
-                                                                    ),
-                                                                  placeholder:
-                                                                    props[name],
-                                                                })
-                                                                : name === 'lineHeight'  // Added lineHeight here
-                                                                ? (
-                                                                  children[name] as InstanceType<typeof StringControl>
-                                                                ).propertyView({
-                                                                label: config.label,
-                                                                preInputNode: <LineHeightPropIcon title="Line Height" />,
-                                                                placeholder: props[name],
-                                                              })
-                                                              : children[
-                                                                  name
-                                                                ].propertyView({
-                                                                  label:
-                                                                    config.label,
-                                                                  panelDefaultColor:
-                                                                    props[name],
-                                                                  // isDep: isDepColorConfig(config),
-                                                                  isDep: true,
-                                                                  depMsg:
-                                                                    depMsg,
-                                                                })}
-                  </div>
-                );
-              })}
-          </StyleContent>
-        </>
-      );
-    })
     .build();
 }
 
