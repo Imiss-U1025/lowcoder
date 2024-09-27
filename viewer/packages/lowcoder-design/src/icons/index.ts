@@ -22,8 +22,8 @@ export { ReactComponent as ClickLinkIcon } from "./v1/icon-clickLink.svg";
 export { ReactComponent as CloseEyeIcon } from "./v1/icon-closeEye.svg";
 export { ReactComponent as CodeEditorCloseIcon } from "./v1/icon-code-editor-close.svg";
 export { ReactComponent as CodeEditorOpenIcon } from "./v1/icon-code-editor-open.svg";
-export { ReactComponent as CodeEditorPinnedIcon } from "./remix/pushpin-2-fill.svg";
-export { ReactComponent as CodeEditorUnPinnedIcon } from "./remix/pushpin-line.svg";
+export { ReactComponent as CodeEditorPinnedIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as CodeEditorUnPinnedIcon } from "./remix/pushpin-2-fill.svg"
 export { ReactComponent as ColorHexIcon } from "./v1/icon-colorHex.svg";
 export { ReactComponent as ContainerDragIcon } from "./v1/icon-container-drag.svg";
 export { ReactComponent as CopyIcon } from "./v1/icon-copy.svg";
@@ -116,14 +116,14 @@ export { ReactComponent as ArrowSolidIcon } from "./v1/icon-arrow-solid.svg";
 // Home Section
 export { ReactComponent as PlusIcon } from "./v1/icon-plus.svg";
 
-export { ReactComponent as FolderIcon } from "./remix/folder-6-line.svg";
+export { ReactComponent as FolderIcon } from "./remix/pushpin-2-fill.svg"
 export { ReactComponent as AllTypesIcon } from "./v1/icon-application-all.svg";
 export { ReactComponent as InviteUserIcon } from "./v1/icon-application-invite-user.svg";
 export { ReactComponent as HomeEmptyIcon } from "./v1/icon-application-empty.svg";
 export { ReactComponent as HomeListIcon } from "./v1/icon-application-list.svg";
 export { ReactComponent as HomeCardIcon } from "./v1/icon-application-card.svg";
-export { ReactComponent as APIDocsIcon } from "./remix/instance-line.svg";
-export { ReactComponent as SubscriptionIcon } from "./remix/award-fill.svg";
+export { ReactComponent as APIDocsIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as SubscriptionIcon } from "./remix/pushpin-2-fill.svg"
 // export { ReactComponent as AllAppIcon } from "./v1/icon-all-app.svg";
 
 // Data Sources
@@ -158,13 +158,13 @@ export { ReactComponent as EsIcon } from "./v1/icon-query-ElasticSearch.svg";
 export { ReactComponent as ResetIcon } from "./v1/icon-style-reset.svg";
 export { ReactComponent as EditIcon } from "./v1/icon-edit.svg";
 export { ReactComponent as EditableIcon } from "./v1/icon-editable.svg";
-export { ReactComponent as LeftStateIcon } from "./remix/node-tree.svg";
-export { ReactComponent as StarSmileIcon } from "./remix/star-smile-line.svg";
-export { ReactComponent as Timer2Icon } from "./remix/timer-2-line.svg";
-export { ReactComponent as TimerFlashIcon } from "./remix/timer-flash-line.svg";
-export { ReactComponent as RefreshLineIcon } from "./remix/refresh-line.svg";
-export { ReactComponent as LeftSettingIcon } from "./remix/tools-fill.svg";
-export { ReactComponent as LeftLayersIcon } from "./remix/stack-line.svg";
+export { ReactComponent as LeftStateIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as StarSmileIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as Timer2Icon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as TimerFlashIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as RefreshLineIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as LeftSettingIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as LeftLayersIcon } from "./remix/pushpin-2-fill.svg"
 export { ReactComponent as LeftHelpIcon } from "./v1/icon-left-help.svg";
 export { ReactComponent as LeftPreloadIcon } from "./v1/icon-left-preload.svg";
 
@@ -194,52 +194,52 @@ export { ReactComponent as FileFolderIcon } from "./v1/icon-editor-folder.svg";
 export { ReactComponent as ExpandIcon } from "./v1/icon-expand.svg";
 export { ReactComponent as CompressIcon } from "./v1/icon-compress.svg";
 export { ReactComponent as TableCellsIcon } from "./v1/icon-table-cells.svg";
-export { ReactComponent as TableColumnVisibilityIcon } from "./remix/layout-column-line.svg";
+export { ReactComponent as TableColumnVisibilityIcon } from "./remix/pushpin-2-fill.svg"
 
 // Style Props
 export { ReactComponent as WidthIcon } from "./v1/icon-width.svg";
-export { ReactComponent as TextSizeIcon } from "./remix/font-size.svg";
-export { ReactComponent as TextTransformationIcon } from "./remix/font-size-2.svg";
-export { ReactComponent as FontFamilyIcon } from "./remix/font-sans-serif.svg";
-export { ReactComponent as TextWeightIcon } from "./remix/bold.svg";
-export { ReactComponent as TextDecorationIcon } from "./remix/underline.svg";
-export { ReactComponent as TextStyleIcon } from "./remix/italic.svg";
-export { ReactComponent as BorderWidthIcon } from "./remix/space.svg";
-export { ReactComponent as BorderStyleIcon } from "./remix/separator.svg";
-export { ReactComponent as RotationIcon } from "./remix/clockwise-line.svg";
-export { ReactComponent as BorderRadiusIcon } from "./remix/rounded-corner.svg";
+export { ReactComponent as TextSizeIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as TextTransformationIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as FontFamilyIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as TextWeightIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as TextDecorationIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as TextStyleIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as BorderWidthIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as BorderStyleIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as RotationIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as BorderRadiusIcon } from "./remix/pushpin-2-fill.svg"
 
 // Falk: TODO
-export { ReactComponent as ShadowIcon } from "./remix/shadow-line.svg";
-export { ReactComponent as OpacityIcon } from "./remix/contrast-drop-2-line.svg";
-export { ReactComponent as AnimationIcon } from "./remix/loader-line.svg";
-export { ReactComponent as LineHeightIcon } from "./remix/line-height.svg";
+export { ReactComponent as ShadowIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as OpacityIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as AnimationIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as LineHeightIcon } from "./remix/pushpin-2-fill.svg"
 
-export { ReactComponent as LeftInfoLine } from "./remix/information-line.svg";
-export { ReactComponent as LeftInfoFill } from "./remix/information-fill.svg";
-export { ReactComponent as LeftShow } from "./remix/eye-off-line.svg";
-export { ReactComponent as LeftHide } from "./remix/eye-line.svg";
-export { ReactComponent as LeftLock } from "./remix/lock-line.svg";
-export { ReactComponent as LeftUnlock } from "./remix/lock-unlock-line.svg";
-export { ReactComponent as UserGroupIcon } from "./remix/group-line.svg";
-export { ReactComponent as UserIcon } from "./remix/user-line.svg";
-export { ReactComponent as UserAddIcon } from "./remix/user-add-line.svg";
-export { ReactComponent as UserDeleteIcon } from "./remix/user-unfollow-line.svg";
-export { ReactComponent as UserShieldIcon } from "./remix/shield-user-line.svg";
-export { ReactComponent as ThemeIcon } from "./remix/palette-line.svg";
-export { ReactComponent as AppsIcon } from "./remix/apps-2-line.svg";
-export { ReactComponent as WorkspacesIcon } from "./remix/hotel-line.svg";
+export { ReactComponent as LeftInfoLine } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as LeftInfoFill } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as LeftShow } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as LeftHide } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as LeftLock } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as LeftUnlock } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as UserGroupIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as UserIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as UserAddIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as UserDeleteIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as UserShieldIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as ThemeIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as AppsIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as WorkspacesIcon } from "./remix/pushpin-2-fill.svg"
 
-export { ReactComponent as HomeIcon } from "./remix/home-3-line.svg";
-export { ReactComponent as NewsIcon } from "./remix/megaphone-line.svg";
-export { ReactComponent as HomeModuleIcon } from "./remix/focus-mode.svg";
-export { ReactComponent as HomeQueryLibraryIcon } from "./remix/braces-line.svg";
-export { ReactComponent as HomeDataSourceIcon } from "./remix/database-2-line.svg";
-export { ReactComponent as RecyclerIcon } from "./remix/delete-bin-line.svg";
+export { ReactComponent as HomeIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as NewsIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as HomeModuleIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as HomeQueryLibraryIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as HomeDataSourceIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as RecyclerIcon } from "./remix/pushpin-2-fill.svg"
 export { ReactComponent as MarketplaceIcon } from "./v1/icon-application-marketplace.svg";
 export { ReactComponent as FavoritesIcon } from "./v1/icon-application-favorites.svg";
-export { ReactComponent as HomeSettingIcon } from "./remix/settings-4-line.svg";
-export { ReactComponent as EnterpriseIcon } from "./remix/earth-line.svg";
+export { ReactComponent as HomeSettingIcon } from "./remix/pushpin-2-fill.svg"
+export { ReactComponent as EnterpriseIcon } from "./remix/pushpin-2-fill.svg"
 
 // export { ReactComponent as VideoCompIconSmall } from "./v2/video-player-s.svg";
 export { ReactComponent as VideoCompIcon } from "./v2/video-player-m.svg";
