@@ -245,5 +245,21 @@ export const en = {
     "resetDesc": "Triggers on Reset timer",
     "refresh": "Refresh",
     "refreshDesc": "Triggers on Refresh",
+  },
+  "npm": {
+    "invalidNpmPackageName": "Invalid npm Package Name or URL.",
+    "pluginExisted": "This npm Plugin Already Existed",
+    "compNotFound": "Component {compName} Not Found.",
+    "addPluginModalTitle": "Add Plugin from a npm Repository",
+    "pluginNameLabel": "npm Package's URL or Name",
+    "noCompText": "No Components.",
+    "compsLoading": "Loading...",
+    "removePluginBtnText": "Remove",
+    "addPluginBtnText": "Add npm Plugin"
+  },
+  "errorBoundary": {
+    "encounterError": "Component loading failed. Please check your configuration.",
+    "clickToReload": "Click to Reload",
+    "errorMsg": "Error: "
   }
 }
