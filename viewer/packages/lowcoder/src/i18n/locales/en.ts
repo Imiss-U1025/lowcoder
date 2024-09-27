@@ -97,5 +97,20 @@ export const en = {
     "inviteWelcomeTitle": "{username} invites You to work together",
     "invalidThirdPartyParam": "Invalid Third-Party Param",
     "poweredByLowcoder": "Powered by: Lowcoder.cloud"
+  },
+  "timer": {
+    "timerState": "timer State",
+    "elapsedTime": "Elapsed Time",
+    "timer": "Timer",
+    "countdown": "Countdown",
+    "defaultValue": "Default Value",
+    "timerType": "Timer Type",
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Resume",
+    "reset": "Reset",
+    "startPause": "Start/Pause",
+    "hideButton": "Hide Button",
+    "fontColor": "Font Color"
   }
 }
